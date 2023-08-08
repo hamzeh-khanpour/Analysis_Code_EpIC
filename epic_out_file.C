@@ -159,18 +159,20 @@ void epic_out_file::Loop()
   
 //        cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Px()  << endl;    
 //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;            
-//        cout << "MyGoodLeptonminus M = "   <<  MyGoodLeptonminus.M()  << endl;            
+//        cout << "MyGoodLeptonminus M = "    <<  MyGoodLeptonminus.M()   << endl;      
+//        cout << "MyGoodLeptonminus P = "    <<  MyGoodLeptonminus.P()   << endl;   
+//        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
+  
         }
         
     }
     
     
-    
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
-    
-      
+
       cout << "MydiLepton Pt =" << MydiLepton.Pt() << endl; 
-      cout << "MydiLepton M =" << MydiLepton.M() << endl;       
+      cout << "MydiLepton M ="  << MydiLepton.M()  << endl;       
+      cout << "MydiLepton P ="  << MydiLepton.P()  << endl;       
 
    }
 }
