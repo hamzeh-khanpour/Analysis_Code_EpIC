@@ -58,6 +58,8 @@
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
+    
+    TLorentzVector MydiLepton;
 
 
 void epic_out_file::Loop()
@@ -126,12 +128,15 @@ void epic_out_file::Loop()
         
   Muonplus.SetXYZ( particles_momentum_m_v1[i], particles_momentum_m_v2[i], particles_momentum_m_v3[i] );
 
-        cout << "Muonplus Px = "   <<  Muonplus.Px()  << endl;    
+//        cout << "Muonplus Px = "   <<  Muonplus.Px()  << endl;    
         
   MyGoodLeptonplus.SetPxPyPzE( particles_momentum_m_v1[i], particles_momentum_m_v2[i], particles_momentum_m_v3[i], particles_momentum_m_v4[i] );
   
-        cout << "MyGoodLeptonplus Px = "   <<  MyGoodLeptonplus.Px()  << endl;    
-  
+//        cout << "MyGoodLeptonplus Px = "   <<  MyGoodLeptonplus.Px()  << endl;    
+
+        
+
+        
   
         }
         
@@ -148,23 +153,27 @@ void epic_out_file::Loop()
         
   Muonminus.SetXYZ( particles_momentum_m_v1[i], particles_momentum_m_v2[i], particles_momentum_m_v3[i] );
 
-        cout << "Muonminus Px = "   <<  Muonminus.Px()  << endl;    
+//        cout << "Muonminus Px = "   <<  Muonminus.Px()  << endl;    
         
   MyGoodLeptonminus.SetPxPyPzE( particles_momentum_m_v1[i], particles_momentum_m_v2[i], particles_momentum_m_v3[i], particles_momentum_m_v4[i] );
   
-        cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Px()  << endl;    
-        cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Pt()  << endl;            
-  
+//        cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Px()  << endl;    
+//        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;            
+//        cout << "MyGoodLeptonminus M = "   <<  MyGoodLeptonminus.M()  << endl;            
         }
         
     }
     
     
     
+      MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
     
-    
-     
-           
       
+      cout << "MydiLepton Pt =" << MydiLepton.Pt() << endl; 
+      cout << "MydiLepton M =" << MydiLepton.M() << endl;       
+
    }
 }
+
+
+
