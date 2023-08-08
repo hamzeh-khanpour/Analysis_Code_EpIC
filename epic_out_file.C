@@ -153,7 +153,7 @@ void epic_out_file::Loop()
   MyGoodLeptonminus.SetPxPyPzE( particles_momentum_m_v1[i], particles_momentum_m_v2[i], particles_momentum_m_v3[i], particles_momentum_m_v4[i] );
   
         cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Px()  << endl;    
-        
+        cout << "MyGoodLeptonminus Px = "   <<  MyGoodLeptonminus.Pt()  << endl;            
   
         }
         
