@@ -1,4 +1,8 @@
 
+// Exclusive lepton pair production at the EIC
+// Hamzeh & Hadi & Krzysztof
+// 5 August 2023 
+
 // Stdlib header file for input and output 
 #include <iostream>
 #include <fstream>
@@ -56,7 +60,8 @@
   // Book histograms
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.0, 10.0);
-  TH1 *histtvalue = new TH1F("t", "", 50, 0.0, 5.0);  
+  TH1 *histtvalue = new TH1F("tvalue", "", 50, 0.0, 5.0);  
+
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
