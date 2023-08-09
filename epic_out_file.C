@@ -235,11 +235,13 @@ void epic_out_file::Loop()
       
       
       t = Protonout - Protonin;
-      tvalue = t.P();
+      tvalue = t.P() * t.P();
       
       cout << "tvalue  = "  << tvalue   << endl;             
       
 
+//      weight = sigma * L / nentries;
+      
      histMassdilepton->Fill(Mll);      
      histPtdilepton->Fill(Ptll);    
      histtvalue->Fill(tvalue);    
@@ -249,11 +251,7 @@ void epic_out_file::Loop()
    
    
    
-   
-   
-   
-   
-   
+
 // **********************************************************************   
 // Show resulting histograms
 
@@ -393,7 +391,7 @@ histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
 histtvalue->GetXaxis()->SetTitleFont(22);
-histtvalue->GetYaxis()->SetTitle("Events normalised to unit area");
+histtvalue->GetYaxis()->SetTitle("# Events");
 histtvalue->GetYaxis()->SetTitleOffset(1.40);
 histtvalue->GetYaxis()->SetLabelFont(22);
 histtvalue->GetYaxis()->SetTitleFont(22);
@@ -406,7 +404,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
     histtvalue->SetLineWidth(3);
     histtvalue->SetLineColor(kGreen+1);
     
-    histtvalue->DrawNormalized("hist");
+    histtvalue->Draw("hist");
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -421,8 +419,6 @@ c3->SaveAs("tvalue.eps");
 c3->SaveAs("tvalue.jpg");      
   
 
-
-   
 } // The end
 
 
