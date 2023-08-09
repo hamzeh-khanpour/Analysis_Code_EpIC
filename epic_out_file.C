@@ -220,7 +220,6 @@ void epic_out_file::Loop()
         
 
     
-    
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
 
 //      cout << "MydiLepton Pt = " << MydiLepton.Pt() << endl; 
@@ -230,8 +229,8 @@ void epic_out_file::Loop()
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
       
-//     cout << "Mll  = "  << Mll   << endl;       
-//     cout << "Ptll = "  << Ptll  << endl;     
+     cout << "Mll  = "  << Mll   << endl;       
+     cout << "Ptll = "  << Ptll  << endl;     
       
       
       
@@ -255,7 +254,7 @@ void epic_out_file::Loop()
    
    
    
-   
+// **********************************************************************   
 // Show resulting histograms
 
 //  TCanvas * c1 = new TCanvas("c1","",1);
