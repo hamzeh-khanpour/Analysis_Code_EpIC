@@ -55,8 +55,8 @@
 
 
   // Book histograms
-  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 100, 1.0, 10.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "P_{t}(l_{1}, l_{2})", 100, 1.0, 10.0);
+  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 1.0, 10.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.1, 10.0);
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
@@ -151,10 +151,7 @@ void epic_out_file::Loop()
   
 //        cout << "MyGoodLeptonplus Px = "   <<  MyGoodLeptonplus.Px()  << endl;    
 
-        
 
-        
-  
         }
         
         
@@ -213,20 +210,14 @@ void epic_out_file::Loop()
 //  histMassdilepton->Draw();
  // c1 -> SaveAs("Massdilepton.C");   
 //    c1 -> SaveAs("Massdilepton.pdf");    
-  
-  
 
-  TCanvas * c2 = new TCanvas("c2","",1);
-  c2->cd();
+//  TCanvas * c2 = new TCanvas("c2","",1);
+//  c2->cd();
   //histPtdilepton->Scale(1/histPtdilepton->Integral());
-  histPtdilepton->Draw();
+//  histPtdilepton->Draw();
  // c2 -> SaveAs("Ptdilepton.C");   
   
-  
-  
 
-  
-  
 Double_t xl1=0.70, yl1=0.60, xl2=xl1+0.250, yl2=yl1+0.250;
 
 TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
@@ -254,14 +245,14 @@ TLatex *t3a = new TLatex(0.27,0.8,"E_e = 10 GeV");
                 t3a->SetTextAlign(20);
                 
             
-TLatex *t4a = new TLatex(0.275,0.75,"E_p = 100 GeV");
+TLatex *t4a = new TLatex(0.276,0.75,"E_p = 100 GeV");
                 t4a->SetNDC();
                 t4a->SetTextFont(42);
                 t4a->SetTextSize(0.04);
                 t4a->SetTextAlign(20);
                 
 
-/////
+// =======================================================================
 
 
 TCanvas* c1 = new TCanvas("c1","Massdilepton", 10, 10, 900, 700);
@@ -277,7 +268,7 @@ histMassdilepton->GetYaxis()->SetLabelFont(22);
 histMassdilepton->GetYaxis()->SetTitleFont(22);
 
 //histMassdilepton->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histMassdilepton="<<hWmass_Signal->Integral()<<endl;
+//cout<<"histMassdilepton="<<histMassdilepton->Integral()<<endl;
 
    // histMassdilepton->SetFillStyle(3001); 
     histMassdilepton->SetFillColor(kGreen+1);
@@ -298,6 +289,46 @@ c1->SaveAs("Massdilepton.eps");
 //c1->SaveAs("Massdilepton.root");                
 c1->SaveAs("Massdilepton.jpg");      
   
+
+
+// =======================================================================
+
+
+TCanvas* c2 = new TCanvas("c2","Ptdilepton", 10, 10, 900, 700);
+
+//histPtdilepton->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histPtdilepton->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
+//histPtdilepton->GetXaxis()->SetTitleOffset(1.25);
+histPtdilepton->GetXaxis()->SetLabelFont(22);
+histPtdilepton->GetXaxis()->SetTitleFont(22);
+histPtdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
+histPtdilepton->GetYaxis()->SetTitleOffset(1.40);
+histPtdilepton->GetYaxis()->SetLabelFont(22);
+histPtdilepton->GetYaxis()->SetTitleFont(22);
+
+//histPtdilepton->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histPtdilepton="<<histPtdilepton->Integral()<<endl;
+
+   // histPtdilepton->SetFillStyle(3001); 
+    histPtdilepton->SetFillColor(kGreen+1);
+    histPtdilepton->SetLineWidth(3);
+    histPtdilepton->SetLineColor(kGreen+1);
+    
+    histPtdilepton->DrawNormalized("hist");
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ 
+ 
+c1->SaveAs("Ptdilepton.pdf");
+//c1->SaveAs("Ptdilepton.C");
+c1->SaveAs("Ptdilepton.eps");
+//c1->SaveAs("Ptdilepton.root");                
+c1->SaveAs("Ptdilepton.jpg");      
+  
+
    
 } // The end
 
