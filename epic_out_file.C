@@ -55,7 +55,7 @@
 
 
   // Book histograms
-  TH1 *histMassdilepton = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 1.0, 10.0);
+  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 100, 1.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "P_{t}(l_{1}, l_{2})", 100, 1.0, 10.0);
 
     TLorentzVector MyGoodLeptonplus;
@@ -64,7 +64,7 @@
     
    Float_t Mll = 0.0;
    Float_t Ptll = 0.0;
-
+   
 
 void epic_out_file::Loop()
 {
@@ -91,6 +91,11 @@ void epic_out_file::Loop()
 // METHOD2: replace line
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
+ 
+    
+    
+   gStyle->SetOptStat(0);
+    
     
    if (fChain == 0) return;
 
@@ -202,12 +207,12 @@ void epic_out_file::Loop()
    
 // Show resulting histograms
 
-  TCanvas * c1 = new TCanvas("c1","",1);
-  c1->cd();
+//  TCanvas * c1 = new TCanvas("c1","",1);
+//  c1->cd();
   //histMassdilepton->Scale(1/histMassdilepton->Integral());
-  histMassdilepton->Draw();
+//  histMassdilepton->Draw();
  // c1 -> SaveAs("Massdilepton.C");   
-    c1 -> SaveAs("Massdilepton.pdf");    
+//    c1 -> SaveAs("Massdilepton.pdf");    
   
   
 
@@ -217,6 +222,81 @@ void epic_out_file::Loop()
   histPtdilepton->Draw();
  // c2 -> SaveAs("Ptdilepton.C");   
   
+  
+  
+
+  
+  
+Double_t xl1=0.70, yl1=0.60, xl2=xl1+0.250, yl2=yl1+0.250;
+
+TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
+leg->SetBorderSize(0);
+
+leg->AddEntry(histMassdilepton,"EIC 1","L")->SetTextColor(1);
+
+leg->SetTextSize(0.032);
+leg->SetTextFont(12);
+leg->SetFillStyle(0);
+
+//    (#sqrt{s} = 365 GeV, L_{int} = 1.5 ab^{-1})    1.5 ab^{-1} (365 GeV)
+
+TLatex *t2a = new TLatex(0.5,0.9,"#bf{Electron-Ion Collider (EIC)}");
+                t2a->SetNDC();
+                t2a->SetTextFont(42);
+                t2a->SetTextSize(0.04);
+                t2a->SetTextAlign(20);
+
+                
+TLatex *t3a = new TLatex(0.27,0.8,"E_e = 10 GeV");
+                t3a->SetNDC();
+                t3a->SetTextFont(42);
+                t3a->SetTextSize(0.04);
+                t3a->SetTextAlign(20);
+                
+            
+TLatex *t4a = new TLatex(0.275,0.75,"E_p = 100 GeV");
+                t4a->SetNDC();
+                t4a->SetTextFont(42);
+                t4a->SetTextSize(0.04);
+                t4a->SetTextAlign(20);
+                
+
+/////
+
+
+TCanvas* c1 = new TCanvas("c1","Massdilepton", 10, 10, 900, 700);
+
+//histMassdilepton->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histMassdilepton->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
+//histMassdilepton->GetXaxis()->SetTitleOffset(1.25);
+histMassdilepton->GetXaxis()->SetLabelFont(22);
+histMassdilepton->GetXaxis()->SetTitleFont(22);
+histMassdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
+histMassdilepton->GetYaxis()->SetTitleOffset(1.40);
+histMassdilepton->GetYaxis()->SetLabelFont(22);
+histMassdilepton->GetYaxis()->SetTitleFont(22);
+
+//histMassdilepton->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histMassdilepton="<<hWmass_Signal->Integral()<<endl;
+
+   // histMassdilepton->SetFillStyle(3001); 
+    histMassdilepton->SetFillColor(kGreen+1);
+    histMassdilepton->SetLineWidth(3);
+    histMassdilepton->SetLineColor(kGreen+1);
+    
+    histMassdilepton->DrawNormalized("hist");
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ 
+ 
+c1->SaveAs("Massdilepton.pdf");
+//c1->SaveAs("Massdilepton.C");
+c1->SaveAs("Massdilepton.eps");
+//c1->SaveAs("Massdilepton.root");                
+c1->SaveAs("Massdilepton.jpg");      
   
    
 } // The end
