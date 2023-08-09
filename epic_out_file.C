@@ -206,8 +206,8 @@ void epic_out_file::Loop()
   c1->cd();
   //histMassdilepton->Scale(1/histMassdilepton->Integral());
   histMassdilepton->Draw();
- // c1 -> SaveAs("histMassdilepton.C");   
- 
+ // c1 -> SaveAs("Massdilepton.C");   
+    c1 -> SaveAs("Massdilepton.pdf");    
   
   
 
@@ -215,7 +215,7 @@ void epic_out_file::Loop()
   c2->cd();
   //histPtdilepton->Scale(1/histPtdilepton->Integral());
   histPtdilepton->Draw();
- // c2 -> SaveAs("histPtdilepton.C");   
+ // c2 -> SaveAs("Ptdilepton.C");   
   
   
    
