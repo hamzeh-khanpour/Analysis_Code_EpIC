@@ -57,7 +57,10 @@
 #include "epic_out_file.h"
 
 
-  // Book histograms
+// **********************************************************************   
+// Book Histograms 
+// **********************************************************************   
+
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.0, 10.0);
   TH1 *histtvalue = new TH1F("tvalue", "", 50, 0.0, 5.0);  
@@ -108,7 +111,7 @@ void epic_out_file::Loop()
     
    gStyle->SetOptStat(0);
     
-    
+
    if (fChain == 0) return;
 
    Long64_t nentries = fChain->GetEntriesFast();
@@ -144,6 +147,9 @@ void epic_out_file::Loop()
 //    }
      
      
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
+      
+      
     for (Int_t i = 1; i <= kMaxparticles; i++) {      
      
         if (particles_pid[i] == 13 ) {  // && particles_status[i] == 5 
@@ -233,10 +239,9 @@ void epic_out_file::Loop()
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
       
-     cout << "Mll  = "  << Mll   << endl;       
-     cout << "Ptll = "  << Ptll  << endl;     
-      
-      
+      cout << "Mll  = "  << Mll   << endl;       
+      cout << "Ptll = "  << Ptll  << endl;     
+
       
       t = Protonout - Protonin;
       tvalue = t.P() * t.P();
@@ -248,18 +253,17 @@ void epic_out_file::Loop()
       Float_t integrated_luminosity = 300000; // pb^{-1} 
       Float_t event_weight = integrated_cross_section_value * integrated_luminosity / nentries;
       
-     histMassdilepton->Fill(Mll);      
-     histPtdilepton->Fill(Ptll);    
-     histtvalue->Fill(tvalue,event_weight);    
+      histMassdilepton->Fill(Mll);      
+      histPtdilepton->Fill(Ptll);    
+      histtvalue->Fill(tvalue,event_weight);    
      
    } // end events loop 
    
    
-   
-   
 
 // **********************************************************************   
-// Show resulting histograms
+// Show Resulting Histograms 
+// **********************************************************************   
 
 //  TCanvas * c1 = new TCanvas("c1","",1);
 //  c1->cd();
