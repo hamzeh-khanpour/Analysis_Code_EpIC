@@ -54,12 +54,15 @@
 #include "epic_out_file.h"
 
 
+  // Book histograms
+  TH1 *histInvariantMass = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 5.0, 1000.0);
 
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
-    
     TLorentzVector MydiLepton;
+    
+   Float_t Mll = 0.0;
 
 
 void epic_out_file::Loop()
@@ -99,6 +102,13 @@ void epic_out_file::Loop()
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
       
+      
+     MyGoodLeptonplus.clear();
+     MyGoodLeptonminus.clear();
+     MydiLepton.clear();      
+    
+     Mll = 0.0; 
+    
       
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;
