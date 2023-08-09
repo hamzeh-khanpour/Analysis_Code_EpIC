@@ -55,15 +55,23 @@
 
 
   // Book histograms
-  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 1.0, 10.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.1, 10.0);
+  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.0, 10.0);
+  TH1 *histtvalue = new TH1F("t", "", 50, 0.0, 5.0);  
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
     TLorentzVector MydiLepton;
     
+    TLorentzVector Protonin;    
+    TLorentzVector Protonout;    
+
+    TLorentzVector t;    
+    
+    
    Float_t Mll = 0.0;
    Float_t Ptll = 0.0;
+   Float_t tvalue = 0.0;
    
 
 void epic_out_file::Loop()
@@ -115,7 +123,8 @@ void epic_out_file::Loop()
 //     MydiLepton.clear();      
     
      Mll = 0.0; 
-     Ptll = 0.0;    
+     Ptll = 0.0;  
+     tvalue = 0.0;
       
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;
@@ -138,6 +147,7 @@ void epic_out_file::Loop()
             
  TVector3 Muonplus;
             
+//        cout << "particles_status= "          <<  particles_status[i]  << endl;        
 //        cout << "particles_momentum_m_v1= "   <<  particles_momentum_m_v1[i]  << endl;        
 //        cout << "particles_momentum_m_v2= "   <<  particles_momentum_m_v2[i]  << endl;     
 //        cout << "particles_momentum_m_v3= "   <<  particles_momentum_m_v3[i]  << endl;     
@@ -151,10 +161,9 @@ void epic_out_file::Loop()
   
 //        cout << "MyGoodLeptonplus Px = "   <<  MyGoodLeptonplus.Px()  << endl;    
 
-
         }
-        
-        
+
+
         else if (particles_pid[i] == -13 ) {  // && particles_status[i] == 5 
 
             
@@ -179,23 +188,62 @@ void epic_out_file::Loop()
   
         }
         
-    }
+        
+    }  // End do loop on kMaxparticles
+    
+    
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
+        
+        
+        
+//        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
+
+
+  Protonin.SetPxPyPzE( particles_momentum_m_v1[3], particles_momentum_m_v2[3], particles_momentum_m_v3[3], particles_momentum_m_v4[3] );
+  
+//        cout << "Protonin Px = "   <<  Protonin.Px()  << endl;    
+
+ //       }  
+        
+//        else if ( kMaxparticles == 5 ) {  // particles_pid[i] == 2212 && particles_status[i] == -2
+
+
+  Protonout.SetPxPyPzE( particles_momentum_m_v1[5], particles_momentum_m_v2[5], particles_momentum_m_v3[5], particles_momentum_m_v4[5] );
+  
+//        cout << "Protonout Px = "   <<  Protonout.Px()  << endl;    
+
+//        }  
+    
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
+        
+
     
     
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
 
-//      cout << "MydiLepton Pt =" << MydiLepton.Pt() << endl; 
-//      cout << "MydiLepton M ="  << MydiLepton.M()  << endl;       
-//      cout << "MydiLepton P ="  << MydiLepton.P()  << endl;     
+//      cout << "MydiLepton Pt = " << MydiLepton.Pt() << endl; 
+//      cout << "MydiLepton M = "  << MydiLepton.M()  << endl;       
+//      cout << "MydiLepton P = "  << MydiLepton.P()  << endl;     
       
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
       
-     cout << "Mll  ="  << Mll   << endl;       
-     cout << "Ptll ="  << Ptll  << endl;       
-     
+//     cout << "Mll  = "  << Mll   << endl;       
+//     cout << "Ptll = "  << Ptll  << endl;     
+      
+      
+      
+      t = Protonout - Protonin;
+      tvalue = t.P();
+      
+      cout << "tvalue  = "  << tvalue   << endl;             
+      
+
      histMassdilepton->Fill(Mll);      
      histPtdilepton->Fill(Ptll);    
+     histtvalue->->Fill(tvalue);    
      
    } // end events loop 
    
@@ -328,6 +376,46 @@ c2->SaveAs("Ptdilepton.eps");
 //c2->SaveAs("Ptdilepton.root");                
 c2->SaveAs("Ptdilepton.jpg");      
   
+
+
+// =======================================================================
+
+
+TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
+
+//histtvalue->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+//histtvalue->GetXaxis()->SetTitleOffset(1.25);
+histtvalue->GetXaxis()->SetLabelFont(22);
+histtvalue->GetXaxis()->SetTitleFont(22);
+histtvalue->GetYaxis()->SetTitle("Events normalised to unit area");
+histtvalue->GetYaxis()->SetTitleOffset(1.40);
+histtvalue->GetYaxis()->SetLabelFont(22);
+histtvalue->GetYaxis()->SetTitleFont(22);
+
+//histtvalue->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histtvalue="<<histtvalue->Integral()<<endl;
+
+   // histtvalue->SetFillStyle(3001); 
+    histtvalue->SetFillColor(kGreen+1);
+    histtvalue->SetLineWidth(3);
+    histtvalue->SetLineColor(kGreen+1);
+    
+    histtvalue->DrawNormalized("hist");
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ 
+ 
+c3->SaveAs("tvalue.pdf");
+//c3->SaveAs("tvalue.C");
+c3->SaveAs("tvalue.eps");
+//c3->SaveAs("tvalue.root");                
+c3->SaveAs("tvalue.jpg");      
+  
+
 
    
 } // The end
