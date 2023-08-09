@@ -55,14 +55,15 @@
 
 
   // Book histograms
-  TH1 *histInvariantMass = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 5.0, 1000.0);
-
+  TH1 *histMassdilepton = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 1.0, 100.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "P_{t}(l_{1}, l_{2})", 100, 1.0, 100.0);
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
     TLorentzVector MydiLepton;
     
    Float_t Mll = 0.0;
+   Float_t Ptll = 0.0;
 
 
 void epic_out_file::Loop()
@@ -103,12 +104,12 @@ void epic_out_file::Loop()
       // if (Cut(ientry) < 0) continue;
       
       
-     MyGoodLeptonplus.clear();
-     MyGoodLeptonminus.clear();
-     MydiLepton.clear();      
+//     MyGoodLeptonplus.clear();
+//     MyGoodLeptonminus.clear();
+//     MydiLepton.clear();      
     
      Mll = 0.0; 
-    
+     Ptll = 0.0;    
       
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;
@@ -180,9 +181,14 @@ void epic_out_file::Loop()
     
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
 
-      cout << "MydiLepton Pt =" << MydiLepton.Pt() << endl; 
-      cout << "MydiLepton M ="  << MydiLepton.M()  << endl;       
-      cout << "MydiLepton P ="  << MydiLepton.P()  << endl;       
+//      cout << "MydiLepton Pt =" << MydiLepton.Pt() << endl; 
+//      cout << "MydiLepton M ="  << MydiLepton.M()  << endl;       
+//      cout << "MydiLepton P ="  << MydiLepton.P()  << endl;     
+      
+      Mll = MydiLepton.M();
+      
+     cout << "Mll ="  << Mll  << endl;       
+      
 
    }
 }
