@@ -243,9 +243,15 @@ void epic_out_file::Loop()
 
      histMassdilepton->Fill(Mll);      
      histPtdilepton->Fill(Ptll);    
-     histtvalue->->Fill(tvalue);    
+     histtvalue->Fill(tvalue);    
      
    } // end events loop 
+   
+   
+   
+   
+   
+   
    
    
    
@@ -319,7 +325,7 @@ histMassdilepton->GetYaxis()->SetTitleFont(22);
 //cout<<"histMassdilepton="<<histMassdilepton->Integral()<<endl;
 
    // histMassdilepton->SetFillStyle(3001); 
-    histMassdilepton->SetFillColor(kGreen+1);
+//    histMassdilepton->SetFillColor(kGreen+1);
     histMassdilepton->SetLineWidth(3);
     histMassdilepton->SetLineColor(kGreen+1);
     
@@ -358,7 +364,7 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
 //cout<<"histPtdilepton="<<histPtdilepton->Integral()<<endl;
 
    // histPtdilepton->SetFillStyle(3001); 
-    histPtdilepton->SetFillColor(kGreen+1);
+//    histPtdilepton->SetFillColor(kGreen+1);
     histPtdilepton->SetLineWidth(3);
     histPtdilepton->SetLineColor(kGreen+1);
     
@@ -397,7 +403,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
 //cout<<"histtvalue="<<histtvalue->Integral()<<endl;
 
    // histtvalue->SetFillStyle(3001); 
-    histtvalue->SetFillColor(kGreen+1);
+//    histtvalue->SetFillColor(kGreen+1);
     histtvalue->SetLineWidth(3);
     histtvalue->SetLineColor(kGreen+1);
     
