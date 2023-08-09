@@ -55,8 +55,8 @@
 
 
   // Book histograms
-  TH1 *histMassdilepton = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 1.0, 100.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "P_{t}(l_{1}, l_{2})", 100, 1.0, 100.0);
+  TH1 *histMassdilepton = new TH1F("mass", "M_{inv}(l_{1}, l_{2})", 100, 1.0, 10.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "P_{t}(l_{1}, l_{2})", 100, 1.0, 10.0);
 
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
@@ -96,6 +96,7 @@ void epic_out_file::Loop()
 
    Long64_t nentries = fChain->GetEntriesFast();
 
+   
    Long64_t nbytes = 0, nb = 0;
    for (Long64_t jentry=0; jentry<nentries; jentry++) {
       Long64_t ientry = LoadTree(jentry);
@@ -185,13 +186,40 @@ void epic_out_file::Loop()
 //      cout << "MydiLepton M ="  << MydiLepton.M()  << endl;       
 //      cout << "MydiLepton P ="  << MydiLepton.P()  << endl;     
       
-      Mll = MydiLepton.M();
+      Mll  = MydiLepton.M();
+      Ptll = MydiLepton.Pt();
       
-     cout << "Mll ="  << Mll  << endl;       
-      
+     cout << "Mll  ="  << Mll   << endl;       
+     cout << "Ptll ="  << Ptll  << endl;       
+     
+     histMassdilepton->Fill(Mll);      
+     histPtdilepton->Fill(Ptll);    
+     
+   } // end events loop 
+   
+   
+   
+   
+// Show resulting histograms
 
-   }
-}
+  TCanvas * c1 = new TCanvas("c1","",1);
+  c1->cd();
+  //histMassdilepton->Scale(1/histMassdilepton->Integral());
+  histMassdilepton->Draw();
+ // c1 -> SaveAs("histMassdilepton.C");   
+ 
+  
+  
+
+  TCanvas * c2 = new TCanvas("c2","",1);
+  c2->cd();
+  //histPtdilepton->Scale(1/histPtdilepton->Integral());
+  histPtdilepton->Draw();
+ // c2 -> SaveAs("histPtdilepton.C");   
+  
+  
+   
+} // The end
 
 
 
