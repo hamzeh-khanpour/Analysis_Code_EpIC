@@ -322,11 +322,11 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  
  
-c1->SaveAs("Ptdilepton.pdf");
-//c1->SaveAs("Ptdilepton.C");
-c1->SaveAs("Ptdilepton.eps");
-//c1->SaveAs("Ptdilepton.root");                
-c1->SaveAs("Ptdilepton.jpg");      
+c2->SaveAs("Ptdilepton.pdf");
+//c2->SaveAs("Ptdilepton.C");
+c2->SaveAs("Ptdilepton.eps");
+//c2->SaveAs("Ptdilepton.root");                
+c2->SaveAs("Ptdilepton.jpg");      
   
 
    
