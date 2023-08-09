@@ -1,13 +1,12 @@
 
-// Stdlib header file for input and output.
+// Stdlib header file for input and output 
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <cstdlib>
 
 
-// include statements for all needed dependencies  
- 
+// include statements for all needed dependencies 
 #include "TH1F.h"
 #include "TTree.h"
 #include "TROOT.h"
@@ -122,9 +121,9 @@ void epic_out_file::Loop()
 //     MyGoodLeptonminus.clear();
 //     MydiLepton.clear();      
     
-     Mll = 0.0; 
-     Ptll = 0.0;  
-     tvalue = 0.0;
+      Mll = 0.0; 
+      Ptll = 0.0;  
+      tvalue = 0.0;
       
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;
@@ -239,12 +238,14 @@ void epic_out_file::Loop()
       
       cout << "tvalue  = "  << tvalue   << endl;             
       
-
-//      weight = sigma * L / nentries;
+      
+      Float_t integrated_cross_section_value = 0.0522193380793077;  // pb
+      Float_t integrated_luminosity = 300000; // pb^{-1} 
+      Float_t event_weight = integrated_cross_section_value * integrated_luminosity / nentries;
       
      histMassdilepton->Fill(Mll);      
      histPtdilepton->Fill(Ptll);    
-     histtvalue->Fill(tvalue);    
+     histtvalue->Fill(tvalue,event_weight);    
      
    } // end events loop 
    
@@ -268,6 +269,7 @@ void epic_out_file::Loop()
 //  histPtdilepton->Draw();
  // c2 -> SaveAs("Ptdilepton.C");   
   
+
 
 Double_t xl1=0.70, yl1=0.60, xl2=xl1+0.250, yl2=yl1+0.250;
 
@@ -371,7 +373,8 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
- 
+
+
  
 c2->SaveAs("Ptdilepton.pdf");
 //c2->SaveAs("Ptdilepton.C");
@@ -412,6 +415,8 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  
  
+c3->SetLogy(1);
+ 
 c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");
 c3->SaveAs("tvalue.eps");
@@ -419,7 +424,11 @@ c3->SaveAs("tvalue.eps");
 c3->SaveAs("tvalue.jpg");      
   
 
-} // The end
+
+
+} // The end of main program epic_out_file
+
+
 
 
 
