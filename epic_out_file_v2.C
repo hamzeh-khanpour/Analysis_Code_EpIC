@@ -293,13 +293,32 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
     
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
 
-    
+
+ if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
+
+ //        cout << "MyGoodLeptonplus Pt = "   <<  MyGoodLeptonplus.Pt()  << endl;   
+ //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
+
+
+ if ( abs(MyGoodLeptonplus.Eta())  > 3.50 ) { continue; }  // 3.5
+ if ( abs(MyGoodLeptonminus.Eta()) > 3.50 ) { continue; }  // 3.5
+ 
+
+        cout << "fbs(MyGoodLeptonplus Eta) = "    <<  abs(MyGoodLeptonplus.Eta())  << endl;   
+        cout << "fbs(MyGoodLeptonminus Eta) = "   <<  abs(MyGoodLeptonminus.Eta())  << endl;           
+
+
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
 
 //      cout << "MydiLepton Pt = " << MydiLepton.Pt() << endl; 
 //      cout << "MydiLepton M = "  << MydiLepton.M()  << endl;       
 //      cout << "MydiLepton P = "  << MydiLepton.P()  << endl;     
       
+
+
+
+
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
       
