@@ -1,7 +1,7 @@
 
 // Exclusive lepton pair production at the EIC
 // Hamzeh & Hadi & Krzysztof
-// 5 August 2023 
+// 15 August 2023 
 
 // Stdlib header file for input and output 
 #include <iostream>
@@ -343,7 +343,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       
       histMassdilepton->Fill(Mll);      
       histPtdilepton->Fill(Ptll);    
-      histtvalue->Fill(tvalue,event_weight);    
+      histtvalue->Fill(tvalue);    // ,event_weight
 
 
    } // end events loop 
