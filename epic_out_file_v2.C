@@ -154,8 +154,8 @@ void epic_out_file_v2::Loop()
 //    }
      
      
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        
+// ============================================================================================
+      
         
 //        if ( kMaxparticles == 0 ) { 
 
@@ -202,6 +202,11 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  N_Cut_I++;        
 
  
+
+// ============================================================================================
+ 
+ 
+ 
 //        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
 
 
@@ -241,7 +246,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  N_Cut_II++;
 
     
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
+// ============================================================================================       
 
       
     for (Int_t i = 1; i <= kMaxparticles; i++) {      
@@ -296,7 +301,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
     }  // End do loop on kMaxparticles
     
     
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
+// ============================================================================================ 
 
 
  if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
@@ -354,7 +359,6 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
    cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
    cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
 
-   
 
 // **********************************************************************   
 // Show Resulting Histograms 
@@ -375,12 +379,12 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
   
 
 
-Double_t xl1=0.70, yl1=0.60, xl2=xl1+0.250, yl2=yl1+0.250;
+Double_t xl1=0.70, yl1=0.70, xl2=xl1+0.250, yl2=yl1+0.250;
 
 TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
 leg->SetBorderSize(0);
 
-leg->AddEntry(histMassdilepton,"EIC 1","L")->SetTextColor(1);
+leg->AddEntry(histMassdilepton,"BH","L")->SetTextColor(1);
 
 leg->SetTextSize(0.032);
 leg->SetTextFont(12);
@@ -395,14 +399,14 @@ TLatex *t2a = new TLatex(0.5,0.9,"#bf{Electron-Ion Collider (EIC)}");
                 t2a->SetTextAlign(20);
 
                 
-TLatex *t3a = new TLatex(0.27,0.8,"E_e = 10 GeV");
+TLatex *t3a = new TLatex(0.27,0.8,"E_e = 18 GeV");
                 t3a->SetNDC();
                 t3a->SetTextFont(42);
                 t3a->SetTextSize(0.04);
                 t3a->SetTextAlign(20);
                 
             
-TLatex *t4a = new TLatex(0.276,0.75,"E_p = 100 GeV");
+TLatex *t4a = new TLatex(0.276,0.75,"E_p = 275 GeV");
                 t4a->SetNDC();
                 t4a->SetTextFont(42);
                 t4a->SetTextSize(0.04);
