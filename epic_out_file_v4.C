@@ -51,10 +51,16 @@
 #include "Math/LorentzVector.h"
 
 
-// epic_out_file_v2
+// epic_out_file_v4
 
-#define epic_out_file_v2_cxx
-#include "epic_out_file_v2.h"
+#define epic_out_file_v4_cxx
+#include "epic_out_file_v4.h"
+
+
+TFile *target;
+TTree *Tsignal_EIC = new TTree("EIC","EIC");
+TTree *Tsignal_EIC2 = new TTree("EIC2","EIC2");
+TFile *F;
 
 
 // **********************************************************************   
@@ -88,11 +94,11 @@
    Int_t N_Cut_III;   
      
 
-void epic_out_file_v2::Loop()
+void epic_out_file_v4::Loop()
 {
 //   In a ROOT session, you can do:
-//      root> .L epic_out_file_v2.C
-//      root> epic_out_file_v2 t
+//      root> .L epic_out_file_v4.C
+//      root> epic_out_file_v4 t
 //      root> t.GetEntry(12); // Fill t data members with entry number 12
 //      root> t.Show();       // Show values of entry 12
 //      root> t.Show(16);     // Read and show values of entry 16
@@ -114,11 +120,31 @@ void epic_out_file_v2::Loop()
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
  
+
+	Tsignal_EIC->Branch("Mll",&Mll);
+	Tsignal_EIC->Branch("Ptll",&Ptll);
+	Tsignal_EIC->Branch("tvalue",&tvalue);
+    
+	Tsignal_EIC2->Branch("Mll",&Mll);
+	Tsignal_EIC2->Branch("Ptll",&Ptll);
+	Tsignal_EIC2->Branch("tvalue",&tvalue);
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++  Sample Loop: Start
+   
+ for(int sample = 1; sample < 3; sample++)
+   {
+
+if(sample == 1) { F = new TFile("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_BH_hel_-1_pol001.root","READ"); }
+if(sample == 2) { F = new TFile("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file.root","READ"); }
+
+
+TTree *TChain = (TTree*) F->Get("hepmc3_tree");   
+    
     
     
    gStyle->SetOptStat(0);   
-    
-
+   
    if (fChain == 0) return;
 
    Long64_t nentries = fChain->GetEntriesFast();
@@ -279,7 +305,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  TVector3 Muonminus;
             
 //        cout << "particles_momentum_m_v1= "   <<  particles_momentum_m_v1[i]  << endl;        
-//        cout << "particles_momentum_m_v2= "   <<  particles_momentum_m_v2[i]  << endl;     
+//        cout << "particles_momentum_m_v2= "   <<  parti	Tsig_Afb_ee_kt_ES_REC->Fill();cles_momentum_m_v2[i]  << endl;     
 //        cout << "particles_momentum_m_v3= "   <<  particles_momentum_m_v3[i]  << endl;     
 //        cout << "particles_momentum_m_v4= "   <<  particles_momentum_m_v4[i]  << endl;     
         
@@ -305,7 +331,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 
  if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 3	Tsig_Afb_ee_kt_ES_REC->Fill();00 MeV
 
  //        cout << "MyGoodLeptonplus Pt = "   <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
@@ -350,14 +376,29 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       histPtdilepton->Fill(Ptll);    
       histtvalue->Fill(tvalue);    // ,event_weight
 
+      
+
+     if(sample == 1) { Tsignal_EIC->Fill(); }
+     if(sample == 2) { Tsignal_EIC2->Fill(); }
+
+   
+   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
+   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
+   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
+     
 
    } // end events loop 
 
 
+} //======================================================= Sample Loop: End
+   
+    target = new TFile ("EIC.root","recreate");
+    target->cd();
 
-   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
-   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
-   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
+    Tsignal_EIC->Write();
+    Tsignal_EIC2->Write();
+    
+    target->Close();
 
 
 // **********************************************************************   
@@ -534,7 +575,7 @@ c3->SaveAs("tvalue.jpg");
 
 
 
-} // The end of main program epic_out_file_v2
+} // The end of main program epic_out_file_v4
 
 
 
