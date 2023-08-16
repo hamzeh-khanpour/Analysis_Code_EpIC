@@ -54,7 +54,7 @@
 // epic_out_file_v2
 
 #define epic_out_file_v2_cxx
-#include "epic_out_file.h"
+#include "epic_out_file_v2.h"
 
 
 // **********************************************************************   
@@ -84,11 +84,11 @@
    Float_t tvalue = 0.0;
    
 
-void epic_out_file::Loop()
+void epic_out_file_v2::Loop()
 {
 //   In a ROOT session, you can do:
-//      root> .L epic_out_file.C
-//      root> epic_out_file t
+//      root> .L epic_out_file_v2.C
+//      root> epic_out_file_v2 t
 //      root> t.GetEntry(12); // Fill t data members with entry number 12
 //      root> t.Show();       // Show values of entry 12
 //      root> t.Show(16);     // Read and show values of entry 16
