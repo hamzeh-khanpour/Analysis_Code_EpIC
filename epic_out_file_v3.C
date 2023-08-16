@@ -57,6 +57,11 @@
 #include "epic_out_file_v3.h"
 
 
+TFile *target;
+TTree *Tsignal_EIC = new TTree("EIC","EIC");
+TFile *F;
+
+
 // **********************************************************************   
 // Book Histograms 
 // **********************************************************************   
@@ -114,8 +119,12 @@ void epic_out_file_v3::Loop()
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
  
-    
-    
+
+	Tsignal_EIC->Branch("Mll",&Mll);
+	Tsignal_EIC->Branch("Ptll",&Ptll);
+	Tsignal_EIC->Branch("tvalue",&tvalue);
+
+
    gStyle->SetOptStat(0);   
     
 
@@ -279,7 +288,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  TVector3 Muonminus;
             
 //        cout << "particles_momentum_m_v1= "   <<  particles_momentum_m_v1[i]  << endl;        
-//        cout << "particles_momentum_m_v2= "   <<  particles_momentum_m_v2[i]  << endl;     
+//        cout << "particles_momentum_m_v2= "   <<  parti	Tsig_Afb_ee_kt_ES_REC->Fill();cles_momentum_m_v2[i]  << endl;     
 //        cout << "particles_momentum_m_v3= "   <<  particles_momentum_m_v3[i]  << endl;     
 //        cout << "particles_momentum_m_v4= "   <<  particles_momentum_m_v4[i]  << endl;     
         
@@ -305,7 +314,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 
  if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 3	Tsig_Afb_ee_kt_ES_REC->Fill();00 MeV
 
  //        cout << "MyGoodLeptonplus Pt = "   <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
@@ -350,11 +359,21 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       histPtdilepton->Fill(Ptll);    
       histtvalue->Fill(tvalue);    // ,event_weight
 
+      
+    Tsignal_EIC->Fill();
+    
 
    } // end events loop 
 
 
+    target = new TFile ("EIC.root","recreate");
+    target->cd();
 
+    Tsignal_EIC->Write();
+    
+    target->Close();
+
+   
    cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
    cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
    cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
