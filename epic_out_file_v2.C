@@ -69,6 +69,9 @@
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
     TLorentzVector MydiLepton;
+
+    TLorentzVector Electronin;    
+    TLorentzVector Electronout;    
     
     TLorentzVector Protonin;    
     TLorentzVector Protonout;    
@@ -206,6 +209,28 @@ void epic_out_file::Loop()
         
         
         
+        
+//        if ( kMaxparticles == 0 ) { 
+
+
+  Electronin.SetPxPyPzE( particles_momentum_m_v1[0], particles_momentum_m_v2[0], particles_momentum_m_v3[0], particles_momentum_m_v4[0] );
+  
+        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
+
+ //       }  
+        
+//        else if ( kMaxparticles == 1 ) {  
+
+
+  Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
+  
+        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
+
+//        }  
+  
+  
+        
+        
 //        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
 
 
@@ -239,14 +264,14 @@ void epic_out_file::Loop()
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
       
-      cout << "Mll  = "  << Mll   << endl;       
-      cout << "Ptll = "  << Ptll  << endl;     
+//      cout << "Mll  = "  << Mll   << endl;       
+//      cout << "Ptll = "  << Ptll  << endl;     
 
       
       t = Protonout - Protonin;
       tvalue = t.P() * t.P();
       
-      cout << "tvalue  = "  << tvalue   << endl;             
+//      cout << "tvalue  = "  << tvalue   << endl;             
       
       
       Float_t integrated_cross_section_value = 0.0522193380793077;  // pb
