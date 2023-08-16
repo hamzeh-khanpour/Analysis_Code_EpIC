@@ -58,7 +58,7 @@
 
 
 TFile *target;
-TTree *Tsignal_EIC = new TTree("EIC","EIC");
+TTree *Tsignal_EIC1 = new TTree("EIC1","EIC1");
 TTree *Tsignal_EIC2 = new TTree("EIC2","EIC2");
 TFile *F;
 
@@ -67,11 +67,16 @@ TFile *F;
 // Book Histograms 
 // **********************************************************************   
 
-  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.0, 10.0);
-  TH1 *histtvalue = new TH1F("tvalue", "", 50, 0.0, 5.0);  
+  TH1 *histMassdilepton1 = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
+  TH1 *histPtdilepton1 = new TH1F("Pt", "", 50, 0.0, 10.0);
+  TH1 *histtvalue1 = new TH1F("tvalue", "", 50, 0.0, 5.0);  
 
 
+  TH1 *histMassdilepton2 = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
+  TH1 *histPtdilepton2 = new TH1F("Pt", "", 50, 0.0, 10.0);
+  TH1 *histtvalue2 = new TH1F("tvalue", "", 50, 0.0, 5.0);  
+  
+  
     TLorentzVector MyGoodLeptonplus;
     TLorentzVector MyGoodLeptonminus;
     TLorentzVector MydiLepton;
@@ -121,9 +126,9 @@ void epic_out_file_v4::Loop()
 //by  b_branchname->GetEntry(ientry); //read only this branch
  
 
-	Tsignal_EIC->Branch("Mll",&Mll);
-	Tsignal_EIC->Branch("Ptll",&Ptll);
-	Tsignal_EIC->Branch("tvalue",&tvalue);
+	Tsignal_EIC1->Branch("Mll",&Mll);
+	Tsignal_EIC1->Branch("Ptll",&Ptll);
+	Tsignal_EIC1->Branch("tvalue",&tvalue);
     
 	Tsignal_EIC2->Branch("Mll",&Mll);
 	Tsignal_EIC2->Branch("Ptll",&Ptll);
@@ -162,6 +167,7 @@ TTree *TChain = (TTree*) F->Get("hepmc3_tree");
 //     MyGoodLeptonminus.clear();
 //     MydiLepton.clear();      
     
+
       Mll = 0.0; 
       Ptll = 0.0;  
       tvalue = 0.0;
@@ -331,7 +337,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 
  if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 3	Tsig_Afb_ee_kt_ES_REC->Fill();00 MeV
+ if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
 
  //        cout << "MyGoodLeptonplus Pt = "   <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
@@ -371,31 +377,39 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       Float_t integrated_cross_section_value = 0.0522193380793077;  // pb
       Float_t integrated_luminosity = 300000; // pb^{-1} 
       Float_t event_weight = integrated_cross_section_value * integrated_luminosity / nentries;
-      
-      histMassdilepton->Fill(Mll);      
-      histPtdilepton->Fill(Ptll);    
-      histtvalue->Fill(tvalue);    // ,event_weight
 
+if(sample == 1) {      
+      histMassdilepton1->Fill(Mll);      
+      histPtdilepton1->Fill(Ptll);    
+      histtvalue1->Fill(tvalue);    // ,event_weight
+}
+
+if(sample == 2) {
+      histMassdilepton2->Fill(Mll);      
+      histPtdilepton2->Fill(Ptll);    
+      histtvalue2->Fill(tvalue);    // ,event_weight      
+}
       
 
-     if(sample == 1) { Tsignal_EIC->Fill(); }
+     if(sample == 1) { Tsignal_EIC1->Fill(); }
      if(sample == 2) { Tsignal_EIC2->Fill(); }
 
    
-   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
-   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
-   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
+//   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
+//   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
+//   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
      
 
    } // end events loop 
 
 
 } //======================================================= Sample Loop: End
+
    
     target = new TFile ("EIC.root","recreate");
     target->cd();
 
-    Tsignal_EIC->Write();
+    Tsignal_EIC1->Write();
     Tsignal_EIC2->Write();
     
     target->Close();
@@ -407,8 +421,8 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 //  TCanvas * c1 = new TCanvas("c1","",1);
 //  c1->cd();
-  //histMassdilepton->Scale(1/histMassdilepton->Integral());
-//  histMassdilepton->Draw();
+  //histMassdilepton1->Scale(1/histMassdilepton1->Integral());
+//  histMassdilepton1->Draw();
  // c1 -> SaveAs("Massdilepton.C");   
 //    c1 -> SaveAs("Massdilepton.pdf");    
 
@@ -425,7 +439,7 @@ Double_t xl1=0.70, yl1=0.70, xl2=xl1+0.250, yl2=yl1+0.250;
 TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
 leg->SetBorderSize(0);
 
-leg->AddEntry(histMassdilepton,"BH","L")->SetTextColor(1);
+leg->AddEntry(histMassdilepton1,"BH","L")->SetTextColor(1);
 
 leg->SetTextSize(0.032);
 leg->SetTextFont(12);
@@ -459,26 +473,28 @@ TLatex *t4a = new TLatex(0.276,0.75,"E_p = 275 GeV");
 
 TCanvas* c1 = new TCanvas("c1","Massdilepton", 10, 10, 900, 700);
 
-//histMassdilepton->SetTitle("Jet Algorithem = ee_genkt_cambridge");
-histMassdilepton->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
-//histMassdilepton->GetXaxis()->SetTitleOffset(1.25);
-histMassdilepton->GetXaxis()->SetLabelFont(22);
-histMassdilepton->GetXaxis()->SetTitleFont(22);
-histMassdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
-histMassdilepton->GetYaxis()->SetTitleOffset(1.40);
-histMassdilepton->GetYaxis()->SetLabelFont(22);
-histMassdilepton->GetYaxis()->SetTitleFont(22);
+//histMassdilepton1->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histMassdilepton1->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
+//histMassdilepton1->GetXaxis()->SetTitleOffset(1.25);
+histMassdilepton1->GetXaxis()->SetLabelFont(22);
+histMassdilepton1->GetXaxis()->SetTitleFont(22);
+histMassdilepton1->GetYaxis()->SetTitle("Events normalised to unit area");
+histMassdilepton1->GetYaxis()->SetTitleOffset(1.40);
+histMassdilepton1->GetYaxis()->SetLabelFont(22);
+histMassdilepton1->GetYaxis()->SetTitleFont(22);
 
-//histMassdilepton->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histMassdilepton="<<histMassdilepton->Integral()<<endl;
+//histMassdilepton1->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histMassdilepton1="<<histMassdilepton1->Integral()<<endl;
 
-   // histMassdilepton->SetFillStyle(3001); 
-//    histMassdilepton->SetFillColor(kGreen+1);
-    histMassdilepton->SetLineWidth(3);
-    histMassdilepton->SetLineColor(kGreen+1);
+   // histMassdilepton1->SetFillStyle(3001); 
+//    histMassdilepton1->SetFillColor(kGreen+1);
+    histMassdilepton1->SetLineWidth(3);
+    histMassdilepton1->SetLineColor(kGreen+1);
     
-    histMassdilepton->DrawNormalized("hist");
-
+    histMassdilepton1->DrawNormalized("hist");
+    histMassdilepton2->DrawNormalized("hist same");   
+   
+   
  leg->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
@@ -498,25 +514,25 @@ c1->SaveAs("Massdilepton.jpg");
 
 TCanvas* c2 = new TCanvas("c2","Ptdilepton", 10, 10, 900, 700);
 
-//histPtdilepton->SetTitle("Jet Algorithem = ee_genkt_cambridge");
-histPtdilepton->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
-//histPtdilepton->GetXaxis()->SetTitleOffset(1.25);
-histPtdilepton->GetXaxis()->SetLabelFont(22);
-histPtdilepton->GetXaxis()->SetTitleFont(22);
-histPtdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
-histPtdilepton->GetYaxis()->SetTitleOffset(1.40);
-histPtdilepton->GetYaxis()->SetLabelFont(22);
-histPtdilepton->GetYaxis()->SetTitleFont(22);
+//histPtdilepton1->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histPtdilepton1->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
+//histPtdilepton1->GetXaxis()->SetTitleOffset(1.25);
+histPtdilepton1->GetXaxis()->SetLabelFont(22);
+histPtdilepton1->GetXaxis()->SetTitleFont(22);
+histPtdilepton1->GetYaxis()->SetTitle("Events normalised to unit area");
+histPtdilepton1->GetYaxis()->SetTitleOffset(1.40);
+histPtdilepton1->GetYaxis()->SetLabelFont(22);
+histPtdilepton1->GetYaxis()->SetTitleFont(22);
 
-//histPtdilepton->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histPtdilepton="<<histPtdilepton->Integral()<<endl;
+//histPtdilepton1->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histPtdilepton1="<<histPtdilepton1->Integral()<<endl;
 
-   // histPtdilepton->SetFillStyle(3001); 
-//    histPtdilepton->SetFillColor(kGreen+1);
-    histPtdilepton->SetLineWidth(3);
-    histPtdilepton->SetLineColor(kGreen+1);
+   // histPtdilepton1->SetFillStyle(3001); 
+//    histPtdilepton1->SetFillColor(kGreen+1);
+    histPtdilepton1->SetLineWidth(3);
+    histPtdilepton1->SetLineColor(kGreen+1);
     
-    histPtdilepton->DrawNormalized("hist");
+    histPtdilepton1->DrawNormalized("hist");
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -538,25 +554,25 @@ c2->SaveAs("Ptdilepton.jpg");
 
 TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
 
-//histtvalue->SetTitle("Jet Algorithem = ee_genkt_cambridge");
-histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
-//histtvalue->GetXaxis()->SetTitleOffset(1.25);
-histtvalue->GetXaxis()->SetLabelFont(22);
-histtvalue->GetXaxis()->SetTitleFont(22);
-histtvalue->GetYaxis()->SetTitle("# Events");
-histtvalue->GetYaxis()->SetTitleOffset(1.40);
-histtvalue->GetYaxis()->SetLabelFont(22);
-histtvalue->GetYaxis()->SetTitleFont(22);
+//histtvalue1->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+histtvalue1->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+//histtvalue1->GetXaxis()->SetTitleOffset(1.25);
+histtvalue1->GetXaxis()->SetLabelFont(22);
+histtvalue1->GetXaxis()->SetTitleFont(22);
+histtvalue1->GetYaxis()->SetTitle("# Events");
+histtvalue1->GetYaxis()->SetTitleOffset(1.40);
+histtvalue1->GetYaxis()->SetLabelFont(22);
+histtvalue1->GetYaxis()->SetTitleFont(22);
 
-//histtvalue->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histtvalue="<<histtvalue->Integral()<<endl;
+//histtvalue1->GetYaxis()->SetRangeUser(0,100);
+//cout<<"histtvalue1="<<histtvalue1->Integral()<<endl;
 
-   // histtvalue->SetFillStyle(3001); 
-//    histtvalue->SetFillColor(kGreen+1);
-    histtvalue->SetLineWidth(3);
-    histtvalue->SetLineColor(kGreen+1);
+   // histtvalue1->SetFillStyle(3001); 
+//    histtvalue1->SetFillColor(kGreen+1);
+    histtvalue1->SetLineWidth(3);
+    histtvalue1->SetLineColor(kGreen+1);
     
-    histtvalue->Draw("hist");
+    histtvalue1->Draw("hist");
 
  leg->Draw("same");
  t2a->Draw("same");
