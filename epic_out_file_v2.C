@@ -158,7 +158,8 @@ void epic_out_file_v2::Loop()
 
   Electronin.SetPxPyPzE( particles_momentum_m_v1[0], particles_momentum_m_v2[0], particles_momentum_m_v3[0], particles_momentum_m_v4[0] );
   
-        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
+//        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
+//        cout << "Electronin E = "   <<  Electronin.E()  << endl;    
 
  //       }  
         
@@ -167,11 +168,22 @@ void epic_out_file_v2::Loop()
 
   Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
   
-        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
-
+//        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
+          cout << "Electronout E = "   <<  Electronout.Theta()  << endl;    
+          
 //        }  
   
   
+ Float_t Electronin_E  = Electronin.E();
+ Float_t Electronout_E = Electronout.E();
+
+ Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
+
+//        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
+ 
+if ( Energy_Ratio < 0.5 ||  Energy_Ratio > 0.9 ) { continue; }
+
+    
         
         
 //        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
@@ -199,7 +211,7 @@ void epic_out_file_v2::Loop()
       
     for (Int_t i = 1; i <= kMaxparticles; i++) {      
      
-        if (particles_pid[i] == 13 ) {  // && particles_status[i] == 5 
+        if (particles_pid[i] == -13 ) {  // && particles_status[i] == 5 
 
             
  TVector3 Muonplus;
@@ -221,7 +233,7 @@ void epic_out_file_v2::Loop()
         }
 
 
-        else if (particles_pid[i] == -13 ) {  // && particles_status[i] == 5 
+        else if (particles_pid[i] == 13 ) {  // && particles_status[i] == 5 
 
             
  TVector3 Muonminus;
