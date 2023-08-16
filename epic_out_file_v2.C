@@ -83,7 +83,10 @@
    Float_t Ptll = 0.0;
    Float_t tvalue = 0.0;
    
-  
+   Int_t N_Cut_I;
+   Int_t N_Cut_II;
+   Int_t N_Cut_III;   
+     
 
 void epic_out_file_v2::Loop()
 {
@@ -136,7 +139,7 @@ void epic_out_file_v2::Loop()
       Mll = 0.0; 
       Ptll = 0.0;  
       tvalue = 0.0;
-      
+
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;
 //     cout << "event_number= "   <<  event_number  << endl;
@@ -195,6 +198,8 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
         
+        
+ N_Cut_I++;        
 
  
 //        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
@@ -233,7 +238,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  
 //       cout << "Protonout_Theta = "   <<  Protonout_Theta  << endl; 
        
-
+ N_Cut_II++;
 
     
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
@@ -305,8 +310,11 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  if ( abs(MyGoodLeptonminus.Eta()) > 3.50 ) { continue; }  // 3.5
  
 
-        cout << "fbs(MyGoodLeptonplus Eta) = "    <<  abs(MyGoodLeptonplus.Eta())  << endl;   
-        cout << "fbs(MyGoodLeptonminus Eta) = "   <<  abs(MyGoodLeptonminus.Eta())  << endl;           
+//        cout << "fbs(MyGoodLeptonplus Eta) = "    <<  abs(MyGoodLeptonplus.Eta())  << endl;   
+//        cout << "fbs(MyGoodLeptonminus Eta) = "   <<  abs(MyGoodLeptonminus.Eta())  << endl;           
+
+
+ N_Cut_III++;
 
 
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
@@ -315,9 +323,6 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 //      cout << "MydiLepton M = "  << MydiLepton.M()  << endl;       
 //      cout << "MydiLepton P = "  << MydiLepton.P()  << endl;     
       
-
-
-
 
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
@@ -339,9 +344,16 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       histMassdilepton->Fill(Mll);      
       histPtdilepton->Fill(Ptll);    
       histtvalue->Fill(tvalue,event_weight);    
-     
+
+
    } // end events loop 
-   
+
+
+
+   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
+   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
+   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
+
    
 
 // **********************************************************************   
