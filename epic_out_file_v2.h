@@ -116,9 +116,9 @@ epic_out_file_v2::epic_out_file_v2(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("epic_out_file.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("epic_out_file_BH_hel_-1_pol001.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("epic_out_file.root");
+         f = new TFile("epic_out_file_BH_hel_-1_pol001.root");
       }
       f->GetObject("hepmc3_tree",tree);
 
