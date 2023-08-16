@@ -150,8 +150,52 @@ void epic_out_file_v2::Loop()
 //    }
      
      
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-      
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        
+        
+//        if ( kMaxparticles == 0 ) { 
+
+
+  Electronin.SetPxPyPzE( particles_momentum_m_v1[0], particles_momentum_m_v2[0], particles_momentum_m_v3[0], particles_momentum_m_v4[0] );
+  
+        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
+
+ //       }  
+        
+//        else if ( kMaxparticles == 1 ) {  
+
+
+  Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
+  
+        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
+
+//        }  
+  
+  
+        
+        
+//        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
+
+
+  Protonin.SetPxPyPzE( particles_momentum_m_v1[3], particles_momentum_m_v2[3], particles_momentum_m_v3[3], particles_momentum_m_v4[3] );
+  
+//        cout << "Protonin Px = "   <<  Protonin.Px()  << endl;    
+
+ //       }  
+        
+//        else if ( kMaxparticles == 5 ) {  // particles_pid[i] == 2212 && particles_status[i] == -2
+
+
+  Protonout.SetPxPyPzE( particles_momentum_m_v1[5], particles_momentum_m_v2[5], particles_momentum_m_v3[5], particles_momentum_m_v4[5] );
+  
+//        cout << "Protonout Px = "   <<  Protonout.Px()  << endl;    
+
+//        }  
+    
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
+
       
     for (Int_t i = 1; i <= kMaxparticles; i++) {      
      
@@ -205,54 +249,7 @@ void epic_out_file_v2::Loop()
     }  // End do loop on kMaxparticles
     
     
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-        
-        
-        
-        
-//        if ( kMaxparticles == 0 ) { 
-
-
-  Electronin.SetPxPyPzE( particles_momentum_m_v1[0], particles_momentum_m_v2[0], particles_momentum_m_v3[0], particles_momentum_m_v4[0] );
-  
-        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
-
- //       }  
-        
-//        else if ( kMaxparticles == 1 ) {  
-
-
-  Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
-  
-        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
-
-//        }  
-  
-  
-        
-        
-//        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
-
-
-  Protonin.SetPxPyPzE( particles_momentum_m_v1[3], particles_momentum_m_v2[3], particles_momentum_m_v3[3], particles_momentum_m_v4[3] );
-  
-//        cout << "Protonin Px = "   <<  Protonin.Px()  << endl;    
-
- //       }  
-        
-//        else if ( kMaxparticles == 5 ) {  // particles_pid[i] == 2212 && particles_status[i] == -2
-
-
-  Protonout.SetPxPyPzE( particles_momentum_m_v1[5], particles_momentum_m_v2[5], particles_momentum_m_v3[5], particles_momentum_m_v4[5] );
-  
-//        cout << "Protonout Px = "   <<  Protonout.Px()  << endl;    
-
-//        }  
-    
-
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-        
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
 
     
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
