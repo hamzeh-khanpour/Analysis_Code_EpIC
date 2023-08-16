@@ -83,6 +83,7 @@
    Float_t Ptll = 0.0;
    Float_t tvalue = 0.0;
    
+  
 
 void epic_out_file_v2::Loop()
 {
@@ -169,8 +170,9 @@ void epic_out_file_v2::Loop()
   Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
   
 //        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
-          cout << "Electronout E = "   <<  Electronout.Theta()  << endl;    
-          
+//        cout << "Electronout E = "   <<  Electronout.E()  << endl;    
+//        cout << "Electronout Theta = "   <<  Electronout.Theta()  << endl;    
+  
 //        }  
   
   
@@ -179,13 +181,22 @@ void epic_out_file_v2::Loop()
 
  Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
 
-//        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
- 
 if ( Energy_Ratio < 0.5 ||  Energy_Ratio > 0.9 ) { continue; }
 
-    
+//        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
+
+
+ Float_t Pi = 3.14159265359;
+ Float_t Pi_Theta_e = Pi - Electronout.Theta();
+
+
+       
+if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
+
+//       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
         
-        
+
+ 
 //        if ( kMaxparticles == 3 ) {  // particles_pid[i] == 2212 && particles_status[i] == 0
 
 
@@ -205,7 +216,26 @@ if ( Energy_Ratio < 0.5 ||  Energy_Ratio > 0.9 ) { continue; }
 //        }  
     
 
+ Float_t xL = Protonout.Pz() / Protonout.P();
+  
+//       cout << "xL = "   <<  xL  << endl; 
 
+ Float_t Protonout_Pt = Protonout.Pt();  
+    
+ if ( Protonout_Pt < 0.10 ) { continue; }    // 100 MeV
+
+//        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
+       
+ Float_t Protonout_Theta = Protonout.Theta();       
+
+       
+ if ( Protonout_Theta > 13.0/1000.0 ) { continue; }  // 13 mrad 
+ 
+       cout << "Protonout_Theta = "   <<  Protonout_Theta  << endl; 
+       
+
+
+    
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++              
 
       
