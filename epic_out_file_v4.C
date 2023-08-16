@@ -136,7 +136,7 @@ void epic_out_file_v4::Loop()
    {
 
 if(sample == 1) { F = new TFile("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_BH_hel_-1_pol001.root","READ"); }
-if(sample == 2) { F = new TFile("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file.root","READ"); }
+if(sample == 2) { F = new TFile("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_ALL_hel_-1_pol001.root","READ"); }
 
 
 TTree *TChain = (TTree*) F->Get("hepmc3_tree");   

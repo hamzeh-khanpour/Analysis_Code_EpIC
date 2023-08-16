@@ -131,8 +131,8 @@ epic_out_file_v4::epic_out_file_v4(TTree *tree) : fChain(0)
       
       TChain * chain = new TChain("hepmc3_tree","");
 
-      chain->Add("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_BH_hel_-1_pol001.root/hepmc3_tree");      
-      chain->Add("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file.root/hepmc3_tree");
+      chain->Add("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_BH_hel_-1_pol001.root");      
+      chain->Add("/home/hamzeh-khanpour/Documents/GitHub/Analysis_Code_EpIC/epic_out_file_ALL_hel_-1_pol001.root");
         
       tree = chain;
 
