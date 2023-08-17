@@ -521,7 +521,7 @@ histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
 histtvalue->GetXaxis()->SetTitleFont(22);
-histtvalue->GetYaxis()->SetTitle("# Events");
+histtvalue->GetYaxis()->SetTitle("#Events");
 histtvalue->GetYaxis()->SetTitleOffset(1.40);
 histtvalue->GetYaxis()->SetLabelFont(22);
 histtvalue->GetYaxis()->SetTitleFont(22);
