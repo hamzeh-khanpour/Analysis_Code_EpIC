@@ -42,8 +42,8 @@ TH1F * histcosll_signal_eebb_LL = new TH1F ("Ptll", "", 50, 0.0, 2.0);
 TH1F * histcosll_signal_eebb_LR = new TH1F ("Ptll", "", 50, 0.0, 2.0);
 
 
-TH1F * histMbb_signal_eebb_LL = new TH1F ("tvalue", "", 50, 0.0, 3.0);
-TH1F * histMbb_signal_eebb_LR = new TH1F ("tvalue", "", 50, 0.0, 3.0);
+TH1F * histMbb_signal_eebb_LL = new TH1F ("tvalue", "", 40, 0.0, 0.4);
+TH1F * histMbb_signal_eebb_LR = new TH1F ("tvalue", "", 40, 0.0, 0.4);
 
 
 
@@ -54,7 +54,7 @@ TH1F * histMbb_signal_eebb_LR = new TH1F ("tvalue", "", 50, 0.0, 3.0);
   TTree *tree_signal_eebbee_LR;
 
 
-   file = TFile::Open("EIC_Final.root");
+   file = TFile::Open("EIC_Hadi.root");
  
    tree_signal_eebbee_LL = (TTree*)file->Get("EIC1");
    tree_signal_eebbee_LR = (TTree*)file->Get("EIC2");
