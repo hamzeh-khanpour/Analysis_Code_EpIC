@@ -34,12 +34,12 @@ void Plots_EIC(){
    Float_t tvalue;
 
 
-TH1F * histMll_BH = new TH1F ("Mll", "", 50, 0.0, 5.0);
-TH1F * histMll_All = new TH1F ("Mll", "", 50, 0.0, 5.0);
+TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 4.0);
 
 
-TH1F * histPtll_BH = new TH1F ("Ptll", "", 50, 0.0, 2.0);
-TH1F * histPtll_All = new TH1F ("Ptll", "", 50, 0.0, 2.0);
+TH1F * histPtll_BH = new TH1F ("Ptll", "", 40, 0.0, 2.0);
+TH1F * histPtll_All = new TH1F ("Ptll", "", 40, 0.0, 2.0);
 
 
 TH1F * histtvalue_BH = new TH1F ("tvalue", "", 40, 0.0, 0.4);
@@ -135,6 +135,19 @@ TLatex *t4a = new TLatex(0.276,0.75,"E_{p} = 275 GeV");
                 t4a->SetTextSize(0.04);
                 t4a->SetTextAlign(20);
 
+
+TLatex *t5a = new TLatex(0.666,0.60,"lepton_polarisation = -1");
+                t5a->SetNDC();
+                t5a->SetTextFont(42);
+                t5a->SetTextSize(0.04);
+                t5a->SetTextAlign(20);
+                
+TLatex *t6a = new TLatex(0.692,0.55,"hadron_polarisation = 0|0|1");
+                t6a->SetNDC();
+                t6a->SetTextFont(42);
+                t6a->SetTextSize(0.04);
+                t6a->SetTextAlign(20);
+                
                 
 // --------------------
 
@@ -170,6 +183,8 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
  
 c1->SaveAs("Mll.pdf");
 //c1->SaveAs("Mll.C");
@@ -212,6 +227,8 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
  
 c2->SaveAs("Ptll.pdf");
 //c2->SaveAs("ptll.C");
@@ -256,6 +273,8 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
  
 c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");

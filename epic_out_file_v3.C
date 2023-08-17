@@ -66,9 +66,9 @@ TFile *F;
 // Book Histograms 
 // **********************************************************************   
 
-  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 50, 0.0, 10.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "", 50, 0.0, 10.0);
-  TH1 *histtvalue = new TH1F("tvalue", "", 50, 0.0, 1.0);  
+  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 4.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 2.0);
+  TH1 *histtvalue = new TH1F("tvalue", "", 40, 0.0, 0.40);  
 
 
     TLorentzVector MyGoodLeptonplus;
@@ -88,9 +88,9 @@ TFile *F;
    Float_t Ptll = 0.0;
    Float_t tvalue = 0.0;
    
-   Int_t N_Cut_I;
-   Int_t N_Cut_II;
-   Int_t N_Cut_III;   
+   Int_t N_Cut_I = 0.0;
+   Int_t N_Cut_II = 0.0;
+   Int_t N_Cut_III = 0.0;  
      
 
 void epic_out_file_v3::Loop()
@@ -171,7 +171,7 @@ void epic_out_file_v3::Loop()
 
   Electronin.SetPxPyPzE( particles_momentum_m_v1[0], particles_momentum_m_v2[0], particles_momentum_m_v3[0], particles_momentum_m_v4[0] );
   
-//        cout << "Electronin Px = "   <<  Electronin.Px()  << endl;    
+//        cout << "Electronin Pz = "   <<  Electronin.Pz()  << endl;    
 //        cout << "Electronin E = "   <<  Electronin.E()  << endl;    
 
  //       }  
@@ -181,7 +181,7 @@ void epic_out_file_v3::Loop()
 
   Electronout.SetPxPyPzE( particles_momentum_m_v1[1], particles_momentum_m_v2[1], particles_momentum_m_v3[1], particles_momentum_m_v4[1] );
   
-//        cout << "Electronout Px = "   <<  Electronout.Px()  << endl;    
+//        cout << "Electronout Pz = "   <<  Electronout.Pz()  << endl;    
 //        cout << "Electronout E = "   <<  Electronout.E()  << endl;    
 //        cout << "Electronout Theta = "   <<  Electronout.Theta()  << endl;    
   
@@ -314,9 +314,9 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 
  if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 3	Tsig_Afb_ee_kt_ES_REC->Fill();00 MeV
+ if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
 
- //        cout << "MyGoodLeptonplus Pt = "   <<  MyGoodLeptonplus.Pt()  << endl;   
+ //        cout << "MyGoodLeptonplus Pt = "    <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
 
 
@@ -351,8 +351,9 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 //      cout << "tvalue  = "  << tvalue   << endl;             
       
       
-      Float_t integrated_cross_section_value = 0.0522193380793077;  // pb
-      Float_t integrated_luminosity = 300000; // pb^{-1} 
+      Float_t integrated_cross_section_value = 0.0297331125879007;  //   nb   BH
+//      Float_t integrated_cross_section_value = 0.0315266216902042;  // nb   BH+TCS      
+      Float_t integrated_luminosity = 300; // fb^{-1} 
       Float_t event_weight = integrated_cross_section_value * integrated_luminosity / nentries;
       
       histMassdilepton->Fill(Mll);      
@@ -379,23 +380,25 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
    cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
 
 
+
 // **********************************************************************   
-// Show Resulting Histograms 
+//  Show Resulting Histograms 
 // **********************************************************************   
 
 //  TCanvas * c1 = new TCanvas("c1","",1);
 //  c1->cd();
-  //histMassdilepton->Scale(1/histMassdilepton->Integral());
+//  histMassdilepton->Scale(1/histMassdilepton->Integral());
 //  histMassdilepton->Draw();
- // c1 -> SaveAs("Massdilepton.C");   
-//    c1 -> SaveAs("Massdilepton.pdf");    
+//  c1 -> SaveAs("Massdilepton.C");   
+//  c1 -> SaveAs("Massdilepton.pdf");    
 
 //  TCanvas * c2 = new TCanvas("c2","",1);
 //  c2->cd();
-  //histPtdilepton->Scale(1/histPtdilepton->Integral());
+//  histPtdilepton->Scale(1/histPtdilepton->Integral());
 //  histPtdilepton->Draw();
- // c2 -> SaveAs("Ptdilepton.C");   
+//  c2 -> SaveAs("Ptdilepton.C");   
   
+
 
 
 Double_t xl1=0.70, yl1=0.70, xl2=xl1+0.250, yl2=yl1+0.250;
@@ -430,7 +433,18 @@ TLatex *t4a = new TLatex(0.276,0.75,"E_p = 275 GeV");
                 t4a->SetTextFont(42);
                 t4a->SetTextSize(0.04);
                 t4a->SetTextAlign(20);
+   
+TLatex *t5a = new TLatex(0.666,0.60,"lepton_polarisation = -1");
+                t5a->SetNDC();
+                t5a->SetTextFont(42);
+                t5a->SetTextSize(0.04);
+                t5a->SetTextAlign(20);
                 
+TLatex *t6a = new TLatex(0.692,0.55,"hadron_polarisation = 0|0|1");
+                t6a->SetNDC();
+                t6a->SetTextFont(42);
+                t6a->SetTextSize(0.04);
+                t6a->SetTextAlign(20);
 
 // =======================================================================
 
@@ -461,13 +475,14 @@ histMassdilepton->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
- 
+ t5a->Draw("same");
+ t6a->Draw("same");  
  
 c1->SaveAs("Massdilepton.pdf");
 //c1->SaveAs("Massdilepton.C");
-c1->SaveAs("Massdilepton.eps");
+//c1->SaveAs("Massdilepton.eps");
 //c1->SaveAs("Massdilepton.root");                
-c1->SaveAs("Massdilepton.jpg");      
+//c1->SaveAs("Massdilepton.jpg");      
   
 
 
@@ -498,16 +513,17 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
 
  leg->Draw("same");
  t2a->Draw("same");
- t3a->Draw("same");
+ t3a->Draw("same"); t5a->Draw("same");
+ t6a->Draw("same");  
  t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
 
-
- 
 c2->SaveAs("Ptdilepton.pdf");
 //c2->SaveAs("Ptdilepton.C");
-c2->SaveAs("Ptdilepton.eps");
+//c2->SaveAs("Ptdilepton.eps");
 //c2->SaveAs("Ptdilepton.root");                
-c2->SaveAs("Ptdilepton.jpg");      
+//c2->SaveAs("Ptdilepton.jpg");      
   
 
 
@@ -516,7 +532,8 @@ c2->SaveAs("Ptdilepton.jpg");
 
 TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
 
-//histtvalue->SetTitle("Jet Algorithem = ee_genkt_cambridge");
+//histtvalue->SetTitle("Jet Algorithem = ee_genkt_cambridge"); t5a->Draw("same");
+ t6a->Draw("same");  
 histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
@@ -540,22 +557,21 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
- 
+ t5a->Draw("same");
+ t6a->Draw("same");  
  
 c3->SetLogy(1);
  
 c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");
-c3->SaveAs("tvalue.eps");
+//c3->SaveAs("tvalue.eps");
 //c3->SaveAs("tvalue.root");                
-c3->SaveAs("tvalue.jpg");      
+//c3->SaveAs("tvalue.jpg");      
   
 
 
 
 } // The end of main program epic_out_file_v3
-
-
 
 
 
