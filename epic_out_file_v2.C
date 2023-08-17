@@ -337,7 +337,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
       
       t = Protonout - Protonin;
-      tvalue = t.P() * t.P();
+      tvalue =  fabs(t.Mag2());  // t.P() * t.P();
       
 //      cout << "tvalue  = "  << tvalue   << endl;             
       
