@@ -19,29 +19,40 @@
 
 
 
+   Float_t Mll = 0;
+   Float_t Ptll = 0;
+   Float_t tvalue = 0;
+
+
+   Float_t  nentries = 0;
+   Float_t  integrated_luminosity = 0;
+   Float_t  integrated_cross_section_value_BH = 0;
+   Float_t  integrated_cross_section_value_All = 0;
+   Float_t  integrated_cross_section_value_TCS = 0;
+   Float_t  event_weight_BH  = 0;
+   Float_t  event_weight_All = 0;
+   Float_t  event_weight_TCS = 0;
+
 //*   -----------------------------------------------
 
 void Plots_EIC(){
 
-
+    
+    
    Float_t  nentries = 100000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
    Float_t  integrated_cross_section_value_BH  = 0.0297331125879007   * 1000.0;   //   nb   BH
    Float_t  integrated_cross_section_value_All = 0.0315266216902042   * 1000.0;   //   nb   BH+TCS   
    Float_t  integrated_cross_section_value_TCS = 0.000123445311603556 * 1000.0;   //   nb   TCS   
-   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * integrated_luminosity / nentries;
-   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
-      
+   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
+   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
+
+    
     
    gStyle->SetPalette(kBird);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(1);
-
-
-   Float_t Mll;
-   Float_t Ptll;
-   Float_t tvalue;
 
 
 TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
@@ -300,9 +311,9 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
    histtvalue_TCS->SetLineColor(6);
 
 
-   histtvalue_BH->DrawNormalized("hist");
-   histtvalue_All->DrawNormalized("hist same");
-   histtvalue_TCS->DrawNormalized("hist same");
+   histtvalue_BH->Draw("hist");
+   histtvalue_All->Draw("hist same");
+   histtvalue_TCS->Draw("hist same");
    
 
    c3->SetLogy(1);

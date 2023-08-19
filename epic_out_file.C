@@ -246,7 +246,8 @@ void epic_out_file::Loop()
       t = Protonout - Protonin;
       tvalue =  fabs(t.Mag2());  // t.P() * t.P();
       
-      cout << "tvalue  = "  << tvalue   << endl;              
+//      cout << "tvalue    = "  << tvalue     << endl; 
+//      cout << "t.Dot(t)  = "  << t.Dot(t)   << endl;          
       
       
       Float_t integrated_cross_section_value = 0.0522193380793077;  // pb
