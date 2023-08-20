@@ -135,7 +135,7 @@ cout << "event_weight_All =" << event_weight_All << endl;
  
  
  
-Double_t xl1=0.70, yl1=0.650, xl2=xl1+0.150, yl2=yl1+0.150;
+Double_t xl1=0.750, yl1=0.70, xl2=xl1+0.150, yl2=yl1+0.150;
 
 TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
 leg->SetBorderSize(0);
@@ -157,7 +157,7 @@ TLatex *t2a = new TLatex(0.5,0.9,"#bf{Electron-Ion Collider (EIC)}");
                 t2a->SetTextAlign(20);
 
                 
-TLatex *t3a = new TLatex(0.27,0.8,"E_{e} = 18 GeV");
+TLatex *t3a = new TLatex(0.27,0.80,"E_{e} = 18 GeV");
                 t3a->SetNDC();
                 t3a->SetTextFont(42);
                 t3a->SetTextSize(0.04);
@@ -171,19 +171,26 @@ TLatex *t4a = new TLatex(0.276,0.75,"E_{p} = 275 GeV");
                 t4a->SetTextAlign(20);
 
 
-TLatex *t5a = new TLatex(0.666,0.60,"lepton_polarisation = -1");
+TLatex *t5a = new TLatex(0.666,0.65,"lepton_polarisation = -1");
                 t5a->SetNDC();
                 t5a->SetTextFont(42);
                 t5a->SetTextSize(0.04);
                 t5a->SetTextAlign(20);
                 
-TLatex *t6a = new TLatex(0.692,0.55,"hadron_polarisation = 0|0|1");
+TLatex *t6a = new TLatex(0.692,0.60,"hadron_polarisation = 0|0|1");
                 t6a->SetNDC();
                 t6a->SetTextFont(42);
                 t6a->SetTextSize(0.04);
                 t6a->SetTextAlign(20);
                 
-                
+TLatex *t7a = new TLatex(0.692,0.50,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}<10");
+                t6a->SetNDC();
+                t6a->SetTextFont(42);
+                t6a->SetTextSize(0.04);
+                t6a->SetTextAlign(20);
+
+
+
 // --------------------
 
 
@@ -220,6 +227,8 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
+ t7a->Draw("same");   
+ 
  
 c1->SaveAs("Mll.pdf");
 //c1->SaveAs("Mll.C");
@@ -264,6 +273,8 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
+ t7a->Draw("same");  
+ 
  
 c2->SaveAs("Ptll.pdf");
 //c2->SaveAs("ptll.C");
@@ -311,7 +322,9 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
+ t7a->Draw("same");   
  
+
 c3->SaveAs("t-value.pdf");
 //c3->SaveAs("t-value.C");
 //c3->SaveAs("t-value.eps");
