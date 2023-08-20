@@ -135,7 +135,7 @@ cout << "event_weight_All =" << event_weight_All << endl;
  
  
  
-Double_t xl1=0.750, yl1=0.70, xl2=xl1+0.150, yl2=yl1+0.150;
+Double_t xl1=0.750, yl1=0.720, xl2=xl1+0.150, yl2=yl1+0.150;
 
 TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
 leg->SetBorderSize(0);
@@ -171,25 +171,44 @@ TLatex *t4a = new TLatex(0.276,0.75,"E_{p} = 275 GeV");
                 t4a->SetTextAlign(20);
 
 
-TLatex *t5a = new TLatex(0.666,0.65,"lepton_polarisation = -1");
+TLatex *t5a = new TLatex(0.666,0.66,"lepton_polarisation = -1");
                 t5a->SetNDC();
-                t5a->SetTextFont(42);
+                t5a->SetTextFont(12);
                 t5a->SetTextSize(0.04);
                 t5a->SetTextAlign(20);
                 
-TLatex *t6a = new TLatex(0.692,0.60,"hadron_polarisation = 0|0|1");
+TLatex *t6a = new TLatex(0.692,0.61,"hadron_polarisation = 0|0|1");
                 t6a->SetNDC();
-                t6a->SetTextFont(42);
+                t6a->SetTextFont(12);
                 t6a->SetTextSize(0.04);
                 t6a->SetTextAlign(20);
                 
-TLatex *t7a = new TLatex(0.692,0.50,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}<10");
-                t6a->SetNDC();
-                t6a->SetTextFont(42);
-                t6a->SetTextSize(0.04);
-                t6a->SetTextAlign(20);
+TLatex *t2b = new TLatex(0.71,0.550,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}>10 mrad");
+                t2b->SetNDC();
+                t2b->SetTextFont(12);
+                t2b->SetTextSize(0.04);
+                t2b->SetTextAlign(20);
 
-
+                
+TLatex *t3b = new TLatex(0.59,0.50,"p_{T}^{p}>100 Mev");
+                t3b->SetNDC();
+                t3b->SetTextFont(12);
+                t3b->SetTextSize(0.04);
+                t3b->SetTextAlign(20);
+                
+                
+TLatex *t4b = new TLatex(0.585,0.45,"#theta_{p}<13 mrad");
+                t4b->SetNDC();
+                t4b->SetTextFont(12);
+                t4b->SetTextSize(0.04);
+                t4b->SetTextAlign(20);
+                
+                
+TLatex *t5b = new TLatex(0.655,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
+                t5b->SetNDC();
+                t5b->SetTextFont(12);
+                t5b->SetTextSize(0.04);
+                t5b->SetTextAlign(20);
 
 // --------------------
 
@@ -206,7 +225,7 @@ histMll_BH->GetYaxis()->SetTitleOffset(1.40);
 histMll_BH->GetYaxis()->SetLabelFont(22);
 histMll_BH->GetYaxis()->SetTitleFont(22);
 
-//   histMll_BH->GetXaxis()->SetRangeUser(0,1);
+   histMll_BH->GetYaxis()->SetRangeUser(0,600);
 //   histMll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histMll_BH->SetLineWidth(3);
@@ -227,8 +246,11 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
- t7a->Draw("same");   
- 
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");   
+  
  
 c1->SaveAs("Mll.pdf");
 //c1->SaveAs("Mll.C");
@@ -252,7 +274,7 @@ histPtll_BH->GetYaxis()->SetTitleOffset(1.40);
 histPtll_BH->GetYaxis()->SetLabelFont(22);
 histPtll_BH->GetYaxis()->SetTitleFont(22);
 
-//   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
+   histPtll_BH->GetYaxis()->SetRangeUser(0,500);
 //   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histPtll_BH->SetLineWidth(3);
@@ -273,7 +295,10 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
- t7a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same"); 
  
  
 c2->SaveAs("Ptll.pdf");
@@ -313,7 +338,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
    histtvalue_TCS->DrawNormalized("hist same");
    histtvalue_All->DrawNormalized("hist same");   
 
-   c3->SetLogy(1);
+//   c3->SetLogy(1);
 //   c3->SetLogx(1);
 
  leg->Draw("same");
@@ -322,7 +347,10 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t4a->Draw("same"); 
  t5a->Draw("same");
  t6a->Draw("same");  
- t7a->Draw("same");   
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");  
  
 
 c3->SaveAs("t-value.pdf");
