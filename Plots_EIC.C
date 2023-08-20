@@ -27,12 +27,13 @@
    Float_t  nentries = 0;
    Float_t  integrated_luminosity = 0;
    Float_t  integrated_cross_section_value_BH = 0;
-   Float_t  integrated_cross_section_value_All = 0;
    Float_t  integrated_cross_section_value_TCS = 0;
+   Float_t  integrated_cross_section_value_All = 0;
+   
    Float_t  event_weight_BH  = 0;
-   Float_t  event_weight_All = 0;
    Float_t  event_weight_TCS = 0;
-
+   Float_t  event_weight_All = 0;
+   
 //*   -----------------------------------------------
 
 void Plots_EIC(){
@@ -41,13 +42,13 @@ void Plots_EIC(){
     
    Float_t  nentries = 100000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH  = 0.0297331125879007   * 1000.0;   //   nb   BH
-   Float_t  integrated_cross_section_value_All = 0.0315266216902042   * 1000.0;   //   nb   BH+TCS   
-   Float_t  integrated_cross_section_value_TCS = 0.000123445311603556 * 1000.0;   //   nb   TCS   
+   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
+   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
+   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+   
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
    Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
-
+   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
     
     
    gStyle->SetPalette(kBird);
@@ -55,56 +56,49 @@ void Plots_EIC(){
    gStyle->SetOptTitle(1);
 
 
-TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
-TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 4.0);
-TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_BH = new TH1F ("Mll", "", 20, 0.0, 4.0);
+TH1F * histMll_TCS = new TH1F ("Mll", "", 20, 0.0, 4.0);
+TH1F * histMll_All = new TH1F ("Mll", "", 20, 0.0, 4.0);
 
+TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 1.0);
+TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 1.0);
+TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 1.0);
 
-TH1F * histPtll_BH = new TH1F ("Ptll", "", 40, 0.0, 2.0);
-TH1F * histPtll_All = new TH1F ("Ptll", "", 40, 0.0, 2.0);
-TH1F * histPtll_TCS = new TH1F ("Ptll", "", 40, 0.0, 2.0);
-
-
-TH1F * histtvalue_BH = new TH1F ("tvalue", "", 40, 0.0, 0.4);
-TH1F * histtvalue_All = new TH1F ("tvalue", "", 40, 0.0, 0.4);
-TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 40, 0.0, 0.4);
-
+TH1F * histtvalue_BH = new TH1F ("tvalue", "", 20, 0.0, 0.4);
+TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 20, 0.0, 0.4);
+TH1F * histtvalue_All = new TH1F ("tvalue", "", 20, 0.0, 0.4);
 
 // ============================================
 
   TFile *file;
   TTree *tree_EIC_BH;
-  TTree *tree_EIC_All;
   TTree *tree_EIC_TCS;
+  TTree *tree_EIC_All;
 
 
-   file = TFile::Open("EIC_Hamzeh.root");
+   file = TFile::Open("EIC_Hamzeh_New.root");
 
  
-   tree_EIC_BH  = (TTree*)file->Get("EIC1");
-   tree_EIC_All = (TTree*)file->Get("EIC2");
-   tree_EIC_TCS = (TTree*)file->Get("EIC3");   
+   tree_EIC_BH  = (TTree*)file->Get("EIC_BH");
+   tree_EIC_TCS = (TTree*)file->Get("EIC_TCS");   
+   tree_EIC_All = (TTree*)file->Get("EIC_All");
 
 
    cout << "tree Entries tree_EIC_BH  == " << tree_EIC_BH->GetEntries() << endl;
-   cout << "tree Entries tree_EIC_All == " << tree_EIC_All->GetEntries() << endl;  
    cout << "tree Entries tree_EIC_TCS == " << tree_EIC_TCS->GetEntries() << endl;     
-   
-   
+   cout << "tree Entries tree_EIC_All == " << tree_EIC_All->GetEntries() << endl;  
+      
    tree_EIC_BH->SetBranchAddress("Mll",&Mll);
-   tree_EIC_All->SetBranchAddress("Mll",&Mll);
    tree_EIC_TCS->SetBranchAddress("Mll",&Mll);
-
+   tree_EIC_All->SetBranchAddress("Mll",&Mll);
 
    tree_EIC_BH->SetBranchAddress("Ptll",&Ptll);
-   tree_EIC_All->SetBranchAddress("Ptll",&Ptll);
    tree_EIC_TCS->SetBranchAddress("Ptll",&Ptll);
-
+   tree_EIC_All->SetBranchAddress("Ptll",&Ptll);
    
    tree_EIC_BH->SetBranchAddress("tvalue",&tvalue);
-   tree_EIC_All->SetBranchAddress("tvalue",&tvalue);
    tree_EIC_TCS->SetBranchAddress("tvalue",&tvalue);
-  
+   tree_EIC_All->SetBranchAddress("tvalue",&tvalue);  
 
    
   for (Long64_t ievt=0; ievt<tree_EIC_BH->GetEntries();ievt++) {
@@ -112,10 +106,19 @@ TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 40, 0.0, 0.4);
   
   histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
-  histtvalue_BH->Fill(tvalue,event_weight_BH);
+  histtvalue_BH->Fill(tvalue);   // ,event_weight_BH
 cout << "event_weight_BH =" << event_weight_BH << endl;
     }
     
+
+  for (Long64_t ievt=0; ievt<tree_EIC_TCS->GetEntries();ievt++) {
+  tree_EIC_TCS->GetEntry(ievt);
+  
+  histMll_TCS->Fill(Mll);
+  histPtll_TCS->Fill(Ptll);
+  histtvalue_TCS->Fill(tvalue);  // 
+cout << "event_weight_TCS =" << event_weight_TCS << endl;
+    }
 
 
   for (Long64_t ievt=0; ievt<tree_EIC_All->GetEntries();ievt++) {
@@ -123,20 +126,11 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
-  histtvalue_All->Fill(tvalue,event_weight_All);
+  histtvalue_All->Fill(tvalue);  // 
 cout << "event_weight_All =" << event_weight_All << endl;
     }
-    
-    
-  for (Long64_t ievt=0; ievt<tree_EIC_TCS->GetEntries();ievt++) {
-  tree_EIC_TCS->GetEntry(ievt);
   
-  histMll_TCS->Fill(Mll);
-  histPtll_TCS->Fill(Ptll);
-  histtvalue_TCS->Fill(tvalue,event_weight_TCS);
-cout << "event_weight_TCS =" << event_weight_TCS << endl;
-    }
-
+    
 // ------------------- 
  
  
@@ -147,8 +141,8 @@ TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
 leg->SetBorderSize(0);
 
 leg->AddEntry(histMll_BH,"BH","L")->SetTextColor(2);
-leg->AddEntry(histMll_All,"BH+TCS","L")->SetTextColor(4);
 leg->AddEntry(histMll_TCS,"TCS","L")->SetTextColor(6);
+leg->AddEntry(histMll_All,"BH+TCS","L")->SetTextColor(4);
 
 leg->SetTextSize(0.032);
 leg->SetTextFont(12);
@@ -209,18 +203,16 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
 //   histMll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histMll_BH->SetLineWidth(3);
-   histMll_All->SetLineWidth(3);
    histMll_TCS->SetLineWidth(3); 
-
-   histMll_BH->SetLineColor(2);
-   histMll_All->SetLineColor(4);
-   histMll_TCS->SetLineColor(6);
+   histMll_All->SetLineWidth(3);
    
+   histMll_BH->SetLineColor(2);
+   histMll_TCS->SetLineColor(6);
+   histMll_All->SetLineColor(4);   
 
    histMll_BH->DrawNormalized("hist");
-   histMll_All->DrawNormalized("hist same");
    histMll_TCS->DrawNormalized("hist same");
-
+   histMll_All->DrawNormalized("hist same");
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -255,19 +247,16 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
 //   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histPtll_BH->SetLineWidth(3);
-   histPtll_All->SetLineWidth(3);
    histPtll_TCS->SetLineWidth(3);
- 
+   histPtll_All->SetLineWidth(3); 
 
    histPtll_BH->SetLineColor(2);
-   histPtll_All->SetLineColor(4);
    histPtll_TCS->SetLineColor(6);
-
+   histPtll_All->SetLineColor(4);
 
    histPtll_BH->DrawNormalized("hist");
-   histPtll_All->DrawNormalized("hist same");
    histPtll_TCS->DrawNormalized("hist same");
-
+   histPtll_All->DrawNormalized("hist same");
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -293,7 +282,7 @@ histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_BH->GetXaxis()->SetLabelFont(22);
 histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("d#sigma/d|t| [pb]");
+histtvalue_BH->GetYaxis()->SetTitle("Events normalised to unit area");  // d#sigma/d|t| [pb]
 histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
@@ -302,19 +291,16 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
-   histtvalue_All->SetLineWidth(3);
    histtvalue_TCS->SetLineWidth(3);
- 
+   histtvalue_All->SetLineWidth(3); 
 
    histtvalue_BH->SetLineColor(2);
-   histtvalue_All->SetLineColor(4);
    histtvalue_TCS->SetLineColor(6);
+   histtvalue_All->SetLineColor(4);
 
-
-   histtvalue_BH->Draw("hist");
-   histtvalue_All->Draw("hist same");
-   histtvalue_TCS->Draw("hist same");
-   
+   histtvalue_BH->DrawNormalized("hist");
+   histtvalue_TCS->DrawNormalized("hist same");
+   histtvalue_All->DrawNormalized("hist same");   
 
    c3->SetLogy(1);
 //   c3->SetLogx(1);
