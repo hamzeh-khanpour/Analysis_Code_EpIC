@@ -58,7 +58,7 @@
 
 
 TFile *target;
-TTree *Tsignal_EIC = new TTree("EIC_BH","EIC_BH");
+TTree *Tsignal_EIC = new TTree("EIC_All","EIC_All");
 TFile *F;
 
 
@@ -67,7 +67,7 @@ TFile *F;
 // **********************************************************************   
 
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 4.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 2.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 1.0);
   TH1 *histtvalue = new TH1F("tvalue", "", 40, 0.0, 0.40);  
 
 
@@ -91,6 +91,7 @@ TFile *F;
    Int_t N_Cut_I = 0.0;
    Int_t N_Cut_II = 0.0;
    Int_t N_Cut_III = 0.0;  
+   Int_t N_Cut_IIII = 0.0;  
      
 
 void epic_out_file_v3::Loop()
@@ -192,8 +193,9 @@ void epic_out_file_v3::Loop()
  Float_t Electronout_E = Electronout.E();
 
  Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
+ 
 
-if ( Energy_Ratio < 0.5 ||  Energy_Ratio > 0.9 ) { continue; }
+if ( Energy_Ratio < 0.50 ||  Energy_Ratio > 0.99 ) { continue; }
 
 //        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
 
@@ -235,16 +237,21 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 //        }  
     
 
- Float_t xL = Protonout.Pz() / Protonout.P();
+ Float_t xL = Protonout.Pz() / Protonin.P();
   
-//       cout << "xL = "   <<  xL  << endl; 
+// if ( xL > 0.97 ) { continue; }    // 0.97 
 
+ if (xL < 0.97) {
+   cout << "xL = "   <<  xL  << endl; 
+ }
+ 
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( Protonout_Pt < 0.10 ) { continue; }    // 100 MeV
+ if ( Protonout_Pt < 0.10 ) { continue; }    // 100 MeV   ||  xL > 0.97 
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
        
+
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
@@ -331,7 +338,15 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  N_Cut_III++;
 
 
+ 
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
+      
+      
+ if ( MydiLepton.Pt()  < 0.20 ) { continue; }  // dilepton pT > 0.2 GeV
+      
+      
+ N_Cut_IIII++;
+      
 
 //      cout << "MydiLepton Pt = " << MydiLepton.Pt() << endl; 
 //      cout << "MydiLepton M = "  << MydiLepton.M()  << endl;       
@@ -369,7 +384,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
    } // end events loop 
 
 
-    target = new TFile ("EIC_BH_New.root","recreate");
+    target = new TFile ("EIC_All_New.root","recreate");
     target->cd();
 
     Tsignal_EIC->Write();
@@ -377,10 +392,10 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
     target->Close();
 
    
-   cout << "N_Cut_I   = " << N_Cut_I*1.0/nentries << endl;    
-   cout << "N_Cut_II  = " << N_Cut_II*1.0/nentries << endl;    
-   cout << "N_Cut_III = " << N_Cut_III*1.0/nentries << endl;    
-
+   cout << "N_Cut_I    = " << N_Cut_I*1.0/nentries << endl;    
+   cout << "N_Cut_II   = " << N_Cut_II*1.0/nentries << endl;    
+   cout << "N_Cut_III  = " << N_Cut_III*1.0/nentries << endl;    
+   cout << "N_Cut_IIII = " << N_Cut_IIII*1.0/nentries << endl;    
 
 
 // **********************************************************************   

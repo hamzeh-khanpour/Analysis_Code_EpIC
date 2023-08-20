@@ -64,9 +64,9 @@ TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 1.0);
 TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 1.0);
 TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 1.0);
 
-TH1F * histtvalue_BH = new TH1F ("tvalue", "", 20, 0.0, 0.4);
-TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 20, 0.0, 0.4);
-TH1F * histtvalue_All = new TH1F ("tvalue", "", 20, 0.0, 0.4);
+TH1F * histtvalue_BH = new TH1F ("tvalue", "",  30, 0.0, 0.2);
+TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 30, 0.0, 0.2);
+TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
 
 // ============================================
 
@@ -183,28 +183,28 @@ TLatex *t6a = new TLatex(0.692,0.61,"hadron_polarisation = 0|0|1");
                 t6a->SetTextSize(0.04);
                 t6a->SetTextAlign(20);
                 
-TLatex *t2b = new TLatex(0.71,0.550,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}>10 mrad");
+TLatex *t2b = new TLatex(0.70,0.550,"0.5<E'_{e}/E_{e}<0.99 & #pi-#theta_{e}<10 mrad");
                 t2b->SetNDC();
                 t2b->SetTextFont(12);
                 t2b->SetTextSize(0.04);
                 t2b->SetTextAlign(20);
 
                 
-TLatex *t3b = new TLatex(0.59,0.50,"p_{T}^{p}>100 Mev");
+TLatex *t3b = new TLatex(0.58,0.50,"p_{T}^{p}>100 Mev");
                 t3b->SetNDC();
                 t3b->SetTextFont(12);
                 t3b->SetTextSize(0.04);
                 t3b->SetTextAlign(20);
                 
                 
-TLatex *t4b = new TLatex(0.585,0.45,"#theta_{p}<13 mrad");
+TLatex *t4b = new TLatex(0.58,0.45,"#theta_{p}<13 mrad");
                 t4b->SetNDC();
                 t4b->SetTextFont(12);
                 t4b->SetTextSize(0.04);
                 t4b->SetTextAlign(20);
                 
                 
-TLatex *t5b = new TLatex(0.655,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
+TLatex *t5b = new TLatex(0.65,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
                 t5b->SetNDC();
                 t5b->SetTextFont(12);
                 t5b->SetTextSize(0.04);
