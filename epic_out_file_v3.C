@@ -58,7 +58,7 @@
 
 
 TFile *target;
-TTree *Tsignal_EIC = new TTree("EIC_All","EIC_All");
+TTree *Tsignal_EIC = new TTree("EIC_BH","EIC_BH");
 TFile *F;
 
 
@@ -342,8 +342,8 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
       
       
- if ( MydiLepton.Pt()  < 0.20 ) { continue; }  // dilepton pT > 0.2 GeV
-      
+ if ( MydiLepton.Pt()  > 0.20 ) { continue; }  // dilepton pT < 0.2 GeV
+    
       
  N_Cut_IIII++;
       
@@ -384,7 +384,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
    } // end events loop 
 
 
-    target = new TFile ("EIC_All_New.root","recreate");
+    target = new TFile ("EIC_BH_New.root","recreate");
     target->cd();
 
     Tsignal_EIC->Write();

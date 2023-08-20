@@ -56,13 +56,13 @@ void Plots_EIC(){
    gStyle->SetOptTitle(1);
 
 
-TH1F * histMll_BH = new TH1F ("Mll", "", 20, 0.0, 4.0);
-TH1F * histMll_TCS = new TH1F ("Mll", "", 20, 0.0, 4.0);
-TH1F * histMll_All = new TH1F ("Mll", "", 20, 0.0, 4.0);
+TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 4.0);
 
-TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 1.0);
-TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 1.0);
-TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 1.0);
+TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 0.40);
+TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 0.40);
+TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 0.40);
 
 TH1F * histtvalue_BH = new TH1F ("tvalue", "",  30, 0.0, 0.2);
 TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 30, 0.0, 0.2);
