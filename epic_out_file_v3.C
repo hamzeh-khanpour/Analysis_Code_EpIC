@@ -68,7 +68,7 @@ TFile *F;
 
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 4.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 1.0);
-  TH1 *histtvalue = new TH1F("tvalue", "", 40, 0.0, 0.40);  
+  TH1 *histtvalue = new TH1F("tvalue", "", 40, 0.0, 0.20);  
 
 
     TLorentzVector MyGoodLeptonplus;
@@ -205,7 +205,7 @@ void epic_out_file_v3::Loop()
  Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
  
 
-if ( Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99 ) { continue; }
+// if ( Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99 ) { continue; }
 
 //        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
 
@@ -215,10 +215,12 @@ if ( Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99 ) { continue; }
 
 
 
-if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
+// if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
-        
+
+ 
+ if ( !( Energy_Ratio > 0.50  &&  Energy_Ratio < 0.99 &&  Pi_Theta_e < 10.0/1000.0 ) ) { continue; }
         
  N_Cut_I++;        
 
@@ -249,20 +251,22 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
  Float_t xL = Protonout.Pz() / Protonin.P();
   
-// if ( xL > 0.97 ) { continue; }    // 0.97 
-
 // if (xL < 0.97) {
 //   cout << "xL = "   <<  xL  << endl; 
 // }
  
+ 
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if (!(Protonout_Pt > 0.10 || xL > 0.97)) { continue; }    // 100 MeV   
+ if ( !(Protonout_Pt > 0.10 || xL < 0.97) ) { continue; }
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
-       
+         
+// if (xL < 0.97) {
+//   cout << "xL = "   <<  xL  << endl; 
+// }
 
-    
+
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
@@ -366,7 +370,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
       Mll  = MydiLepton.M();
       Ptll = MydiLepton.Pt();
-      
+ 
 //      cout << "Mll  = "  << Mll   << endl;       
 //      cout << "Ptll = "  << Ptll  << endl;     
 
@@ -378,7 +382,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 //      cout << "t.Dot(t)  = "  << t.Dot(t)   << endl; 
 
       
-      
+
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
    Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
    Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
