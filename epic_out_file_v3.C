@@ -247,7 +247,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
  
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( Protonout_Pt < 0.10 ) { continue; }    // 100 MeV   ||  xL > 0.97 
+ if ( Protonout_Pt < 0.10   ||  xL > 0.97 ) { continue; }    // 100 MeV   
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
        
@@ -342,7 +342,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
       
       
- if ( MydiLepton.Pt()  > 0.20 ) { continue; }  // dilepton pT < 0.2 GeV
+// if ( MydiLepton.Pt()  > 0.20 ) { continue; }  // dilepton pT < 0.2 GeV
     
       
  N_Cut_IIII++;
@@ -384,7 +384,7 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
    } // end events loop 
 
 
-    target = new TFile ("EIC_BH_New.root","recreate");
+    target = new TFile ("EIC_BH_New_x_L.root","recreate");
     target->cd();
 
     Tsignal_EIC->Write();
