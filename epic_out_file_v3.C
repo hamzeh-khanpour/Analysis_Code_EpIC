@@ -92,6 +92,16 @@ TFile *F;
    Int_t N_Cut_II = 0.0;
    Int_t N_Cut_III = 0.0;  
    Int_t N_Cut_IIII = 0.0;  
+
+   
+   Float_t  integrated_luminosity = 0;
+   Float_t  integrated_cross_section_value_BH = 0;
+   Float_t  integrated_cross_section_value_TCS = 0;
+   Float_t  integrated_cross_section_value_All = 0;
+   
+   Float_t  event_weight_BH  = 0;
+   Float_t  event_weight_TCS = 0;
+   Float_t  event_weight_All = 0;
      
 
 void epic_out_file_v3::Loop()
@@ -195,7 +205,7 @@ void epic_out_file_v3::Loop()
  Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
  
 
-if ( Energy_Ratio < 0.50 ||  Energy_Ratio > 0.99 ) { continue; }
+if ( Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99 ) { continue; }
 
 //        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
 
@@ -204,7 +214,7 @@ if ( Energy_Ratio < 0.50 ||  Energy_Ratio > 0.99 ) { continue; }
  Float_t Pi_Theta_e = Pi - Electronout.Theta();
 
 
-       
+
 if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
@@ -241,17 +251,18 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
   
 // if ( xL > 0.97 ) { continue; }    // 0.97 
 
- if (xL < 0.97) {
-   cout << "xL = "   <<  xL  << endl; 
- }
+// if (xL < 0.97) {
+//   cout << "xL = "   <<  xL  << endl; 
+// }
  
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( Protonout_Pt < 0.10   ||  xL > 0.97 ) { continue; }    // 100 MeV   
+ if (!(Protonout_Pt > 0.10 || xL > 0.97)) { continue; }    // 100 MeV   
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
        
 
+    
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
@@ -368,10 +379,16 @@ if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
 
       
       
-      Float_t integrated_cross_section_value = 0.0297331125879007;  //   nb   BH
-//      Float_t integrated_cross_section_value = 0.0315266216902042;  // nb   BH+TCS      
-      Float_t integrated_luminosity = 300; // fb^{-1} 
-      Float_t event_weight = integrated_cross_section_value * integrated_luminosity / nentries;
+   Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
+   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
+   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
+   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+   
+   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
+   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
+      
+      
       
       histMassdilepton->Fill(Mll);      
       histPtdilepton->Fill(Ptll);    
