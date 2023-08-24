@@ -205,7 +205,7 @@ void epic_out_file_v3::Loop()
  Float_t Energy_Ratio = Electronout_E*1.0/Electronin_E*1.0;
  
 
-// if ( Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99 ) { continue; }
+// if (Energy_Ratio < 0.50  ||  Energy_Ratio > 0.99) { continue; }
 
 //        cout << "Energy_Ratio = "   <<  Energy_Ratio  << endl;    
 
@@ -215,12 +215,12 @@ void epic_out_file_v3::Loop()
 
 
 
-// if ( Pi_Theta_e > 10.0/1000.0 ) { continue; }  // 10 mrad
+// if (Pi_Theta_e > 10.0/1000.0) { continue; }  // 10 mrad
 
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
 
  
- if ( !( Energy_Ratio > 0.50  &&  Energy_Ratio < 0.99 &&  Pi_Theta_e < 10.0/1000.0 ) ) { continue; }
+ if ( !(Energy_Ratio > 0.50  &&  Energy_Ratio < 0.99 &&  Pi_Theta_e < 10.0/1000.0) ) { continue; }
         
  N_Cut_I++;        
 
@@ -258,7 +258,8 @@ void epic_out_file_v3::Loop()
  
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( !(Protonout_Pt > 0.10 || xL < 0.97) ) { continue; }
+ if ( !(Protonout_Pt > 0.10  ||  xL < 0.97) ) { continue; }
+
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
          
@@ -270,7 +271,7 @@ void epic_out_file_v3::Loop()
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
- if ( Protonout_Theta > 13.0/1000.0 ) { continue; }  // 13 mrad 
+ if (Protonout_Theta > 13.0/1000.0) { continue; }  // 13 mrad 
  
 //       cout << "Protonout_Theta = "   <<  Protonout_Theta  << endl; 
        
@@ -282,7 +283,7 @@ void epic_out_file_v3::Loop()
       
     for (Int_t i = 1; i <= kMaxparticles; i++) {      
      
-        if (particles_pid[i] == -13 ) {  // && particles_status[i] == 5 
+        if ( particles_pid[i] == -13 ) {  // && particles_status[i] == 5 
 
             
  TVector3 Muonplus;
@@ -304,7 +305,7 @@ void epic_out_file_v3::Loop()
         }
 
 
-        else if (particles_pid[i] == 13 ) {  // && particles_status[i] == 5 
+        else if ( particles_pid[i] == 13 ) {  // && particles_status[i] == 5 
 
             
  TVector3 Muonminus;
@@ -383,14 +384,14 @@ void epic_out_file_v3::Loop()
 
       
 
-   Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
-   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+      Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
+      Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
+      Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
+      Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
    
-   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
-   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
+      Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+      Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
+      Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
       
       
       
@@ -399,24 +400,25 @@ void epic_out_file_v3::Loop()
       histtvalue->Fill(tvalue);    // ,event_weight
 
       
-    Tsignal_EIC->Fill();
+      Tsignal_EIC->Fill();
     
 
    } // end events loop 
 
 
-    target = new TFile ("EIC_BH_New_x_L.root","recreate");
-    target->cd();
+     target = new TFile ("EIC_BH_New_x_L.root","recreate");
+     target->cd();
 
-    Tsignal_EIC->Write();
+     Tsignal_EIC->Write();
     
-    target->Close();
+     target->Close();
 
    
-   cout << "N_Cut_I    = " << N_Cut_I*1.0/nentries << endl;    
-   cout << "N_Cut_II   = " << N_Cut_II*1.0/nentries << endl;    
-   cout << "N_Cut_III  = " << N_Cut_III*1.0/nentries << endl;    
-   cout << "N_Cut_IIII = " << N_Cut_IIII*1.0/nentries << endl;    
+    cout << "N_Cut_I    = " << N_Cut_I*1.0/nentries << endl;    
+    cout << "N_Cut_II   = " << N_Cut_II*1.0/nentries << endl;    
+    cout << "N_Cut_III  = " << N_Cut_III*1.0/nentries << endl;    
+    cout << "N_Cut_IIII = " << N_Cut_IIII*1.0/nentries << endl;    
+
 
 
 // **********************************************************************   
