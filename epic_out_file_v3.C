@@ -58,7 +58,7 @@
 
 
 TFile *target;
-TTree *Tsignal_EIC = new TTree("EIC_BH","EIC_BH");
+TTree *Tsignal_EIC = new TTree("EIC_BH_GM0","EIC_BH_GM0");
 TFile *F;
 
 
@@ -406,7 +406,7 @@ void epic_out_file_v3::Loop()
    } // end events loop 
 
 
-     target = new TFile ("EIC_BH_New_x_L.root","recreate");
+     target = new TFile ("EIC_BH_New_x_L_GM0.root","recreate");
      target->cd();
 
      Tsignal_EIC->Write();
