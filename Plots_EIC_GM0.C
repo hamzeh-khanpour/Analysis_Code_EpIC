@@ -27,12 +27,15 @@
    Float_t  nentries = 0;
    Float_t  integrated_luminosity = 0;
    Float_t  integrated_cross_section_value_BH = 0;
-   Float_t  integrated_cross_section_value_TCS = 0;
+   Float_t  integrated_cross_section_value_BH_GM0 = 0;
    Float_t  integrated_cross_section_value_All = 0;
+   Float_t  integrated_cross_section_value_All_GM0 = 0;
    
    Float_t  event_weight_BH  = 0;
-   Float_t  event_weight_TCS = 0;
+   Float_t  event_weight_BH_GM0 = 0;
    Float_t  event_weight_All = 0;
+   Float_t  event_weight_All_GM0 = 0;
+   
    
 //*   -----------------------------------------------
 
@@ -42,13 +45,16 @@ void Plots_EIC_GM0(){
     
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
-   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+   Float_t  integrated_cross_section_value_BH      = 3.04779064167665   * 1000.0;   //   nb  BH
+   Float_t  integrated_cross_section_value_BH_GM0  = 2.92648225395116   * 1000.0;   //   nb  BH-GM0 
+   Float_t  integrated_cross_section_value_All     = 3.30875099292885   * 1000.0;   //   nb  BH+TCS  
+   Float_t  integrated_cross_section_value_All_GM0 = 3.18878564045189   * 1000.0;   //   nb  BH+TCS-GM0   
+   
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
-   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
+   Float_t  event_weight_BH_GM0 = integrated_cross_section_value_BH_GM0 * integrated_luminosity / nentries;
    Float_t  event_weight_All = integrated_cross_section_value_All * integrated_luminosity / nentries;
+   Float_t  event_weight_All_GM0 = integrated_cross_section_value_All_GM0 * integrated_luminosity / nentries;   
     
     
    gStyle->SetPalette(kBird);
@@ -57,48 +63,60 @@ void Plots_EIC_GM0(){
 
 
 TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
-TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_BH_GM0 = new TH1F ("Mll", "", 40, 0.0, 4.0);
 TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_All_GM0 = new TH1F ("Mll", "", 40, 0.0, 4.0);
 
 TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 0.50);
-TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 0.50);
+TH1F * histPtll_BH_GM0 = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 0.50);
+TH1F * histPtll_All_GM0 = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 
 TH1F * histtvalue_BH = new TH1F ("tvalue", "",  40, 0.0, 0.2);
-TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 40, 0.0, 0.2);
+TH1F * histtvalue_BH_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
 TH1F * histtvalue_All = new TH1F ("tvalue", "", 40, 0.0, 0.2);
+TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
 
 // ============================================
 
   TFile *file;
   TTree *tree_EIC_BH;
-  TTree *tree_EIC_TCS;
+  TTree *tree_EIC_BH_GM0;
   TTree *tree_EIC_All;
-
+  TTree *tree_EIC_All_GM0;
+  
 
    file = TFile::Open("EIC_Hamzeh_New_1M_x_L_GM0.root");
 
  
    tree_EIC_BH  = (TTree*)file->Get("EIC_BH");
-   tree_EIC_TCS = (TTree*)file->Get("EIC_BH_GM0");   
+   tree_EIC_BH_GM0 = (TTree*)file->Get("EIC_BH_GM0");   
    tree_EIC_All = (TTree*)file->Get("EIC_ALL");
+   tree_EIC_All_GM0 = (TTree*)file->Get("EIC_ALL_GM0");   
 
 
    cout << "tree Entries tree_EIC_BH  == " << tree_EIC_BH->GetEntries() << endl;
-   cout << "tree Entries tree_EIC_TCS == " << tree_EIC_TCS->GetEntries() << endl;     
+   cout << "tree Entries tree_EIC_BH_GM0 == " << tree_EIC_BH_GM0->GetEntries() << endl;     
    cout << "tree Entries tree_EIC_All == " << tree_EIC_All->GetEntries() << endl;  
+   cout << "tree Entries tree_EIC_All_GM0 == " << tree_EIC_All_GM0->GetEntries() << endl;  
+   
       
    tree_EIC_BH->SetBranchAddress("Mll",&Mll);
-   tree_EIC_TCS->SetBranchAddress("Mll",&Mll);
+   tree_EIC_BH_GM0->SetBranchAddress("Mll",&Mll);
    tree_EIC_All->SetBranchAddress("Mll",&Mll);
+   tree_EIC_All_GM0->SetBranchAddress("Mll",&Mll);   
 
+   
    tree_EIC_BH->SetBranchAddress("Ptll",&Ptll);
-   tree_EIC_TCS->SetBranchAddress("Ptll",&Ptll);
+   tree_EIC_BH_GM0->SetBranchAddress("Ptll",&Ptll);
    tree_EIC_All->SetBranchAddress("Ptll",&Ptll);
+   tree_EIC_All_GM0->SetBranchAddress("Ptll",&Ptll);   
+   
    
    tree_EIC_BH->SetBranchAddress("tvalue",&tvalue);
-   tree_EIC_TCS->SetBranchAddress("tvalue",&tvalue);
+   tree_EIC_BH_GM0->SetBranchAddress("tvalue",&tvalue);
    tree_EIC_All->SetBranchAddress("tvalue",&tvalue);  
+   tree_EIC_All_GM0->SetBranchAddress("tvalue",&tvalue);     
 
    
   for (Long64_t ievt=0; ievt<tree_EIC_BH->GetEntries();ievt++) {
@@ -109,15 +127,15 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 40, 0.0, 0.2);
   histtvalue_BH->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
 cout << "event_weight_BH =" << event_weight_BH << endl;
     }
-    
 
-  for (Long64_t ievt=0; ievt<tree_EIC_TCS->GetEntries();ievt++) {
-  tree_EIC_TCS->GetEntry(ievt);
+
+  for (Long64_t ievt=0; ievt<tree_EIC_BH_GM0->GetEntries();ievt++) {
+  tree_EIC_BH_GM0->GetEntry(ievt);
   
-  histMll_TCS->Fill(Mll);
-  histPtll_TCS->Fill(Ptll);
-  histtvalue_TCS->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
-cout << "event_weight_TCS =" << event_weight_TCS << endl;
+  histMll_BH_GM0->Fill(Mll);
+  histPtll_BH_GM0->Fill(Ptll);
+  histtvalue_BH_GM0->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
+cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
     }
 
 
@@ -129,24 +147,48 @@ cout << "event_weight_TCS =" << event_weight_TCS << endl;
   histtvalue_All->Fill(tvalue);  //  ,integrated_cross_section_value_All
 cout << "event_weight_All =" << event_weight_All << endl;
     }
+    
+ 
+  for (Long64_t ievt=0; ievt<tree_EIC_All_GM0->GetEntries();ievt++) {
+  tree_EIC_All_GM0->GetEntry(ievt);
   
+  histMll_All_GM0->Fill(Mll);
+  histPtll_All_GM0->Fill(Ptll);
+  histtvalue_All_GM0->Fill(tvalue);  //  ,integrated_cross_section_value_All
+cout << "event_weight_All_GM0 =" << event_weight_All_GM0 << endl;
+    }
+    
     
 // ------------------- 
  
- 
- 
 Double_t xl1=0.70, yl1=0.720, xl2=xl1+0.150, yl2=yl1+0.150;
 
-TLegend *leg = new TLegend(xl1,yl1,xl2,yl2);
-leg->SetBorderSize(0);
+TLegend *leg1 = new TLegend(xl1,yl1,xl2,yl2);
+leg1->SetBorderSize(0);
 
-leg->AddEntry(histMll_BH,"BH (G_{E}+G_{M})","L")->SetTextColor(2);
-leg->AddEntry(histMll_TCS,"BH (G_{E})","L")->SetTextColor(4);
-//leg->AddEntry(histMll_All,"BH+TCS","L")->SetTextColor(4);
+leg1->AddEntry(histMll_BH,"BH (G_{E}+G_{M})","L")->SetTextColor(2);
+leg1->AddEntry(histMll_BH_GM0,"BH (G_{E})","L")->SetTextColor(4);
 
-leg->SetTextSize(0.032);
-leg->SetTextFont(12);
-leg->SetFillStyle(0);
+leg1->SetTextSize(0.032);
+leg1->SetTextFont(12);
+leg1->SetFillStyle(0);
+
+
+// ------------------- 
+
+Double_t xl3=0.65, yl3=0.720, xl4=xl3+0.150, yl4=yl3+0.150;
+
+TLegend *leg2 = new TLegend(xl3,yl3,xl4,yl4);
+leg2->SetBorderSize(0);
+
+leg2->AddEntry(histPtll_All,"BH+TCS (G_{E}+G_{M})","L")->SetTextColor(2);
+leg2->AddEntry(histPtll_All_GM0,"BH+TCS (G_{E})","L")->SetTextColor(4);
+
+leg2->SetTextSize(0.032);
+leg2->SetTextFont(12);
+leg2->SetFillStyle(0);
+
+
 
 //    (#sqrt{s} = 365 GeV, L_{int} = 1.5 ab^{-1})    1.5 ab^{-1} (365 GeV)
 
@@ -213,104 +255,6 @@ TLatex *t5b = new TLatex(0.65,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
 // --------------------
 
 
-TCanvas* c1 = new TCanvas("c1","Massdilepton", 10, 10, 900, 700);
-
-//histMll_BH->SetTitle("m_{ll}");
-histMll_BH->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
-histMll_BH->GetXaxis()->SetTitleOffset(1.25);
-histMll_BH->GetXaxis()->SetLabelFont(22);
-histMll_BH->GetXaxis()->SetTitleFont(22);
-histMll_BH->GetYaxis()->SetTitle("Events normalised to unit area");
-histMll_BH->GetYaxis()->SetTitleOffset(1.40);
-histMll_BH->GetYaxis()->SetLabelFont(22);
-histMll_BH->GetYaxis()->SetTitleFont(22);
-
-   histMll_BH->GetYaxis()->SetRangeUser(0,10000);
-//   histMll_BH->GetXaxis()->SetRangeUser(0,1);
-
-   histMll_BH->SetLineWidth(3);
-   histMll_TCS->SetLineWidth(3); 
-   histMll_All->SetLineWidth(3);
-   
-   histMll_BH->SetLineColor(2);
-   histMll_TCS->SetLineColor(4);
-   histMll_All->SetLineColor(4);   
-
-   histMll_BH->DrawNormalized("hist");
-   histMll_TCS->DrawNormalized("hist same");
-//   histMll_All->DrawNormalized("hist same");
-
- leg->Draw("same");
- t2a->Draw("same");
- t3a->Draw("same");
- t4a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
- t2b->Draw("same");   
- t3b->Draw("same");    
- t4b->Draw("same");    
- t5b->Draw("same");   
-  
- 
-c1->SaveAs("Mll_GM0.pdf");
-//c1->SaveAs("Mll_GM0.C");
-//c1->SaveAs("Mll_GM0.eps");
-//c1->SaveAs("Mll_GM0.root");
-
-
-// --------------------
-
-
-
-TCanvas* c2 = new TCanvas("c2","Ptdilepton", 10, 10, 900, 700);
-
-//histPtll_BH->SetTitle("m_{ll}");
-histPtll_BH->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
-histPtll_BH->GetXaxis()->SetTitleOffset(1.25);
-histPtll_BH->GetXaxis()->SetLabelFont(22);
-histPtll_BH->GetXaxis()->SetTitleFont(22);
-histPtll_BH->GetYaxis()->SetTitle("Events normalised to unit area");
-histPtll_BH->GetYaxis()->SetTitleOffset(1.40);
-histPtll_BH->GetYaxis()->SetLabelFont(22);
-histPtll_BH->GetYaxis()->SetTitleFont(22);
-
-   histPtll_BH->GetYaxis()->SetRangeUser(0,10000);
-//   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
-
-   histPtll_BH->SetLineWidth(3);
-   histPtll_TCS->SetLineWidth(3);
-   histPtll_All->SetLineWidth(3); 
-
-   histPtll_BH->SetLineColor(2);
-   histPtll_TCS->SetLineColor(4);
-   histPtll_All->SetLineColor(4);
-
-   histPtll_BH->DrawNormalized("hist");
-   histPtll_TCS->DrawNormalized("hist same");
-//   histPtll_All->DrawNormalized("hist same");
-
- leg->Draw("same");
- t2a->Draw("same");
- t3a->Draw("same");
- t4a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
- t2b->Draw("same");   
- t3b->Draw("same");    
- t4b->Draw("same");    
- t5b->Draw("same"); 
- 
- 
-c2->SaveAs("Ptll_GM0.pdf");
-//c2->SaveAs("ptll_GM0.C");
-//c2->SaveAs("ptll_GM0.eps");
-//c2->SaveAs("ptll_GM0.root");
-
-
-// --------------------
-
-
-
 TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
 
 //histtvalue_BH->SetTitle("m_{ll}");
@@ -327,21 +271,18 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
-   histtvalue_TCS->SetLineWidth(3);
-   histtvalue_All->SetLineWidth(3); 
+   histtvalue_BH_GM0->SetLineWidth(3);
 
    histtvalue_BH->SetLineColor(2);
-   histtvalue_TCS->SetLineColor(4);
-   histtvalue_All->SetLineColor(4);
+   histtvalue_BH_GM0->SetLineColor(4);
 
    histtvalue_BH->DrawNormalized("hist");
-   histtvalue_TCS->DrawNormalized("hist same");
-//   histtvalue_All->DrawNormalized("hist same");   
+   histtvalue_BH_GM0->DrawNormalized("hist same");
 
 //   c3->SetLogy(1);
 //   c3->SetLogx(1);
 
- leg->Draw("same");
+ leg1->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
@@ -353,10 +294,10 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c3->SaveAs("t-value_GM0.pdf");
-//c3->SaveAs("t-value_GM0.C");
-//c3->SaveAs("t-value_GM0.eps");
-//c3->SaveAs("t-value_GM0.root");
+c3->SaveAs("t-value_BH_GM0.pdf");
+//c3->SaveAs("t-value_BH_GM0.C");
+//c3->SaveAs("t-value_BH_GM0.eps");
+//c3->SaveAs("t-value_BH_GM0.root");
 
 
 
@@ -380,21 +321,18 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
-   histtvalue_TCS->SetLineWidth(3);
-   histtvalue_All->SetLineWidth(3); 
+   histtvalue_BH_GM0->SetLineWidth(3);
 
    histtvalue_BH->SetLineColor(2);
-   histtvalue_TCS->SetLineColor(4);
-   histtvalue_All->SetLineColor(4);
+   histtvalue_BH_GM0->SetLineColor(4);
 
    histtvalue_BH->Draw("hist");
-   histtvalue_TCS->Draw("hist same");
-//   histtvalue_All->Draw("hist same");
+   histtvalue_BH_GM0->Draw("hist same");
 
      c4->SetLogy(1);
 //   c4->SetLogx(1);
 
- leg->Draw("same");
+ leg1->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
  t4a->Draw("same"); 
@@ -406,10 +344,112 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c4->SaveAs("t-value-nonorm_GM0.pdf");
-//c4->SaveAs("t-value-nonorm_GM0.C");
-//c4->SaveAs("t-value-nonorm_GM0.eps");
-//c4->SaveAs("t-value-nonorm_GM0.root");
+c4->SaveAs("t-value-nonorm_BH_GM0.pdf");
+//c4->SaveAs("t-value-nonorm_BH_GM0.C");
+//c4->SaveAs("t-value-nonorm_BH_GM0.eps");
+//c4->SaveAs("t-value-nonorm_BH_GM0.root");
+
+
+
+
+// --------------------
+
+
+TCanvas* c5 = new TCanvas("c5","tvalue", 10, 10, 900, 700);
+
+//histtvalue_All->SetTitle("m_{ll}");
+histtvalue_All->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+histtvalue_All->GetXaxis()->SetTitleOffset(1.25);
+histtvalue_All->GetXaxis()->SetLabelFont(22);
+histtvalue_All->GetXaxis()->SetTitleFont(22);
+histtvalue_All->GetYaxis()->SetTitle("Events normalised to unit area");  // d#sigma/d|t| [pb]
+histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
+histtvalue_All->GetYaxis()->SetLabelFont(22);
+histtvalue_All->GetYaxis()->SetTitleFont(22);
+
+   histtvalue_All->GetXaxis()->SetRangeUser(0,8000);
+//   histtvalue_All->GetXaxis()->SetRangeUser(0,1);
+
+   histtvalue_All->SetLineWidth(3);
+   histtvalue_All_GM0->SetLineWidth(3);
+
+   histtvalue_All->SetLineColor(2);
+   histtvalue_All_GM0->SetLineColor(4);
+
+   histtvalue_All->DrawNormalized("hist");
+   histtvalue_All_GM0->DrawNormalized("hist same");
+
+//   c5->SetLogy(1);
+//   c5->SetLogx(1);
+
+ leg2->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");  
+ 
+
+c5->SaveAs("t-t-value_All_GM0.pdf");
+//c5->SaveAs("t-t-value_All_GM0.C");
+//c5->SaveAs("t-t-value_All_GM0.eps");
+//c5->SaveAs("t-t-value_All_GM0.root");
+
+
+
+
+
+// --------------------
+
+
+
+TCanvas* c6 = new TCanvas("c6","tvalue", 10, 10, 900, 700);
+
+//histtvalue_All->SetTitle("m_{ll}");
+histtvalue_All->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+histtvalue_All->GetXaxis()->SetTitleOffset(1.25);
+histtvalue_All->GetXaxis()->SetLabelFont(22);
+histtvalue_All->GetXaxis()->SetTitleFont(22);
+histtvalue_All->GetYaxis()->SetTitle("# Events");  // d#sigma/d|t| [pb]
+histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
+histtvalue_All->GetYaxis()->SetLabelFont(22);
+histtvalue_All->GetYaxis()->SetTitleFont(22);
+
+  histtvalue_All->GetYaxis()->SetRangeUser(100,10000);
+//   histtvalue_All->GetXaxis()->SetRangeUser(0,1);
+
+   histtvalue_All->SetLineWidth(3);
+   histtvalue_All_GM0->SetLineWidth(3);
+
+   histtvalue_All->SetLineColor(2);
+   histtvalue_All_GM0->SetLineColor(4);
+
+   histtvalue_All->Draw("hist");
+   histtvalue_All_GM0->Draw("hist same");
+
+     c6->SetLogy(1);
+//   c6->SetLogx(1);
+
+ leg2->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ t5a->Draw("same");
+ t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");  
+ 
+
+c6->SaveAs("t-value-nonorm_All_GM0.pdf");
+//c6->SaveAs("t-value-nonorm_All_GM0.C");
+//c6->SaveAs("t-value-nonorm_All_GM0.eps");
+//c6->SaveAs("t-value-nonorm_All_GM0.root");
 
 
 

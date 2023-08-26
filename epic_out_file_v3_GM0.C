@@ -385,9 +385,9 @@ void epic_out_file_v3_GM0::Loop()
       
 
       Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-      Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
+      Float_t  integrated_cross_section_value_BH  = 2.92648225395116   * 1000.0;   //   nb   BH-GM0
       Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-      Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+      Float_t  integrated_cross_section_value_All = 3.18878564045189   * 1000.0;   //   nb   BH+TCS-GM0   
    
       Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
       Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
