@@ -406,6 +406,38 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
+   // Define the ratio plot
+   TH1F *h3 = (TH1F*)histtvalue_All->Clone("h3");
+   h3->SetLineColor(kBlack);
+   h3->SetMinimum(0);  // Define Y ..
+   h3->SetMaximum(2); // .. range
+   h3->Sumw2();
+   h3->SetStats(0);      // No statistics on lower plot
+   h3->Divide(histtvalue_BH);
+   h3->SetMarkerStyle(21);
+   h3->Draw("ep");       // Draw the ratio plot
+ 
+   // Ratio plot (h3) settings
+   h3->SetTitle(""); // Remove the ratio title
+ 
+   // Y axis ratio plot settings
+   h3->GetYaxis()->SetTitle("(BH+TCS)/BH");
+   h3->GetYaxis()->SetNdivisions(505);
+   h3->GetYaxis()->SetTitleSize(20);
+   h3->GetYaxis()->SetTitleFont(43);
+   h3->GetYaxis()->SetTitleOffset(1.55);
+   h3->GetYaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
+   h3->GetYaxis()->SetLabelSize(15);
+ 
+   // X axis ratio plot settings
+   h3->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+   h3->GetXaxis()->SetTitleSize(20);
+   h3->GetXaxis()->SetTitleFont(43);
+   h3->GetXaxis()->SetTitleOffset(1);
+   h3->GetXaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
+   h3->GetXaxis()->SetLabelSize(15); 
+ 
+
 c4->SaveAs("t-value-nonorm.pdf");
 //c4->SaveAs("t-value-nonorm.C");
 //c4->SaveAs("t-value-nonorm.eps");
