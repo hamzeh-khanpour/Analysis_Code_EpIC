@@ -50,7 +50,7 @@ double fitfunc(double *x, double *p){
    
 //*   -----------------------------------------------
 
-void Plots_EIC_Ratio(){
+void Plots_EIC_Ratio_Fit(){
 
     
     
@@ -238,6 +238,7 @@ TLatex *t7b = new TLatex(0.65,0.35,"a= 1.639, b= 1.051");
                 t7b->SetTextSize(0.04);
                 t7b->SetTextAlign(20);
 
+
 // --------------------
 
 
@@ -283,7 +284,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c3->SaveAs("t-value.pdf");
+//c3->SaveAs("t-value.pdf");
 //c3->SaveAs("t-value.C");
 //c3->SaveAs("t-value.eps");
 //c3->SaveAs("t-value.root");
@@ -359,7 +360,7 @@ TCanvas* c4 = new TCanvas("c4","Ratio", 10, 10, 900, 700);
   t6b->Draw("same");  
   t7b->Draw("same");  
 
-c4->SaveAs("Ratio_All_to_BH.pdf");
+c4->SaveAs("Ratio_All_to_BH_Fit.pdf");
 //c4->SaveAs("Ratio_All_to_BH.C");
 //c4->SaveAs("Ratio_All_to_BH.eps");
 //c4->SaveAs("Ratio_All_to_BH.root");
