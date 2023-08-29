@@ -19,6 +19,20 @@
 
 
 
+
+
+// Function for fit
+double fitfunc(double *x, double *p){
+	double fitval;
+	double a = p[0];		    // acceptance. It would be: double amp = p[1];
+	double b = p[1];		    // forward-backward asimmetry coefficient
+	fitval = a*x[0] + b;        // from "Tenchini"
+	return fitval;
+}
+
+
+
+
    Float_t Mll = 0;
    Float_t Ptll = 0;
    Float_t tvalue = 0;
@@ -209,106 +223,22 @@ TLatex *t5b = new TLatex(0.65,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
                 t5b->SetTextFont(12);
                 t5b->SetTextSize(0.04);
                 t5b->SetTextAlign(20);
+                
+                
+TLatex *t6b = new TLatex(0.65,0.40,"y = ax + b");
+                t6b->SetNDC();
+                t6b->SetTextFont(12);
+                t6b->SetTextSize(0.04);
+                t6b->SetTextAlign(20);
+                
+                
+TLatex *t7b = new TLatex(0.65,0.35,"a= 1.639, b= 1.051");
+                t7b->SetNDC();
+                t7b->SetTextFont(12);
+                t7b->SetTextSize(0.04);
+                t7b->SetTextAlign(20);
 
 // --------------------
-
-
-TCanvas* c1 = new TCanvas("c1","Massdilepton", 10, 10, 900, 700);
-
-//histMll_BH->SetTitle("m_{ll}");
-histMll_BH->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
-histMll_BH->GetXaxis()->SetTitleOffset(1.25);
-histMll_BH->GetXaxis()->SetLabelFont(22);
-histMll_BH->GetXaxis()->SetTitleFont(22);
-histMll_BH->GetYaxis()->SetTitle("Events normalised to unit area");
-histMll_BH->GetYaxis()->SetTitleOffset(1.40);
-histMll_BH->GetYaxis()->SetLabelFont(22);
-histMll_BH->GetYaxis()->SetTitleFont(22);
-
-   histMll_BH->GetYaxis()->SetRangeUser(0,10000);
-//   histMll_BH->GetXaxis()->SetRangeUser(0,1);
-
-   histMll_BH->SetLineWidth(3);
-   histMll_TCS->SetLineWidth(3); 
-   histMll_All->SetLineWidth(3);
-   
-   histMll_BH->SetLineColor(2);
-   histMll_TCS->SetLineColor(6);
-   histMll_All->SetLineColor(4);   
-
-   histMll_BH->DrawNormalized("hist");
-   histMll_TCS->DrawNormalized("hist same");
-   histMll_All->DrawNormalized("hist same");
-
- leg->Draw("same");
- t2a->Draw("same");
- t3a->Draw("same");
- t4a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
- t2b->Draw("same");   
- t3b->Draw("same");    
- t4b->Draw("same");    
- t5b->Draw("same");   
-  
- 
-c1->SaveAs("Mll.pdf");
-//c1->SaveAs("Mll.C");
-//c1->SaveAs("Mll.eps");
-//c1->SaveAs("Mll.root");
-
-
-// --------------------
-
-
-
-TCanvas* c2 = new TCanvas("c2","Ptdilepton", 10, 10, 900, 700);
-
-//histPtll_BH->SetTitle("m_{ll}");
-histPtll_BH->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
-histPtll_BH->GetXaxis()->SetTitleOffset(1.25);
-histPtll_BH->GetXaxis()->SetLabelFont(22);
-histPtll_BH->GetXaxis()->SetTitleFont(22);
-histPtll_BH->GetYaxis()->SetTitle("Events normalised to unit area");
-histPtll_BH->GetYaxis()->SetTitleOffset(1.40);
-histPtll_BH->GetYaxis()->SetLabelFont(22);
-histPtll_BH->GetYaxis()->SetTitleFont(22);
-
-   histPtll_BH->GetYaxis()->SetRangeUser(0,10000);
-//   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
-
-   histPtll_BH->SetLineWidth(3);
-   histPtll_TCS->SetLineWidth(3);
-   histPtll_All->SetLineWidth(3); 
-
-   histPtll_BH->SetLineColor(2);
-   histPtll_TCS->SetLineColor(6);
-   histPtll_All->SetLineColor(4);
-
-   histPtll_BH->DrawNormalized("hist");
-   histPtll_TCS->DrawNormalized("hist same");
-   histPtll_All->DrawNormalized("hist same");
-
- leg->Draw("same");
- t2a->Draw("same");
- t3a->Draw("same");
- t4a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
- t2b->Draw("same");   
- t3b->Draw("same");    
- t4b->Draw("same");    
- t5b->Draw("same"); 
- 
- 
-c2->SaveAs("Ptll.pdf");
-//c2->SaveAs("ptll.C");
-//c2->SaveAs("ptll.eps");
-//c2->SaveAs("ptll.root");
-
-
-// --------------------
-
 
 
 TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
@@ -318,12 +248,12 @@ histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_BH->GetXaxis()->SetLabelFont(22);
 histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("Events normalised to unit area");  // d#sigma/d|t| [pb]
+histtvalue_BH->GetYaxis()->SetTitle("# Events");  // d#sigma/d|t| [pb]
 histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
 
-   histtvalue_BH->GetXaxis()->SetRangeUser(0,8000);
+  histtvalue_BH->GetYaxis()->SetRangeUser(0,8000);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
@@ -334,9 +264,9 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
    histtvalue_TCS->SetLineColor(6);
    histtvalue_All->SetLineColor(4);
 
-   histtvalue_BH->DrawNormalized("hist");
-   histtvalue_TCS->DrawNormalized("hist same");
-   histtvalue_All->DrawNormalized("hist same");   
+   histtvalue_BH->Draw("hist");
+   histtvalue_TCS->Draw("hist same");
+   histtvalue_All->Draw("hist same");   
 
 //   c3->SetLogy(1);
 //   c3->SetLogx(1);
@@ -364,86 +294,75 @@ c3->SaveAs("t-value.pdf");
 
 
 
-TCanvas* c4 = new TCanvas("c4","tvalue", 10, 10, 900, 700);
+// For Fit
+  TF1 *fitval = new TF1("fit", fitfunc, 0.0, 0.2, 2);       // create a TF1 object using the fitfunc function. We need to have 2 parameters for fit
 
-//histtvalue_BH->SetTitle("m_{ll}");
-histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
-histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
-histtvalue_BH->GetXaxis()->SetLabelFont(22);
-histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("# Events");  // d#sigma/d|t| [pb]
-histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
-histtvalue_BH->GetYaxis()->SetLabelFont(22);
-histtvalue_BH->GetYaxis()->SetTitleFont(22);
-
-  histtvalue_BH->GetYaxis()->SetRangeUser(0,8000);
-//   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
-
-   histtvalue_BH->SetLineWidth(3);
-   histtvalue_TCS->SetLineWidth(3);
-   histtvalue_All->SetLineWidth(3); 
-
-   histtvalue_BH->SetLineColor(2);
-   histtvalue_TCS->SetLineColor(6);
-   histtvalue_All->SetLineColor(4);
-
-   histtvalue_BH->Draw("hist");
-   histtvalue_TCS->Draw("hist same");
-   histtvalue_All->Draw("hist same");
-
-//     c4->SetLogy(1);
-//   c4->SetLogx(1);
-
- leg->Draw("same");
- t2a->Draw("same");
- t3a->Draw("same");
- t4a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
- t2b->Draw("same");   
- t3b->Draw("same");    
- t4b->Draw("same");    
- t5b->Draw("same");  
- 
 
    // Define the ratio plot
-   TH1F *h3 = (TH1F*)histtvalue_All->Clone("h3");
-   h3->SetLineColor(kBlack);
-   h3->SetMinimum(0);  // Define Y ..
-   h3->SetMaximum(2); // .. range
-   h3->Sumw2();
-   h3->SetStats(0);      // No statistics on lower plot
-   h3->Divide(histtvalue_BH);
-   h3->SetMarkerStyle(21);
-   h3->Draw("ep");       // Draw the ratio plot
+   TH1F *Ratio = (TH1F*)histtvalue_All->Clone("Ratio");
+
+TCanvas* c4 = new TCanvas("c4","Ratio", 10, 10, 900, 700);
+
+
+   // Ratio plot (Ratio) settings
+   Ratio->SetTitle(""); // Remove the ratio title
  
-   // Ratio plot (h3) settings
-   h3->SetTitle(""); // Remove the ratio title
- 
+
    // Y axis ratio plot settings
-   h3->GetYaxis()->SetTitle("(BH+TCS)/BH");
-   h3->GetYaxis()->SetNdivisions(505);
-   h3->GetYaxis()->SetTitleSize(20);
-   h3->GetYaxis()->SetTitleFont(43);
-   h3->GetYaxis()->SetTitleOffset(1.55);
-   h3->GetYaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
-   h3->GetYaxis()->SetLabelSize(15);
+   Ratio->GetYaxis()->SetTitle("(BH+TCS)/BH");
+   Ratio->GetYaxis()->SetNdivisions(505);
+   Ratio->GetYaxis()->SetTitleSize(25);
+   Ratio->GetYaxis()->SetTitleFont(43);
+   Ratio->GetYaxis()->SetTitleOffset(1);
+   Ratio->GetYaxis()->SetLabelFont(43);  // Absolute font size in pixel (precision 3)
+   Ratio->GetYaxis()->SetLabelSize(15);
  
+
    // X axis ratio plot settings
-   h3->GetXaxis()->SetTitle("|t| [GeV^{2}]");
-   h3->GetXaxis()->SetTitleSize(20);
-   h3->GetXaxis()->SetTitleFont(43);
-   h3->GetXaxis()->SetTitleOffset(1);
-   h3->GetXaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
-   h3->GetXaxis()->SetLabelSize(15); 
+   Ratio->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+   Ratio->GetXaxis()->SetTitleSize(25);
+   Ratio->GetXaxis()->SetTitleFont(43);
+   Ratio->GetXaxis()->SetTitleOffset(1);
+   Ratio->GetXaxis()->SetLabelFont(43);  // Absolute font size in pixel (precision 3)
+   Ratio->GetXaxis()->SetLabelSize(15); 
  
 
-c4->SaveAs("t-value-nonorm.pdf");
-//c4->SaveAs("t-value-nonorm.C");
-//c4->SaveAs("t-value-nonorm.eps");
-//c4->SaveAs("t-value-nonorm.root");
+   Ratio->SetLineColor(kBlack);
+   Ratio->SetMinimum(0);            // Define Y ..
+   Ratio->SetMaximum(2);            // .. range
+   Ratio->Sumw2();
+   Ratio->SetStats(0);              // No statistics on lower plot
+   Ratio->Divide(histtvalue_BH);
+   Ratio->SetMarkerStyle(21);
+   Ratio->Draw("ep");              // Draw the ratio plot
+ 
 
 
+   // To Do Fit Here
+   fitval->SetParameter(0,0.10);
+   fitval->SetLineColor(kBlue);
+   fitval->SetLineWidth(3);
+   fitval->Draw("hist same"); 
+   Ratio->Fit("fit");   
+
+
+   
+// leg->Draw("same");
+  t2a->Draw("same");
+  t3a->Draw("same");
+  t4a->Draw("same"); 
+//  t5a->Draw("same");
+//  t6a->Draw("same");  
+//  t2b->Draw("same");   
+//  t3b->Draw("same");    
+//  t4b->Draw("same");    
+  t6b->Draw("same");  
+  t7b->Draw("same");  
+
+c4->SaveAs("Ratio_All_to_BH.pdf");
+//c4->SaveAs("Ratio_All_to_BH.C");
+//c4->SaveAs("Ratio_All_to_BH.eps");
+//c4->SaveAs("Ratio_All_to_BH.root");
 
 
 }
