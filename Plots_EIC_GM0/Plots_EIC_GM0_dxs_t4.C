@@ -45,22 +45,22 @@
    
 //*   -----------------------------------------------
 
-void Plots_EIC_GM0(){
+void Plots_EIC_GM0_dxs_t4(){
 
     
     
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH      = 3.04779064167665   * 1000.0;   //   nb  BH
-   Float_t  integrated_cross_section_value_BH_GM0  = 2.92648225395116   * 1000.0;   //   nb  BH-GM0 
-   Float_t  integrated_cross_section_value_All     = 3.30875099292885   * 1000.0;   //   nb  BH+TCS  
-   Float_t  integrated_cross_section_value_All_GM0 = 3.18878564045189   * 1000.0;   //   nb  BH+TCS-GM0   
+   Float_t  integrated_cross_section_value_BH      = 3.20707522890871   * 1000.0;   //   nb  BH Q'=100, t=4
+   Float_t  integrated_cross_section_value_BH_GM0  = 3.02965954863237   * 1000.0;   //   nb  BH-GM0   Q'=100, t=4
+   Float_t  integrated_cross_section_value_All     = 3.50464474849106   * 1000.0;   //   nb  BH+TCS   Q'=100, t=4 
+   Float_t  integrated_cross_section_value_All_GM0 = 3.31689022158091   * 1000.0;   //   nb  BH+TCS-GM0   Q'=100, t=4  
    
    
-   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
-   Float_t  event_weight_BH_GM0 = integrated_cross_section_value_BH_GM0 * integrated_luminosity / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * integrated_luminosity / nentries;
-   Float_t  event_weight_All_GM0 = integrated_cross_section_value_All_GM0 * integrated_luminosity / nentries;   
+   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+   Float_t  event_weight_BH_GM0 = integrated_cross_section_value_BH_GM0 * 1.0 / nentries;
+   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
+   Float_t  event_weight_All_GM0 = integrated_cross_section_value_All_GM0 * 1.0 / nentries;   
     
     
    gStyle->SetPalette(kBird);
@@ -78,10 +78,10 @@ TH1F * histPtll_BH_GM0 = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 TH1F * histPtll_All_GM0 = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 
-TH1F * histtvalue_BH = new TH1F ("tvalue", "",  40, 0.0, 0.2);
-TH1F * histtvalue_BH_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
-TH1F * histtvalue_All = new TH1F ("tvalue", "", 40, 0.0, 0.2);
-TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
+TH1F * histtvalue_BH = new TH1F ("tvalue", "",  40, 0.0, 4.0);
+TH1F * histtvalue_BH_GM0 = new TH1F ("tvalue", "", 40, 0.0, 4.0);
+TH1F * histtvalue_All = new TH1F ("tvalue", "", 40, 0.0, 4.0);
+TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 4.0);
 
 // ============================================
 
@@ -92,13 +92,13 @@ TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
   TTree *tree_EIC_All_GM0;
   
 
-   file = TFile::Open("EIC_Hamzeh_New_1M_x_L_GM0.root");
+   file = TFile::Open("EIC_Hamzeh_Qp100_t4_GM0.root");
 
  
-   tree_EIC_BH  = (TTree*)file->Get("EIC_BH");
-   tree_EIC_BH_GM0 = (TTree*)file->Get("EIC_BH_GM0");   
-   tree_EIC_All = (TTree*)file->Get("EIC_ALL");
-   tree_EIC_All_GM0 = (TTree*)file->Get("EIC_ALL_GM0");   
+   tree_EIC_BH  = (TTree*)file->Get("EIC_BH_t4");
+   tree_EIC_BH_GM0 = (TTree*)file->Get("EIC_BH_GM0_t4");   
+   tree_EIC_All = (TTree*)file->Get("EIC_ALL_t4");
+   tree_EIC_All_GM0 = (TTree*)file->Get("EIC_ALL_GM0_t4");   
 
 
    cout << "tree Entries tree_EIC_BH  == " << tree_EIC_BH->GetEntries() << endl;
@@ -130,7 +130,7 @@ TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 0.2);
   
   histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
-  histtvalue_BH->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
+  histtvalue_BH->Fill(tvalue,event_weight_BH);   //  
 cout << "event_weight_BH =" << event_weight_BH << endl;
     }
 
@@ -140,7 +140,7 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   
   histMll_BH_GM0->Fill(Mll);
   histPtll_BH_GM0->Fill(Ptll);
-  histtvalue_BH_GM0->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
+  histtvalue_BH_GM0->Fill(tvalue,event_weight_BH_GM0);  //   
 cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
     }
 
@@ -150,7 +150,7 @@ cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
   
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
-  histtvalue_All->Fill(tvalue);  //  ,integrated_cross_section_value_All
+  histtvalue_All->Fill(tvalue,event_weight_All);  //   
 cout << "event_weight_All =" << event_weight_All << endl;
     }
     
@@ -160,7 +160,7 @@ cout << "event_weight_All =" << event_weight_All << endl;
   
   histMll_All_GM0->Fill(Mll);
   histPtll_All_GM0->Fill(Ptll);
-  histtvalue_All_GM0->Fill(tvalue);  //  ,integrated_cross_section_value_All
+  histtvalue_All_GM0->Fill(tvalue,event_weight_All_GM0);  //  
 cout << "event_weight_All_GM0 =" << event_weight_All_GM0 << endl;
     }
     
@@ -273,7 +273,7 @@ histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
 
-   histtvalue_BH->GetXaxis()->SetRangeUser(0,8000);
+//   histtvalue_BH->GetXaxis()->SetRangeUser(0,8000);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
@@ -300,10 +300,10 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c3->SaveAs("t-value_BH_GM0.pdf");
-//c3->SaveAs("t-value_BH_GM0.C");
-//c3->SaveAs("t-value_BH_GM0.eps");
-//c3->SaveAs("t-value_BH_GM0.root");
+c3->SaveAs("t-value_BH_GM0_t4.pdf");
+//c3->SaveAs("t-value_BH_GM0_t4.C");
+//c3->SaveAs("t-value_BH_GM0_t4.eps");
+//c3->SaveAs("t-value_BH_GM0_t4.root");
 
 
 
@@ -318,12 +318,12 @@ histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_BH->GetXaxis()->SetLabelFont(22);
 histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("# Events");  // d#sigma/d|t| [pb]
+histtvalue_BH->GetYaxis()->SetTitle("d#sigma/d|t|");  // d#sigma/d|t| [pb]
 histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
 
-  histtvalue_BH->GetYaxis()->SetRangeUser(100,10000);
+//  histtvalue_BH->GetYaxis()->SetRangeUser(1,100000);
 //   histtvalue_BH->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_BH->SetLineWidth(3);
@@ -350,10 +350,10 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c4->SaveAs("t-value-nonorm_BH_GM0.pdf");
-//c4->SaveAs("t-value-nonorm_BH_GM0.C");
-//c4->SaveAs("t-value-nonorm_BH_GM0.eps");
-//c4->SaveAs("t-value-nonorm_BH_GM0.root");
+c4->SaveAs("t-value-nonorm_BH_GM0_t4.pdf");
+//c4->SaveAs("t-value-nonorm_BH_GM0_t4.C");
+//c4->SaveAs("t-value-nonorm_BH_GM0_t4.eps");
+//c4->SaveAs("t-value-nonorm_BH_GM0_t4.root");
 
 
 
@@ -373,7 +373,7 @@ histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_All->GetYaxis()->SetLabelFont(22);
 histtvalue_All->GetYaxis()->SetTitleFont(22);
 
-   histtvalue_All->GetXaxis()->SetRangeUser(0,8000);
+//   histtvalue_All->GetXaxis()->SetRangeUser(0,8000);
 //   histtvalue_All->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_All->SetLineWidth(3);
@@ -400,10 +400,10 @@ histtvalue_All->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c5->SaveAs("t-t-value_All_GM0.pdf");
-//c5->SaveAs("t-t-value_All_GM0.C");
-//c5->SaveAs("t-t-value_All_GM0.eps");
-//c5->SaveAs("t-t-value_All_GM0.root");
+c5->SaveAs("t-t-value_All_GM0_t4.pdf");
+//c5->SaveAs("t-t-value_All_GM0_t4.C");
+//c5->SaveAs("t-t-value_All_GM0_t4.eps");
+//c5->SaveAs("t-t-value_All_GM0_t4.root");
 
 
 
@@ -420,12 +420,12 @@ histtvalue_All->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_All->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_All->GetXaxis()->SetLabelFont(22);
 histtvalue_All->GetXaxis()->SetTitleFont(22);
-histtvalue_All->GetYaxis()->SetTitle("# Events");  // d#sigma/d|t| [pb]
+histtvalue_All->GetYaxis()->SetTitle("d#sigma/d|t|");  // d#sigma/d|t| [pb]
 histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_All->GetYaxis()->SetLabelFont(22);
 histtvalue_All->GetYaxis()->SetTitleFont(22);
 
-  histtvalue_All->GetYaxis()->SetRangeUser(100,10000);
+//  histtvalue_All->GetYaxis()->SetRangeUser(1,100000);
 //   histtvalue_All->GetXaxis()->SetRangeUser(0,1);
 
    histtvalue_All->SetLineWidth(3);
@@ -452,10 +452,10 @@ histtvalue_All->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c6->SaveAs("t-value-nonorm_All_GM0.pdf");
-//c6->SaveAs("t-value-nonorm_All_GM0.C");
-//c6->SaveAs("t-value-nonorm_All_GM0.eps");
-//c6->SaveAs("t-value-nonorm_All_GM0.root");
+c6->SaveAs("t-value-nonorm_All_GM0_t4.pdf");
+//c6->SaveAs("t-value-nonorm_All_GM0_t4.C");
+//c6->SaveAs("t-value-nonorm_All_GM0_t4.eps");
+//c6->SaveAs("t-value-nonorm_All_GM0_t4.root");
 
 
 
