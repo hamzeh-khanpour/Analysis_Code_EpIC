@@ -88,13 +88,13 @@ TH1F * histtvalue_All_GM0_Polp = new TH1F ("tvalue", "", 40, 0.0, 0.2);
   TTree *tree_EIC_All_GM0_Polp;
   
 
-   file = TFile::Open("EIC_Hamzeh_New_1M_x_L_GM0.root");
+   file = TFile::Open("EIC_Polm_Polp.root");
 
  
-   tree_EIC_All_Polm  = (TTree*)file->Get("EIC_BH");
-   tree_EIC_All_GM0_Polm = (TTree*)file->Get("EIC_BH_GM0");   
-   tree_EIC_All_Polp = (TTree*)file->Get("EIC_ALL");
-   tree_EIC_All_GM0_Polp = (TTree*)file->Get("EIC_ALL_GM0");   
+   tree_EIC_All_Polm  = (TTree*)file->Get("EIC_All_Polm");
+   tree_EIC_All_GM0_Polm = (TTree*)file->Get("EIC_All_GM0_Polm");   
+   tree_EIC_All_Polp = (TTree*)file->Get("EIC_All_Polp");
+   tree_EIC_All_GM0_Polp = (TTree*)file->Get("EIC_All_GM0_Polp");   
 
 
    cout << "tree Entries tree_EIC_All_Polm  == " << tree_EIC_All_Polm->GetEntries() << endl;
@@ -368,6 +368,7 @@ c8->SaveAs("Ratio_GE_to_GE-GM_BH_GM0.pdf");
 
 // --------------------
 
+
 // ------------------- 
 
 Double_t xl5=0.65, yl5=0.720, xl6=xl5+0.150, yl6=yl5+0.150;
@@ -382,7 +383,8 @@ leg3->SetTextSize(0.032);
 leg3->SetTextFont(12);
 leg3->SetFillStyle(0);
 
-TCanvas* c9 = new TCanvas("c9","RatioPolm", 10, 10, 900, 700);
+
+TCanvas* c9 = new TCanvas("c9","RatioPolmPolp", 10, 10, 900, 700);
 
 
    // Ratio plot (Ratio) settings
@@ -427,10 +429,62 @@ TCanvas* c9 = new TCanvas("c9","RatioPolm", 10, 10, 900, 700);
   t4a->Draw("same"); 
 
 
-c9->SaveAs("Ratio_diff_pol.pdf");
+c9->SaveAs("Ratio_diff_polm_polp.pdf");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.root");
+
+
+
+TCanvas* c10 = new TCanvas("c10","RatioPolmPolp", 10, 10, 900, 700);
+
+
+   // Ratio plot (Ratio) settings
+   RatioPolm->SetTitle(""); // Remove the ratio title
+ 
+
+   // Y axis ratio plot settings
+   RatioPolm->GetYaxis()->SetTitle("GE/(GE+GM)");
+   RatioPolm->GetYaxis()->SetNdivisions(505);
+   RatioPolm->GetYaxis()->SetTitleSize(25);
+   RatioPolm->GetYaxis()->SetTitleFont(43);
+   RatioPolm->GetYaxis()->SetTitleOffset(1);
+   RatioPolm->GetYaxis()->SetLabelFont(43);  // Absolute font size in pixel (precision 3)
+   RatioPolm->GetYaxis()->SetLabelSize(15);
+ 
+
+   // X axis ratio plot settings
+   RatioPolm->GetXaxis()->SetTitle("|t| [GeV^{2}]");
+   RatioPolm->GetXaxis()->SetTitleSize(25);
+   RatioPolm->GetXaxis()->SetTitleFont(43);
+   RatioPolm->GetXaxis()->SetTitleOffset(1);
+   RatioPolm->GetXaxis()->SetLabelFont(43);  // Absolute font size in pixel (precision 3)
+   RatioPolm->GetXaxis()->SetLabelSize(15); 
+ 
+
+   RatioPolm->SetLineColor(2);
+   RatioPolp->SetLineColor(4);
+   RatioPolm->SetLineWidth(3);
+   RatioPolp->SetLineWidth(3);   
+   RatioPolm->SetMinimum(0);            // Define Y ..
+   RatioPolm->SetMaximum(2);            // .. range
+   RatioPolm->Sumw2();
+   RatioPolm->SetStats(0);              // No statistics on lower plot
+   RatioPolm->SetMarkerStyle(21);
+   RatioPolp->SetMarkerStyle(24);
+   RatioPolm->Draw("EX0");              // Draw the ratio plot
+   RatioPolp->Draw("EX0 same");    
+
+  leg3->Draw("same");
+  t2a->Draw("same");
+  t3a->Draw("same");
+  t4a->Draw("same"); 
+
+
+c10->SaveAs("Ratio_diff_polm_polp_EX0.pdf");
+//c10->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
+//c10->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
+//c10->SaveAs("Ratio_GE_to_GE-GM_GM0.root");
 
 
 
