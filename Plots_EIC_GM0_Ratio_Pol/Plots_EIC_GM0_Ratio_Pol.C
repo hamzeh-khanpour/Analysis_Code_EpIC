@@ -26,15 +26,15 @@
 
    Float_t  nentries = 0;
    Float_t  integrated_luminosity = 0;
-   Float_t  integrated_cross_section_value_BH = 0;
-   Float_t  integrated_cross_section_value_BH_GM0 = 0;
-   Float_t  integrated_cross_section_value_All = 0;
-   Float_t  integrated_cross_section_value_All_GM0 = 0;
+   Float_t  integrated_cross_section_value_EIC_All_Polm = 0;
+   Float_t  integrated_cross_section_value_EIC_All_GM0_Polm = 0;
+   Float_t  integrated_cross_section_value_EIC_All_Polp = 0;
+   Float_t  integrated_cross_section_value_EIC_All_GM0_Polp = 0;
    
-   Float_t  event_weight_BH  = 0;
-   Float_t  event_weight_BH_GM0 = 0;
-   Float_t  event_weight_All = 0;
-   Float_t  event_weight_All_GM0 = 0;
+   Float_t  event_weight_All_Polm  = 0;
+   Float_t  event_weight_All_GM0_Polm = 0;
+   Float_t  event_weight_All_Polp = 0;
+   Float_t  event_weight_All_GM0_Polp = 0;
    
    
 //*   -----------------------------------------------
@@ -45,16 +45,16 @@ void Plots_EIC_GM0_Ratio_Pol(){
     
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH      = 3.04779064167665   * 1000.0;   //   nb  BH
-   Float_t  integrated_cross_section_value_BH_GM0  = 2.92648225395116   * 1000.0;   //   nb  BH-GM0 
-   Float_t  integrated_cross_section_value_All     = 3.30875099292885   * 1000.0;   //   nb  BH+TCS  
-   Float_t  integrated_cross_section_value_All_GM0 = 3.18878564045189   * 1000.0;   //   nb  BH+TCS-GM0   
+   Float_t  integrated_cross_section_value_EIC_All_Polm     = 3.32295456492990   * 1000.0;   //   nb  EIC_All_Polm
+   Float_t  integrated_cross_section_value_EIC_All_GM0_Polm = 3.20711317192575   * 1000.0;   //   nb  EIC_All_GM0_Polm 
+   Float_t  integrated_cross_section_value_EIC_All_Polp     = 3.32295456492990   * 1000.0;   //   nb  EIC_All_Polp  
+   Float_t  integrated_cross_section_value_EIC_All_GM0_Polp = 3.20033492867845   * 1000.0;   //   nb  EIC_All_GM0_Polp   
    
    
-   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
-   Float_t  event_weight_BH_GM0 = integrated_cross_section_value_BH_GM0 * integrated_luminosity / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * integrated_luminosity / nentries;
-   Float_t  event_weight_All_GM0 = integrated_cross_section_value_All_GM0 * integrated_luminosity / nentries;   
+   Float_t  event_weight_All_Polm  = integrated_cross_section_value_EIC_All_Polm  * integrated_luminosity / nentries;
+   Float_t  event_weight_All_GM0_Polm = integrated_cross_section_value_EIC_All_GM0_Polm * integrated_luminosity / nentries;
+   Float_t  event_weight_All_Polp = integrated_cross_section_value_EIC_All_Polp * integrated_luminosity / nentries;
+   Float_t  event_weight_All_GM0_Polp = integrated_cross_section_value_EIC_All_GM0_Polp * integrated_luminosity / nentries;   
     
     
    gStyle->SetPalette(kBird);
@@ -126,8 +126,8 @@ TH1F * histtvalue_All_GM0_Polp = new TH1F ("tvalue", "", 40, 0.0, 0.2);
   
   histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
-  histtvalue_All_Polm->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
-cout << "event_weight_BH =" << event_weight_BH << endl;
+  histtvalue_All_Polm->Fill(tvalue,event_weight_All_Polm);   // ,event_weight_All_Polm ,integrated_cross_section_value_BH
+cout << "event_weight_All_Polm =" << event_weight_All_Polm << endl;
     }
 
 
@@ -136,8 +136,8 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   
   histMll_BH_GM0->Fill(Mll);
   histPtll_BH_GM0->Fill(Ptll);
-  histtvalue_All_GM0_Polm->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
-cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
+  histtvalue_All_GM0_Polm->Fill(tvalue,event_weight_All_GM0_Polm);  //event_weight_All_GM0_Polm  ,integrated_cross_section_value_TCS
+cout << "event_weight_All_GM0_Polm =" << event_weight_All_GM0_Polm << endl;
     }
 
 
@@ -146,8 +146,8 @@ cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
   
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
-  histtvalue_All_Polp->Fill(tvalue);  //  ,integrated_cross_section_value_All
-cout << "event_weight_All =" << event_weight_All << endl;
+  histtvalue_All_Polp->Fill(tvalue,event_weight_All_Polp);  //event_weight_All_Polp  ,integrated_cross_section_value_All
+cout << "event_weight_All_Polp =" << event_weight_All_Polp << endl;
     }
     
  
@@ -156,8 +156,8 @@ cout << "event_weight_All =" << event_weight_All << endl;
   
   histMll_All_GM0->Fill(Mll);
   histPtll_All_GM0->Fill(Ptll);
-  histtvalue_All_GM0_Polp->Fill(tvalue);  //  ,integrated_cross_section_value_All
-cout << "event_weight_All_GM0 =" << event_weight_All_GM0 << endl;
+  histtvalue_All_GM0_Polp->Fill(tvalue,event_weight_All_GM0_Polp);  //event_weight_All_GM0_Polp  ,integrated_cross_section_value_All
+cout << "event_weight_All_GM0_Polp =" << event_weight_All_GM0_Polp << endl;
     }
     
     
@@ -476,7 +476,7 @@ TCanvas* c10 = new TCanvas("c10","RatioPolmPolp", 10, 10, 900, 700);
    RatioPolp->Draw("EX0 same");    
 
   leg3->Draw("same");
-  t2a->Draw("same");
+  t2a->Draw("same"); 
   t3a->Draw("same");
   t4a->Draw("same"); 
 

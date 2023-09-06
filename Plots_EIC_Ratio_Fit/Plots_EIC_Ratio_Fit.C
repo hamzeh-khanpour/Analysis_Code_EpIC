@@ -58,7 +58,7 @@ void Plots_EIC_Ratio_Fit(){
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
    Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
    Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
-   Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS    
+   Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
    Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
@@ -120,7 +120,7 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
   
   histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
-  histtvalue_BH->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
+  histtvalue_BH->Fill(tvalue,event_weight_BH);   // ,event_weight_BH ,integrated_cross_section_value_BH
 cout << "event_weight_BH =" << event_weight_BH << endl;
     }
     
@@ -130,7 +130,7 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   
   histMll_TCS->Fill(Mll);
   histPtll_TCS->Fill(Ptll);
-  histtvalue_TCS->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
+  histtvalue_TCS->Fill(tvalue,event_weight_TCS);  //  ,integrated_cross_section_value_TCS
 cout << "event_weight_TCS =" << event_weight_TCS << endl;
     }
 
@@ -140,7 +140,7 @@ cout << "event_weight_TCS =" << event_weight_TCS << endl;
   
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
-  histtvalue_All->Fill(tvalue);  //  ,integrated_cross_section_value_All
+  histtvalue_All->Fill(tvalue,event_weight_All);  //  ,integrated_cross_section_value_All
 cout << "event_weight_All =" << event_weight_All << endl;
     }
   
@@ -232,7 +232,7 @@ TLatex *t6b = new TLatex(0.65,0.40,"y = ax + b");
                 t6b->SetTextAlign(20);
                 
                 
-TLatex *t7b = new TLatex(0.60,0.35,"a= 1.20927#pm0.16445,  b= 1.03598#pm0.010597");
+TLatex *t7b = new TLatex(0.60,0.35,"a= 1.31248#pm0.178593,  b= 1.12512#pm0.011509");
                 t7b->SetNDC();
                 t7b->SetTextFont(12);
                 t7b->SetTextSize(0.04);
