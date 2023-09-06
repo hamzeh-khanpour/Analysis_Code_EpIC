@@ -289,7 +289,7 @@ TCanvas* c7 = new TCanvas("c7","RatioPolp", 10, 10, 900, 700);
   t4a->Draw("same"); 
 
 
-c7->SaveAs("Ratio_GE_to_GE-GM_GM0.pdf");
+c7->SaveAs("Ratio_GE_to_GE-GM_GM0_Qp100.pdf");
 //c7->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
 //c7->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
 //c7->SaveAs("Ratio_GE_to_GE-GM_GM0.root");
@@ -359,7 +359,7 @@ TCanvas* c8 = new TCanvas("c8","RatioPolm", 10, 10, 900, 700);
   t4a->Draw("same"); 
 
 
-c8->SaveAs("Ratio_GE_to_GE-GM_BH_GM0.pdf");
+c8->SaveAs("Ratio_GE_to_GE-GM_BH_GM0_Qp100.pdf");
 //c8->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
 //c8->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
 //c8->SaveAs("Ratio_GE_to_GE-GM_GM0.root");
@@ -429,7 +429,7 @@ TCanvas* c9 = new TCanvas("c9","RatioPolmPolp", 10, 10, 900, 700);
   t4a->Draw("same"); 
 
 
-c9->SaveAs("Ratio_diff_polm_polp.pdf");
+c9->SaveAs("Ratio_diff_polm_polp_Qp100.pdf");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
 //c9->SaveAs("Ratio_GE_to_GE-GM_GM0.root");
@@ -481,7 +481,7 @@ TCanvas* c10 = new TCanvas("c10","RatioPolmPolp", 10, 10, 900, 700);
   t4a->Draw("same"); 
 
 
-c10->SaveAs("Ratio_diff_polm_polp_EX0.pdf");
+c10->SaveAs("Ratio_diff_polm_polp_EX0_Qp100.pdf");
 //c10->SaveAs("Ratio_GE_to_GE-GM_GM0.C");
 //c10->SaveAs("Ratio_GE_to_GE-GM_GM0.eps");
 //c10->SaveAs("Ratio_GE_to_GE-GM_GM0.root");

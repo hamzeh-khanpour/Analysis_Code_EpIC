@@ -318,7 +318,7 @@ histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_BH->GetXaxis()->SetLabelFont(22);
 histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("d#sigma/d|t|");  // d#sigma/d|t| [pb]
+histtvalue_BH->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");  // d#sigma/d|t| [pb]
 histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
@@ -420,7 +420,7 @@ histtvalue_All->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_All->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_All->GetXaxis()->SetLabelFont(22);
 histtvalue_All->GetXaxis()->SetTitleFont(22);
-histtvalue_All->GetYaxis()->SetTitle("d#sigma/d|t|");  // d#sigma/d|t| [pb]
+histtvalue_All->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");  // d#sigma/d|t| [pb]
 histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_All->GetYaxis()->SetLabelFont(22);
 histtvalue_All->GetYaxis()->SetTitleFont(22);
@@ -434,8 +434,13 @@ histtvalue_All->GetYaxis()->SetTitleFont(22);
    histtvalue_All->SetLineColor(2);
    histtvalue_All_GM0->SetLineColor(4);
 
+
+//   histtvalue_All->Scale(tvalue*histtvalue_All);
+//   histtvalue_All_GM0->Scale(tvalue*histtvalue_All_GM0);
+
    histtvalue_All->Draw("hist");
    histtvalue_All_GM0->Draw("hist same");
+   
 
      c6->SetLogy(1);
 //   c6->SetLogx(1);
