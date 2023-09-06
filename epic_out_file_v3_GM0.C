@@ -518,7 +518,7 @@ histMassdilepton->GetYaxis()->SetTitleFont(22);
  t5a->Draw("same");
  t6a->Draw("same");  
  
-c1->SaveAs("Massdilepton.pdf");
+//c1->SaveAs("Massdilepton.pdf");
 //c1->SaveAs("Massdilepton.C");
 //c1->SaveAs("Massdilepton.eps");
 //c1->SaveAs("Massdilepton.root");                
@@ -559,7 +559,7 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
  t5a->Draw("same");
  t6a->Draw("same");  
 
-c2->SaveAs("Ptdilepton.pdf");
+//c2->SaveAs("Ptdilepton.pdf");
 //c2->SaveAs("Ptdilepton.C");
 //c2->SaveAs("Ptdilepton.eps");
 //c2->SaveAs("Ptdilepton.root");                
@@ -602,7 +602,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  
 c3->SetLogy(1);
  
-c3->SaveAs("tvalue.pdf");
+//c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");
 //c3->SaveAs("tvalue.eps");
 //c3->SaveAs("tvalue.root");                

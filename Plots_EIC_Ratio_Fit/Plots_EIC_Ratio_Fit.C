@@ -56,9 +56,9 @@ void Plots_EIC_Ratio_Fit(){
     
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
-   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+   Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
+   Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
+   Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS    
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
    Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
@@ -90,7 +90,7 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
   TTree *tree_EIC_All;
 
 
-   file = TFile::Open("EIC_Hamzeh_New_1M_x_L.root");
+   file = TFile::Open("EIC_Hamzeh_Final_New_1M_x_L_Qp100.root");
 
  
    tree_EIC_BH  = (TTree*)file->Get("EIC_BH");
@@ -232,7 +232,7 @@ TLatex *t6b = new TLatex(0.65,0.40,"y = ax + b");
                 t6b->SetTextAlign(20);
                 
                 
-TLatex *t7b = new TLatex(0.65,0.35,"a= 1.639, b= 1.051");
+TLatex *t7b = new TLatex(0.60,0.35,"a= 1.20927#pm0.16445,  b= 1.03598#pm0.010597");
                 t7b->SetNDC();
                 t7b->SetTextFont(12);
                 t7b->SetTextSize(0.04);
@@ -360,7 +360,7 @@ TCanvas* c4 = new TCanvas("c4","Ratio", 10, 10, 900, 700);
   t6b->Draw("same");  
   t7b->Draw("same");  
 
-c4->SaveAs("Ratio_All_to_BH_Fit.pdf");
+c4->SaveAs("Ratio_All_to_BH_Fit_Qp100.pdf");
 //c4->SaveAs("Ratio_All_to_BH.C");
 //c4->SaveAs("Ratio_All_to_BH.eps");
 //c4->SaveAs("Ratio_All_to_BH.root");

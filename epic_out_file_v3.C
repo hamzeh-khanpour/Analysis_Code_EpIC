@@ -385,9 +385,9 @@ void epic_out_file_v3::Loop()
       
 
       Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-      Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
-      Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-      Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+      Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
+      Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
+      Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS   
    
       Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
       Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
@@ -406,7 +406,7 @@ void epic_out_file_v3::Loop()
    } // end events loop 
 
 
-     target = new TFile ("EIC_BH_New_x_L.root","recreate");
+     target = new TFile ("EIC_BH_New_x_L_Qp100.root","recreate");
      target->cd();
 
      Tsignal_EIC->Write();

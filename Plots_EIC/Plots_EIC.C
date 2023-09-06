@@ -42,9 +42,9 @@ void Plots_EIC(){
     
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-   Float_t  integrated_cross_section_value_BH  = 3.04779064167665   * 1000.0;   //   nb   BH
-   Float_t  integrated_cross_section_value_TCS = 0.0447783004044881 * 1000.0;   //   nb   TCS   
-   Float_t  integrated_cross_section_value_All = 3.30875099292885   * 1000.0;   //   nb   BH+TCS   
+   Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
+   Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
+   Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
    Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
@@ -76,7 +76,7 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
   TTree *tree_EIC_All;
 
 
-   file = TFile::Open("EIC_Hamzeh_New_1M_x_L.root");
+   file = TFile::Open("EIC_Hamzeh_Final_New_1M_x_L_Qp100.root");
 
  
    tree_EIC_BH  = (TTree*)file->Get("EIC_BH");
@@ -252,7 +252,7 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");   
   
  
-c1->SaveAs("Mll.pdf");
+c1->SaveAs("Mll_Qp100.pdf");
 //c1->SaveAs("Mll.C");
 //c1->SaveAs("Mll.eps");
 //c1->SaveAs("Mll.root");
@@ -301,7 +301,7 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same"); 
  
  
-c2->SaveAs("Ptll.pdf");
+c2->SaveAs("Ptll_Qp100.pdf");
 //c2->SaveAs("ptll.C");
 //c2->SaveAs("ptll.eps");
 //c2->SaveAs("ptll.root");
@@ -353,7 +353,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c3->SaveAs("t-value.pdf");
+c3->SaveAs("t-value_Qp100.pdf");
 //c3->SaveAs("t-value.C");
 //c3->SaveAs("t-value.eps");
 //c3->SaveAs("t-value.root");
@@ -406,7 +406,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c4->SaveAs("t-value-nonorm.pdf");
+c4->SaveAs("t-value-nonorm_Qp100.pdf");
 //c4->SaveAs("t-value-nonorm.C");
 //c4->SaveAs("t-value-nonorm.eps");
 //c4->SaveAs("t-value-nonorm.root");
