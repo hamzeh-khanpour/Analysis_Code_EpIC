@@ -45,7 +45,7 @@
    
 //*   -----------------------------------------------
 
-void Plots_EIC_GM0_dxs_t4(){
+void Plots_EIC_GM0_tdxs_t4(){
 
     
     
@@ -130,7 +130,7 @@ TH1F * histtvalue_All_GM0 = new TH1F ("tvalue", "", 40, 0.0, 4.0);
   
   histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
-  histtvalue_BH->Fill(tvalue,event_weight_BH);   //  
+  histtvalue_BH->Fill(tvalue,event_weight_BH*tvalue);   //  
 cout << "event_weight_BH =" << event_weight_BH << endl;
     }
 
@@ -140,7 +140,7 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   
   histMll_BH_GM0->Fill(Mll);
   histPtll_BH_GM0->Fill(Ptll);
-  histtvalue_BH_GM0->Fill(tvalue,event_weight_BH_GM0);  //   
+  histtvalue_BH_GM0->Fill(tvalue,event_weight_BH_GM0*tvalue);  //   
 cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
     }
 
@@ -150,7 +150,7 @@ cout << "event_weight_BH_GM0 =" << event_weight_BH_GM0 << endl;
   
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
-  histtvalue_All->Fill(tvalue,event_weight_All);  //   
+  histtvalue_All->Fill(tvalue,event_weight_All*tvalue);  //   
 cout << "event_weight_All =" << event_weight_All << endl;
     }
     
@@ -160,7 +160,7 @@ cout << "event_weight_All =" << event_weight_All << endl;
   
   histMll_All_GM0->Fill(Mll);
   histPtll_All_GM0->Fill(Ptll);
-  histtvalue_All_GM0->Fill(tvalue,event_weight_All_GM0);  //  
+  histtvalue_All_GM0->Fill(tvalue,event_weight_All_GM0*tvalue);  //  
 cout << "event_weight_All_GM0 =" << event_weight_All_GM0 << endl;
     }
     
@@ -318,7 +318,7 @@ histtvalue_BH->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_BH->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_BH->GetXaxis()->SetLabelFont(22);
 histtvalue_BH->GetXaxis()->SetTitleFont(22);
-histtvalue_BH->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");  // d#sigma/d|t| [pb]
+histtvalue_BH->GetYaxis()->SetTitle("|t|.d#sigma/d|t| [pb]");  // d#sigma/d|t| [pb]
 histtvalue_BH->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_BH->GetYaxis()->SetLabelFont(22);
 histtvalue_BH->GetYaxis()->SetTitleFont(22);
@@ -350,7 +350,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c4->SaveAs("t-value-nonorm_BH_GM0_t4.pdf");
+c4->SaveAs("t-value-nonorm_BH_GM0_t4_tdsdt.pdf");
 //c4->SaveAs("t-value-nonorm_BH_GM0_t4.C");
 //c4->SaveAs("t-value-nonorm_BH_GM0_t4.eps");
 //c4->SaveAs("t-value-nonorm_BH_GM0_t4.root");
@@ -420,7 +420,7 @@ histtvalue_All->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 histtvalue_All->GetXaxis()->SetTitleOffset(1.25);
 histtvalue_All->GetXaxis()->SetLabelFont(22);
 histtvalue_All->GetXaxis()->SetTitleFont(22);
-histtvalue_All->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");  // d#sigma/d|t| [pb]
+histtvalue_All->GetYaxis()->SetTitle("|t|.d#sigma/d|t| [pb]");  // d#sigma/d|t| [pb]
 histtvalue_All->GetYaxis()->SetTitleOffset(1.40);
 histtvalue_All->GetYaxis()->SetLabelFont(22);
 histtvalue_All->GetYaxis()->SetTitleFont(22);
@@ -452,7 +452,7 @@ histtvalue_All->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c6->SaveAs("t-value-nonorm_All_GM0_t4.pdf");
+c6->SaveAs("t-value-nonorm_All_GM0_t4_tdsdt.pdf");
 //c6->SaveAs("t-value-nonorm_All_GM0_t4.C");
 //c6->SaveAs("t-value-nonorm_All_GM0_t4.eps");
 //c6->SaveAs("t-value-nonorm_All_GM0_t4.root");
