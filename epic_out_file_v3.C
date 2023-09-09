@@ -66,9 +66,9 @@ TFile *F;
 // Book Histograms 
 // **********************************************************************   
 
-  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 4.0);
+  TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 1.0);
-  TH1 *histtvalue = new TH1F("tvalue", "", 40, 0.0, 0.20);  
+  TH1 *histtvalue = new TH1F("tvalue", "", 30, 0.0, 0.20);  
 
 
     TLorentzVector MyGoodLeptonplus;
@@ -150,6 +150,16 @@ void epic_out_file_v3::Loop()
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
+      
+
+      Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
+      Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
+      Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
+      Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
+   
+      Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+      Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
+      Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
       
       
 //     MyGoodLeptonplus.clear();
@@ -345,6 +355,15 @@ void epic_out_file_v3::Loop()
 
  if ( abs(MyGoodLeptonplus.Eta())  > 3.50 ) { continue; }  // 3.5
  if ( abs(MyGoodLeptonminus.Eta()) > 3.50 ) { continue; }  // 3.5
+
+ 
+
+// if ( !( (MyGoodLeptonplus.Pt()  > 0.30)  &&  (MyGoodLeptonminus.Pt() > 0.30) && (abs(MyGoodLeptonplus.Eta())  < 3.50) && (abs(MyGoodLeptonminus.Eta()) < 3.50) ) ) { continue; }
+ 
+ 
+
+// if ( !(MyGoodLeptonplus.Pt()  > 0.30  ||  MyGoodLeptonminus.Pt() > 0.30) ) { continue; }
+ 
  
 
 //        cout << "fbs(MyGoodLeptonplus Eta) = "    <<  abs(MyGoodLeptonplus.Eta())  << endl;   
@@ -382,22 +401,11 @@ void epic_out_file_v3::Loop()
 //      cout << "tvalue    = "  << tvalue     << endl; 
 //      cout << "t.Dot(t)  = "  << t.Dot(t)   << endl; 
 
-      
 
-      Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-      Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
-      Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
-      Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS   
-   
-      Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
-      Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
-      Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
-      
-      
-      
-      histMassdilepton->Fill(Mll);      
-      histPtdilepton->Fill(Ptll);    
-      histtvalue->Fill(tvalue);    // ,event_weight
+
+      histMassdilepton->Fill(Mll,event_weight_BH);      
+      histPtdilepton->Fill(Ptll,event_weight_BH);    
+      histtvalue->Fill(tvalue,event_weight_BH);    // event_weight_BH
 
       
       Tsignal_EIC->Fill();
@@ -496,20 +504,25 @@ histMassdilepton->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
 //histMassdilepton->GetXaxis()->SetTitleOffset(1.25);
 histMassdilepton->GetXaxis()->SetLabelFont(22);
 histMassdilepton->GetXaxis()->SetTitleFont(22);
-histMassdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
+histMassdilepton->GetYaxis()->SetTitle("d#sigma/dM_{#mu^{+}#mu^{-}} [pb/GeV]");
 histMassdilepton->GetYaxis()->SetTitleOffset(1.40);
 histMassdilepton->GetYaxis()->SetLabelFont(22);
 histMassdilepton->GetYaxis()->SetTitleFont(22);
 
 //histMassdilepton->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histMassdilepton="<<histMassdilepton->Integral()<<endl;
+
+cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()<<endl;
 
    // histMassdilepton->SetFillStyle(3001); 
 //    histMassdilepton->SetFillColor(kGreen+1);
     histMassdilepton->SetLineWidth(3);
     histMassdilepton->SetLineColor(kGreen+1);
     
-    histMassdilepton->DrawNormalized("hist");
+    histMassdilepton->Draw("hist");
+    
+    
+//     c1->SetLogy(1);
+//   c1->SetLogx(1);
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -536,24 +549,26 @@ histPtdilepton->GetXaxis()->SetTitle("P_{T}^{#mu^{+}#mu^{-}} [GeV]");
 //histPtdilepton->GetXaxis()->SetTitleOffset(1.25);
 histPtdilepton->GetXaxis()->SetLabelFont(22);
 histPtdilepton->GetXaxis()->SetTitleFont(22);
-histPtdilepton->GetYaxis()->SetTitle("Events normalised to unit area");
+histPtdilepton->GetYaxis()->SetTitle("d#sigma/dP_{T}^{#mu^{+}#mu^{-}} [pb/GeV]");
 histPtdilepton->GetYaxis()->SetTitleOffset(1.40);
 histPtdilepton->GetYaxis()->SetLabelFont(22);
 histPtdilepton->GetYaxis()->SetTitleFont(22);
 
 //histPtdilepton->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histPtdilepton="<<histPtdilepton->Integral()<<endl;
+
+cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()<<endl;
 
    // histPtdilepton->SetFillStyle(3001); 
 //    histPtdilepton->SetFillColor(kGreen+1);
     histPtdilepton->SetLineWidth(3);
     histPtdilepton->SetLineColor(kGreen+1);
     
-    histPtdilepton->DrawNormalized("hist");
+    histPtdilepton->Draw("hist");
 
  leg->Draw("same");
  t2a->Draw("same");
- t3a->Draw("same"); t5a->Draw("same");
+ t3a->Draw("same"); 
+ t5a->Draw("same");
  t6a->Draw("same");  
  t4a->Draw("same"); 
  t5a->Draw("same");
@@ -578,13 +593,15 @@ histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
 histtvalue->GetXaxis()->SetTitleFont(22);
-histtvalue->GetYaxis()->SetTitle("#Events");
+histtvalue->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");
 histtvalue->GetYaxis()->SetTitleOffset(1.40);
 histtvalue->GetYaxis()->SetLabelFont(22);
 histtvalue->GetYaxis()->SetTitleFont(22);
 
-//histtvalue->GetYaxis()->SetRangeUser(0,100);
-//cout<<"histtvalue="<<histtvalue->Integral()<<endl;
+//histtvalue->GetYaxis()->SetRangeUser(1,100);
+
+
+ cout<<"Integral(tvalue) ="<<histtvalue->Integral()<<endl;
 
    // histtvalue->SetFillStyle(3001); 
 //    histtvalue->SetFillColor(kGreen+1);
@@ -600,7 +617,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  t5a->Draw("same");
  t6a->Draw("same");  
  
-c3->SetLogy(1);
+//c3->SetLogy(1);
  
 c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");
