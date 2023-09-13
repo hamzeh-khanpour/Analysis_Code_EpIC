@@ -377,7 +377,7 @@ void epic_out_file_v3::Loop()
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
       
       
-// if ( MydiLepton.Pt()  > 0.20 ) { continue; }  // dilepton pT < 0.2 GeV
+// if ( MydiLepton.M()  < 1 ) { continue; }  // dilepton Mll > 1 GeV
     
       
  N_Cut_IIII++;
@@ -414,7 +414,7 @@ void epic_out_file_v3::Loop()
    } // end events loop 
 
 
-     target = new TFile ("EIC_BH_New_x_L_Qp100.root","recreate");
+     target = new TFile ("EIC_BH_New_x_L_Qp100_5M.root","recreate");
      target->cd();
 
      Tsignal_EIC->Write();

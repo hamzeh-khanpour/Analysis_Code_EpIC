@@ -358,7 +358,7 @@ void epic_out_file_v3_GM0::Loop()
       MydiLepton = MyGoodLeptonplus + MyGoodLeptonminus;
       
       
-// if ( MydiLepton.Pt()  > 0.20 ) { continue; }  // dilepton pT < 0.2 GeV
+// if ( MydiLepton.Pt()  < 0.200 ) { continue; }  // dilepton pT > 0.200 GeV
     
       
  N_Cut_IIII++;
