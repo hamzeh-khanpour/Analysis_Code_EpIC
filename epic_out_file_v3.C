@@ -99,9 +99,9 @@ TFile *F;
    Float_t  integrated_cross_section_value_TCS = 0;
    Float_t  integrated_cross_section_value_All = 0;
    
-   Float_t  event_weight_BH  = 0;
-   Float_t  event_weight_TCS = 0;
-   Float_t  event_weight_All = 0;
+   Float_t  event_weight_BH  = 0.0;
+   Float_t  event_weight_TCS = 0.0;
+   Float_t  event_weight_All = 0.0;
      
 
 void epic_out_file_v3::Loop()
@@ -166,9 +166,9 @@ void epic_out_file_v3::Loop()
 //     MyGoodLeptonminus.clear();
 //     MydiLepton.clear();      
     
-      Mll = 0.0; 
-      Ptll = 0.0;  
-      tvalue = 0.0;
+//      Mll = 0.0; 
+//      Ptll = 0.0;  
+//      tvalue = 0.0;
 
 //     cout << "kMaxparticles= "   <<  kMaxparticles  << endl;
 //     cout << "nentries= "   <<  nentries  << endl;

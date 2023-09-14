@@ -46,9 +46,9 @@ void Plots_EIC(){
    Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
    Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
    
-   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
-   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
-   Float_t  event_weight_All = integrated_cross_section_value_All * integrated_luminosity / nentries;
+   Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
+   Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
+   Float_t  event_weight_All = integrated_cross_section_value_All * 1.0 / nentries;
     
     
    gStyle->SetPalette(kBird);
@@ -56,9 +56,9 @@ void Plots_EIC(){
    gStyle->SetOptTitle(1);
 
 
-TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 4.0);
-TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 4.0);
-TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 4.0);
+TH1F * histMll_BH = new TH1F ("Mll", "", 10, 0.0, 10.0);
+TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 10.0);
+TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 10.0);
 
 TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 0.50);
@@ -104,10 +104,20 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
   for (Long64_t ievt=0; ievt<tree_EIC_BH->GetEntries();ievt++) {
   tree_EIC_BH->GetEntry(ievt);
   
-  histMll_BH->Fill(Mll);
+  histMll_BH->Fill(Mll,event_weight_BH);
+    
+  int N_b = histMll_BH->GetNbinsX();
+  cout <<  " N_b = " << N_b << endl;
+    
+  for (Long64_t i=0; i<N_b;i++) {
+  
+    cout <<  " histMll_BH->GetBinContent(ievt) = " << histMll_BH->GetBinContent(i) << endl;
+   
+  }
+  
   histPtll_BH->Fill(Ptll);
   histtvalue_BH->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
-cout << "event_weight_BH =" << event_weight_BH << endl;
+//cout << "event_weight_BH =" << event_weight_BH << endl;
     }
     
 
@@ -117,7 +127,7 @@ cout << "event_weight_BH =" << event_weight_BH << endl;
   histMll_TCS->Fill(Mll);
   histPtll_TCS->Fill(Ptll);
   histtvalue_TCS->Fill(tvalue);  //  ,integrated_cross_section_value_TCS
-cout << "event_weight_TCS =" << event_weight_TCS << endl;
+//cout << "event_weight_TCS =" << event_weight_TCS << endl;
     }
 
 
@@ -127,7 +137,7 @@ cout << "event_weight_TCS =" << event_weight_TCS << endl;
   histMll_All->Fill(Mll);
   histPtll_All->Fill(Ptll);
   histtvalue_All->Fill(tvalue);  //  ,integrated_cross_section_value_All
-cout << "event_weight_All =" << event_weight_All << endl;
+//cout << "event_weight_All =" << event_weight_All << endl;
     }
   
     
@@ -220,12 +230,12 @@ histMll_BH->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
 histMll_BH->GetXaxis()->SetTitleOffset(1.25);
 histMll_BH->GetXaxis()->SetLabelFont(22);
 histMll_BH->GetXaxis()->SetTitleFont(22);
-histMll_BH->GetYaxis()->SetTitle("Events normalised to unit area");
+histMll_BH->GetYaxis()->SetTitle("d#sigma/dM_{#mu^{+}#mu^{-}} [pb/GeV]");
 histMll_BH->GetYaxis()->SetTitleOffset(1.40);
 histMll_BH->GetYaxis()->SetLabelFont(22);
 histMll_BH->GetYaxis()->SetTitleFont(22);
 
-   histMll_BH->GetYaxis()->SetRangeUser(0,50000);
+//   histMll_BH->GetYaxis()->SetRangeUser(0,50000);
 //   histMll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histMll_BH->SetLineWidth(3);
@@ -236,9 +246,11 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
    histMll_TCS->SetLineColor(6);
    histMll_All->SetLineColor(4);   
 
-   histMll_BH->DrawNormalized("hist");
-   histMll_TCS->DrawNormalized("hist same");
-   histMll_All->DrawNormalized("hist same");
+   histMll_BH->Draw("hist");
+//   histMll_TCS->DrawNormalized("hist same");
+//   histMll_All->DrawNormalized("hist same");
+   
+   cout << "Integral histMll_BH = "  <<  histMll_BH->Integral()  << endl;
 
  leg->Draw("same");
  t2a->Draw("same");
