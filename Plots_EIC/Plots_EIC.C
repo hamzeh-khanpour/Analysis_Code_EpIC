@@ -56,11 +56,11 @@ void Plots_EIC(){
    gStyle->SetOptTitle(1);
 
 
-TH1F * histMll_BH = new TH1F ("Mll", "", 10, 0.0, 10.0);
+TH1F * histMll_BH = new TH1F ("Mll", "", 40, 0.0, 10.0);
 TH1F * histMll_TCS = new TH1F ("Mll", "", 40, 0.0, 10.0);
 TH1F * histMll_All = new TH1F ("Mll", "", 40, 0.0, 10.0);
 
-TH1F * histPtll_BH = new TH1F ("Ptll", "", 20, 0.0, 0.50);
+TH1F * histPtll_BH = new TH1F ("Ptll", "",  20, 0.0, 0.50);
 TH1F * histPtll_TCS = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 TH1F * histPtll_All = new TH1F ("Ptll", "", 20, 0.0, 0.50);
 
@@ -104,22 +104,27 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 0.2);
   for (Long64_t ievt=0; ievt<tree_EIC_BH->GetEntries();ievt++) {
   tree_EIC_BH->GetEntry(ievt);
   
-  histMll_BH->Fill(Mll,event_weight_BH);
-    
-  int N_b = histMll_BH->GetNbinsX();
-  cout <<  " N_b = " << N_b << endl;
-    
-  for (Long64_t i=0; i<N_b;i++) {
-  
-    cout <<  " histMll_BH->GetBinContent(ievt) = " << histMll_BH->GetBinContent(i) << endl;
-   
-  }
-  
+  histMll_BH->Fill(Mll);
   histPtll_BH->Fill(Ptll);
   histtvalue_BH->Fill(tvalue);   // ,event_weight_BH ,integrated_cross_section_value_BH
 //cout << "event_weight_BH =" << event_weight_BH << endl;
     }
     
+    
+    
+  int N_b = histMll_BH->GetNbinsX();
+  cout <<  " N_b = " << N_b << endl;
+    
+  for (size_t i=1; i < N_b+1;i++) {
+  
+    cout <<  " histMll_BH->GetBinContent(i) = " << histMll_BH->GetBinContent(i) << endl;
+   
+  }   
+  
+  for(size_t i=1;  i < N_b+1; i++){
+//			histPtll_BH->SetBinContent(i, histMll_BH->GetBinContent(i)/0.25 );
+		}
+
 
   for (Long64_t ievt=0; ievt<tree_EIC_TCS->GetEntries();ievt++) {
   tree_EIC_TCS->GetEntry(ievt);
@@ -286,7 +291,7 @@ histPtll_BH->GetYaxis()->SetTitleOffset(1.40);
 histPtll_BH->GetYaxis()->SetLabelFont(22);
 histPtll_BH->GetYaxis()->SetTitleFont(22);
 
-   histPtll_BH->GetYaxis()->SetRangeUser(0,50000);
+//   histPtll_BH->GetYaxis()->SetRangeUser(0,50000);
 //   histPtll_BH->GetXaxis()->SetRangeUser(0,1);
 
    histPtll_BH->SetLineWidth(3);
@@ -297,9 +302,9 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
    histPtll_TCS->SetLineColor(6);
    histPtll_All->SetLineColor(4);
 
-   histPtll_BH->DrawNormalized("hist");
-   histPtll_TCS->DrawNormalized("hist same");
-   histPtll_All->DrawNormalized("hist same");
+   histPtll_BH->Draw("hist");
+//   histPtll_TCS->DrawNormalized("hist same");
+//   histPtll_All->DrawNormalized("hist same");
 
  leg->Draw("same");
  t2a->Draw("same");

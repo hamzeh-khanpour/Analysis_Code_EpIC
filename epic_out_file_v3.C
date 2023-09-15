@@ -67,7 +67,7 @@ TFile *F;
 // **********************************************************************   
 
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 10.0);
-  TH1 *histPtdilepton = new TH1F("Pt", "", 40, 0.0, 1.0);
+  TH1 *histPtdilepton = new TH1F("Pt", "", 30, 0.0, 1.0);
   TH1 *histtvalue = new TH1F("tvalue", "", 30, 0.0, 0.20);  
 
 
@@ -403,8 +403,8 @@ void epic_out_file_v3::Loop()
 
 
 
-      histMassdilepton->Fill(Mll,event_weight_BH);      
-      histPtdilepton->Fill(Ptll,event_weight_BH);    
+      histMassdilepton->Fill(Mll,event_weight_BH/(10.0/40.0));      
+      histPtdilepton->Fill(Ptll,event_weight_BH/(1.0/30.0));    
       histtvalue->Fill(tvalue,event_weight_BH);    // event_weight_BH
 
       
@@ -531,7 +531,7 @@ cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()<<endl;
  t5a->Draw("same");
  t6a->Draw("same");  
  
-c1->SaveAs("Massdilepton.pdf");
+c1->SaveAs("Massdilepton_correct_width_t4.pdf");
 //c1->SaveAs("Massdilepton.C");
 //c1->SaveAs("Massdilepton.eps");
 //c1->SaveAs("Massdilepton.root");                
@@ -574,7 +574,7 @@ cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()<<endl;
  t5a->Draw("same");
  t6a->Draw("same");  
 
-c2->SaveAs("Ptdilepton.pdf");
+c2->SaveAs("Ptdilepton_correct_width_t4.pdf");
 //c2->SaveAs("Ptdilepton.C");
 //c2->SaveAs("Ptdilepton.eps");
 //c2->SaveAs("Ptdilepton.root");                
