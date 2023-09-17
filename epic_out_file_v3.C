@@ -68,7 +68,7 @@ TFile *F;
 
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 30, 0.0, 1.0);
-  TH1 *histtvalue = new TH1F("tvalue", "", 30, 0.0, 0.20);  
+  TH1 *histtvalue = new TH1F("tvalue", "", 30, 0.0, 4.0);  
 
 
     TLorentzVector MyGoodLeptonplus;
@@ -232,7 +232,7 @@ void epic_out_file_v3::Loop()
  
  if ( !(Energy_Ratio > 0.50  &&  Energy_Ratio < 0.99 &&  Pi_Theta_e < 10.0/1000.0) ) { continue; }
         
- N_Cut_I++;        
+ N_Cut_I++;  
 
  
 
@@ -405,7 +405,8 @@ void epic_out_file_v3::Loop()
 
       histMassdilepton->Fill(Mll,event_weight_BH/(10.0/40.0));      
       histPtdilepton->Fill(Ptll,event_weight_BH/(1.0/30.0));    
-      histtvalue->Fill(tvalue,event_weight_BH);    // event_weight_BH
+      histtvalue->Fill(tvalue,tvalue*event_weight_BH/(4.0/30.0));    // event_weight_BH
+      
 
       
       Tsignal_EIC->Fill();
@@ -593,7 +594,7 @@ histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
 histtvalue->GetXaxis()->SetTitleFont(22);
-histtvalue->GetYaxis()->SetTitle("d#sigma/d|t| [pb/GeV^{2}]");
+histtvalue->GetYaxis()->SetTitle("t.d#sigma/d|t| [pb]");
 histtvalue->GetYaxis()->SetTitleOffset(1.40);
 histtvalue->GetYaxis()->SetLabelFont(22);
 histtvalue->GetYaxis()->SetTitleFont(22);
@@ -608,7 +609,9 @@ histtvalue->GetYaxis()->SetTitleFont(22);
     histtvalue->SetLineWidth(3);
     histtvalue->SetLineColor(kGreen+1);
     
-    histtvalue->Draw("hist");
+//    histtvalue->Draw("hist");
+    histtvalue->Draw("ep");
+
 
  leg->Draw("same");
  t2a->Draw("same");
@@ -617,7 +620,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  t5a->Draw("same");
  t6a->Draw("same");  
  
-//c3->SetLogy(1);
+ c3->SetLogy(1);
  
 c3->SaveAs("tvalue.pdf");
 //c3->SaveAs("tvalue.C");
