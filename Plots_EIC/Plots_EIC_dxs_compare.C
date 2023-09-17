@@ -43,7 +43,7 @@ void Plots_EIC_dxs_compare(){
    Float_t  nentries = 1000000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
    Float_t  integrated_cross_section_value_BH  = 35.0951   * 1000.0;   //   nb   -0.2<t
-   Float_t  integrated_cross_section_value_TCS = 35.3040 * 1000.0;   //   nb   -4.0<t   
+   Float_t  integrated_cross_section_value_TCS = 35.3040   * 1000.0;   //   nb   -4.0<t   
    Float_t  integrated_cross_section_value_All = 51.2688   * 1000.0;   //   nb   GRAPE   
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
