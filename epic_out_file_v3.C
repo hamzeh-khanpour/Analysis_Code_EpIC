@@ -230,7 +230,7 @@ void epic_out_file_v3::Loop()
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
 
  
- if ( !(Energy_Ratio > 0.50  &&  Energy_Ratio < 0.99 &&  Pi_Theta_e < 10.0/1000.0) ) { continue; }
+ if ( !(Energy_Ratio >= 0.50  &&  Energy_Ratio <= 0.99 &&  Pi_Theta_e <= 10.0/1000.0) ) { continue; }
         
  N_Cut_I++;  
 
@@ -268,7 +268,7 @@ void epic_out_file_v3::Loop()
  
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( !(Protonout_Pt > 0.10  ||  xL < 0.97) ) { continue; }
+ if ( !(Protonout_Pt >= 0.10  ||  xL <= 0.97) ) { continue; }
 
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
@@ -281,7 +281,7 @@ void epic_out_file_v3::Loop()
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
- if (Protonout_Theta > 13.0/1000.0) { continue; }  // 13 mrad 
+ if (Protonout_Theta >= 13.0/1000.0) { continue; }  // 13 mrad 
  
 //       cout << "Protonout_Theta = "   <<  Protonout_Theta  << endl; 
        
@@ -346,15 +346,15 @@ void epic_out_file_v3::Loop()
 // ============================================================================================ 
 
 
- if ( MyGoodLeptonplus.Pt()  < 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() < 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonplus.Pt()  <= 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonminus.Pt() <= 0.30 ) { continue; }  // 300 MeV
 
  //        cout << "MyGoodLeptonplus Pt = "    <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
 
 
- if ( abs(MyGoodLeptonplus.Eta())  > 3.50 ) { continue; }  // 3.5
- if ( abs(MyGoodLeptonminus.Eta()) > 3.50 ) { continue; }  // 3.5
+ if ( abs(MyGoodLeptonplus.Eta())  >= 3.50 ) { continue; }  // 3.5
+ if ( abs(MyGoodLeptonminus.Eta()) >= 3.50 ) { continue; }  // 3.5
 
  
 
@@ -644,7 +644,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
     histtvalue->SetLineColor(kGreen+1);
     
 //    histtvalue->Draw("hist");
-    histtvalue->Draw("hist");
+    histtvalue->Draw("ep");
 
 
  leg->Draw("same");
