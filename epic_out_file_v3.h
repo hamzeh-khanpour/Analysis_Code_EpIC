@@ -116,11 +116,11 @@ epic_out_file_v3::epic_out_file_v3(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_BH_hel_-1_pol001_new_5M_Qp100_t4.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/hamzeh-khanpour/hepmc3-build/conf_100K_pol_m_18GeV_BH_merged.root");
      // TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_TCS_hel_-1_pol001_new_1M_Qp100.root");
      // TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_ALL_hel_-1_pol001_new_1M_Qp100.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_BH_hel_-1_pol001_new_5M_Qp100_t4.root");
+         f = new TFile("/home/hamzeh-khanpour/hepmc3-build/conf_100K_pol_m_18GeV_BH_merged.root");
      //    f = new TFile("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_TCS_hel_-1_pol001_new_1M_Qp100.root");
      //    f = new TFile("/home/hamzeh-khanpour/hepmc3-build/epic_out_file_ALL_hel_-1_pol001_new_1M_Qp100.root");
       }

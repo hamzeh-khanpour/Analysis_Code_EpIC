@@ -153,7 +153,7 @@ void epic_out_file_v3::Loop()
       
 
       Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-      Float_t  integrated_cross_section_value_BH  = 3.05987329334281   * 1000.0;   //   nb   BH
+      Float_t  integrated_cross_section_value_BH  = 4.13907865198864   * 1000.0;   //   nb   BH  2.0 * 
       Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
       Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
    
@@ -415,7 +415,7 @@ void epic_out_file_v3::Loop()
    } // end events loop 
 
 
-     target = new TFile ("EIC_BH_New_x_L_Qp100_5M.root","recreate");
+     target = new TFile ("EIC_BH_conf_200K_pol_m_p_18GeV_BH_merged.root","recreate");
      target->cd();
 
      Tsignal_EIC->Write();
@@ -470,30 +470,59 @@ TLatex *t2a = new TLatex(0.5,0.9,"#bf{Electron-Ion Collider (EIC)}");
                 t2a->SetTextAlign(20);
 
                 
-TLatex *t3a = new TLatex(0.27,0.8,"E_e = 18 GeV");
+TLatex *t3a = new TLatex(0.27,0.85,"E_{e} = 18 GeV");
                 t3a->SetNDC();
                 t3a->SetTextFont(42);
                 t3a->SetTextSize(0.04);
                 t3a->SetTextAlign(20);
                 
             
-TLatex *t4a = new TLatex(0.276,0.75,"E_p = 275 GeV");
+TLatex *t4a = new TLatex(0.276,0.80,"E_{p} = 275 GeV");
                 t4a->SetNDC();
                 t4a->SetTextFont(42);
                 t4a->SetTextSize(0.04);
                 t4a->SetTextAlign(20);
-   
-TLatex *t5a = new TLatex(0.666,0.60,"lepton_polarisation = -1");
+
+
+TLatex *t5a = new TLatex(0.666,0.66,"lepton_polarisation = +1 & -1");
                 t5a->SetNDC();
-                t5a->SetTextFont(42);
+                t5a->SetTextFont(12);
                 t5a->SetTextSize(0.04);
                 t5a->SetTextAlign(20);
                 
-TLatex *t6a = new TLatex(0.692,0.55,"hadron_polarisation = 0|0|1");
+TLatex *t6a = new TLatex(0.692,0.61,"hadron_polarisation = 0|0|1");
                 t6a->SetNDC();
-                t6a->SetTextFont(42);
+                t6a->SetTextFont(12);
                 t6a->SetTextSize(0.04);
                 t6a->SetTextAlign(20);
+                
+TLatex *t2b = new TLatex(0.70,0.550,"0.5<E'_{e}/E_{e}<0.99 & #pi-#theta_{e}<10 mrad");
+                t2b->SetNDC();
+                t2b->SetTextFont(12);
+                t2b->SetTextSize(0.04);
+                t2b->SetTextAlign(20);
+
+                
+TLatex *t3b = new TLatex(0.64,0.50,"x_{L}<0.97 || p_{T}^{p}>100 Mev");
+                t3b->SetNDC();
+                t3b->SetTextFont(12);
+                t3b->SetTextSize(0.04);
+                t3b->SetTextAlign(20);
+                
+                
+TLatex *t4b = new TLatex(0.58,0.45,"#theta_{p}<13 mrad");
+                t4b->SetNDC();
+                t4b->SetTextFont(12);
+                t4b->SetTextSize(0.04);
+                t4b->SetTextAlign(20);
+                
+                
+TLatex *t5b = new TLatex(0.65,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
+                t5b->SetNDC();
+                t5b->SetTextFont(12);
+                t5b->SetTextSize(0.04);
+                t5b->SetTextAlign(20);
+                
 
 // =======================================================================
 
@@ -510,9 +539,9 @@ histMassdilepton->GetYaxis()->SetTitleOffset(1.40);
 histMassdilepton->GetYaxis()->SetLabelFont(22);
 histMassdilepton->GetYaxis()->SetTitleFont(22);
 
-//histMassdilepton->GetYaxis()->SetRangeUser(0,100);
+// histMassdilepton->GetYaxis()->SetRangeUser(0,140);
 
-cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()<<endl;
+cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()/4.0<<endl;
 
    // histMassdilepton->SetFillStyle(3001); 
 //    histMassdilepton->SetFillColor(kGreen+1);
@@ -530,7 +559,11 @@ cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()<<endl;
  t3a->Draw("same");
  t4a->Draw("same"); 
  t5a->Draw("same");
- t6a->Draw("same");  
+// t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");   
  
 c1->SaveAs("Massdilepton_correct_width_t4.pdf");
 //c1->SaveAs("Massdilepton.C");
@@ -568,12 +601,14 @@ cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()<<endl;
 
  leg->Draw("same");
  t2a->Draw("same");
- t3a->Draw("same"); 
- t5a->Draw("same");
- t6a->Draw("same");  
+ t3a->Draw("same");
  t4a->Draw("same"); 
  t5a->Draw("same");
- t6a->Draw("same");  
+// t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");   
 
 c2->SaveAs("Ptdilepton_correct_width_t4.pdf");
 //c2->SaveAs("Ptdilepton.C");
@@ -589,7 +624,6 @@ c2->SaveAs("Ptdilepton_correct_width_t4.pdf");
 TCanvas* c3 = new TCanvas("c3","tvalue", 10, 10, 900, 700);
 
 //histtvalue->SetTitle("Jet Algorithem = ee_genkt_cambridge"); t5a->Draw("same");
- t6a->Draw("same");  
 histtvalue->GetXaxis()->SetTitle("|t| [GeV^{2}]");
 //histtvalue->GetXaxis()->SetTitleOffset(1.25);
 histtvalue->GetXaxis()->SetLabelFont(22);
@@ -610,7 +644,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
     histtvalue->SetLineColor(kGreen+1);
     
 //    histtvalue->Draw("hist");
-    histtvalue->Draw("ep");
+    histtvalue->Draw("hist");
 
 
  leg->Draw("same");
@@ -618,17 +652,21 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  t3a->Draw("same");
  t4a->Draw("same"); 
  t5a->Draw("same");
- t6a->Draw("same");  
+// t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");   
  
  c3->SetLogy(1);
  
-c3->SaveAs("tvalue.pdf");
+ 
+c3->SaveAs("tvalue_t-dsdt.pdf");
 //c3->SaveAs("tvalue.C");
 //c3->SaveAs("tvalue.eps");
 //c3->SaveAs("tvalue.root");                
 //c3->SaveAs("tvalue.jpg");      
   
-
 
 
 } // The end of main program epic_out_file_v3
