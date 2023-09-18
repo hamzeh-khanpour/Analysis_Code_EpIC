@@ -565,7 +565,7 @@ cout<<"Integral(Massdilepton) =" << histMassdilepton->Integral()/4.0<<endl;
  t4b->Draw("same");    
  t5b->Draw("same");   
  
-c1->SaveAs("Massdilepton_correct_width_t4.pdf");
+c1->SaveAs("Massdilepton_conf.pdf");
 //c1->SaveAs("Massdilepton.C");
 //c1->SaveAs("Massdilepton.eps");
 //c1->SaveAs("Massdilepton.root");                
@@ -610,7 +610,7 @@ cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()<<endl;
  t4b->Draw("same");    
  t5b->Draw("same");   
 
-c2->SaveAs("Ptdilepton_correct_width_t4.pdf");
+c2->SaveAs("Ptdilepton_conf.pdf");
 //c2->SaveAs("Ptdilepton.C");
 //c2->SaveAs("Ptdilepton.eps");
 //c2->SaveAs("Ptdilepton.root");                
@@ -661,7 +661,7 @@ histtvalue->GetYaxis()->SetTitleFont(22);
  c3->SetLogy(1);
  
  
-c3->SaveAs("tvalue_t-dsdt.pdf");
+c3->SaveAs("tvalue_conf_tdsdt.pdf");
 //c3->SaveAs("tvalue.C");
 //c3->SaveAs("tvalue.eps");
 //c3->SaveAs("tvalue.root");                
