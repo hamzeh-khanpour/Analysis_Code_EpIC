@@ -94,10 +94,10 @@ TFile *F;
    Int_t N_Cut_IIII = 0.0;  
 
    
-   Float_t  integrated_luminosity = 0;
-   Float_t  integrated_cross_section_value_BH = 0;
-   Float_t  integrated_cross_section_value_TCS = 0;
-   Float_t  integrated_cross_section_value_All = 0;
+   Float_t  integrated_luminosity = 0.0;
+   Float_t  integrated_cross_section_value_BH = 0.0;
+   Float_t  integrated_cross_section_value_TCS = 0.0;
+   Float_t  integrated_cross_section_value_All = 0.0;
    
    Float_t  event_weight_BH  = 0.0;
    Float_t  event_weight_TCS = 0.0;
@@ -153,9 +153,9 @@ void epic_out_file_v3::Loop()
       
 
       Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
-      Float_t  integrated_cross_section_value_BH  = 4.13907865198864   * 1000.0;   //   nb   BH  2.0 * 
-      Float_t  integrated_cross_section_value_TCS = 0.0449484650949493 * 1000.0;   //   nb   TCS   
-      Float_t  integrated_cross_section_value_All = 3.32295456492990   * 1000.0;   //   nb   BH+TCS  
+      Float_t  integrated_cross_section_value_BH  = 2.0 * 23.1942408806344   * 1000.0;   //   nb   BH       2.0 * 
+      Float_t  integrated_cross_section_value_TCS = 2.0 * 0.00829434050908   * 1000.0;   //   nb   TCS      2.0 *  
+      Float_t  integrated_cross_section_value_All = 2.0 * 19.9123163686310   * 1000.0;   //   nb   BH+TCS   2.0 * 
    
       Float_t  event_weight_BH  = integrated_cross_section_value_BH  * 1.0 / nentries;
       Float_t  event_weight_TCS = integrated_cross_section_value_TCS * 1.0 / nentries;
@@ -230,7 +230,7 @@ void epic_out_file_v3::Loop()
 //       cout << "Pi_Theta_e = "   <<  Pi_Theta_e  << endl; 
 
  
- if ( !(Energy_Ratio >= 0.50  &&  Energy_Ratio <= 0.99 &&  Pi_Theta_e <= 10.0/1000.0) ) { continue; }
+ if ( !(Energy_Ratio >=  0.50  &&  Energy_Ratio <=  0.99 &&  Pi_Theta_e <=  10.0/1000.0) ) { continue; }
         
  N_Cut_I++;  
 
@@ -268,7 +268,7 @@ void epic_out_file_v3::Loop()
  
  Float_t Protonout_Pt = Protonout.Pt();  
     
- if ( !(Protonout_Pt >= 0.10  ||  xL <= 0.97) ) { continue; }
+ if ( !(Protonout_Pt >=  0.10  ||  xL <=  0.97) ) { continue; }
 
 
 //        cout << "Protonout_Pt = "   <<  Protonout_Pt  << endl; 
@@ -281,7 +281,7 @@ void epic_out_file_v3::Loop()
  Float_t Protonout_Theta = Protonout.Theta();       
 
        
- if (Protonout_Theta >= 13.0/1000.0) { continue; }  // 13 mrad 
+ if (Protonout_Theta >=  13.0/1000.0) { continue; }  // 13 mrad 
  
 //       cout << "Protonout_Theta = "   <<  Protonout_Theta  << endl; 
        
@@ -346,15 +346,15 @@ void epic_out_file_v3::Loop()
 // ============================================================================================ 
 
 
- if ( MyGoodLeptonplus.Pt()  <= 0.30 ) { continue; }  // 300 MeV
- if ( MyGoodLeptonminus.Pt() <= 0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonplus.Pt()  <=  0.30 ) { continue; }  // 300 MeV
+ if ( MyGoodLeptonminus.Pt() <=  0.30 ) { continue; }  // 300 MeV
 
  //        cout << "MyGoodLeptonplus Pt = "    <<  MyGoodLeptonplus.Pt()  << endl;   
  //        cout << "MyGoodLeptonminus Pt = "   <<  MyGoodLeptonminus.Pt()  << endl;   
 
 
- if ( abs(MyGoodLeptonplus.Eta())  >= 3.50 ) { continue; }  // 3.5
- if ( abs(MyGoodLeptonminus.Eta()) >= 3.50 ) { continue; }  // 3.5
+ if ( abs(MyGoodLeptonplus.Eta())  >=  3.50 ) { continue; }  // 3.5
+ if ( abs(MyGoodLeptonminus.Eta()) >=  3.50 ) { continue; }  // 3.5
 
  
 
@@ -415,7 +415,7 @@ void epic_out_file_v3::Loop()
    } // end events loop 
 
 
-     target = new TFile ("EIC_BH_conf_200K_pol_m_p_18GeV_BH_merged.root","recreate");
+     target = new TFile ("EIC_BH_conf_200K_pol_p_m_merged.root","recreate");
      target->cd();
 
      Tsignal_EIC->Write();
@@ -590,7 +590,7 @@ histPtdilepton->GetYaxis()->SetTitleFont(22);
 
 //histPtdilepton->GetYaxis()->SetRangeUser(0,100);
 
-cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()<<endl;
+cout<<"Integral(Ptdilepton) ="<<histPtdilepton->Integral()/(30.0/10.0)<<endl;
 
    // histPtdilepton->SetFillStyle(3001); 
 //    histPtdilepton->SetFillColor(kGreen+1);
