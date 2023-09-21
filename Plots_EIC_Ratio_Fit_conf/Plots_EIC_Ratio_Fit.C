@@ -57,9 +57,9 @@ void Plots_EIC_Ratio_Fit(){
    Float_t  nentries = 200000.0;
    Float_t  integrated_luminosity = 300.0 / 1000.0; // fb^{-1} 
    
-   Float_t  integrated_cross_section_value_BH  = 2.0 * 23.1942408806344   * 1000.0;   //   nb   BH       2.0 * 
-   Float_t  integrated_cross_section_value_TCS = 2.0 * 0.00829434050908   * 1000.0;   //   nb   TCS      2.0 *  
-   Float_t  integrated_cross_section_value_All = 2.0 * 19.9123163686310   * 1000.0;   //   nb   BH+TCS   2.0 * 
+   Float_t  integrated_cross_section_value_BH  = 23.1942408806344   * 1000.0;   //   nb   BH       2.0 * 
+   Float_t  integrated_cross_section_value_TCS = 0.00829434050908   * 1000.0;   //   nb   TCS      2.0 *  
+   Float_t  integrated_cross_section_value_All = 19.9123163686310   * 1000.0;   //   nb   BH+TCS   2.0 * 
    
    Float_t  event_weight_BH  = integrated_cross_section_value_BH  * integrated_luminosity / nentries;
    Float_t  event_weight_TCS = integrated_cross_section_value_TCS * integrated_luminosity / nentries;
