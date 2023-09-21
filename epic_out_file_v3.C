@@ -57,6 +57,33 @@
 #include "epic_out_file_v3.h"
 
 
+
+double getThetaL(const TLorentzVector& q,  const TLorentzVector& pS, const TLorentzVector& e, 
+                const TLorentzVector& eS) {
+
+	TVector3 boost;
+	TLorentzVector q_boosted, pS_boosted, e_boosted, eS_boosted;
+	double sinb2, cosb2;
+	double sign;
+
+	boost = (q+pS).BoostVector();
+	q_boosted = q;                q_boosted.Boost(-boost);
+	pS_boosted = pS;              pS_boosted.Boost(-boost);
+	e_boosted = e;                e_boosted.Boost(-boost);
+	eS_boosted = eS;              eS_boosted.Boost(-boost);
+
+	boost = (e_boosted+eS_boosted).BoostVector();
+
+	pS_boosted.Boost(-boost);
+	e_boosted.Boost(-boost);
+	eS_boosted.Boost(-boost);
+
+	return pS_boosted.Vect().Angle(e_boosted.Vect());
+}
+
+
+
+
 TFile *target;
 TTree *Tsignal_EIC = new TTree("EIC_BH","EIC_BH");
 TFile *F;
@@ -69,6 +96,7 @@ TFile *F;
   TH1 *histMassdilepton = new TH1F("M_{inv}", "", 40, 0.0, 10.0);
   TH1 *histPtdilepton = new TH1F("Pt", "", 30, 0.0, 1.0);
   TH1 *histtvalue = new TH1F("tvalue", "", 30, 0.0, 4.0);  
+  TH1 *histthetal = new TH1F("thetal", "", 30, 0.0, 4.0);  
 
 
     TLorentzVector MyGoodLeptonplus;
@@ -87,6 +115,7 @@ TFile *F;
    Float_t Mll = 0.0;
    Float_t Ptll = 0.0;
    Float_t tvalue = 0.0;
+   Float_t thetal = 0.0;   
    
    Int_t N_Cut_I = 0.0;
    Int_t N_Cut_II = 0.0;
@@ -134,7 +163,8 @@ void epic_out_file_v3::Loop()
 	Tsignal_EIC->Branch("Mll",&Mll);
 	Tsignal_EIC->Branch("Ptll",&Ptll);
 	Tsignal_EIC->Branch("tvalue",&tvalue);
-
+	Tsignal_EIC->Branch("thetal",&thetal);    
+    
 
    gStyle->SetOptStat(0);   
     
@@ -397,16 +427,18 @@ void epic_out_file_v3::Loop()
       
       t = Protonout - Protonin;
       tvalue =  fabs(t.Mag2());  // t.P() * t.P();
+      thetal =  MyGoodLeptonplus.Theta();
+      
       
 //      cout << "tvalue    = "  << tvalue     << endl; 
 //      cout << "t.Dot(t)  = "  << t.Dot(t)   << endl; 
-
+      cout << "thetal  = "  << thetal   << endl; 
 
 
       histMassdilepton->Fill(Mll,event_weight_BH/(10.0/40.0));      
       histPtdilepton->Fill(Ptll,event_weight_BH/(1.0/30.0));    
       histtvalue->Fill(tvalue,tvalue*event_weight_BH/(4.0/30.0));    // event_weight_BH
-      
+      histthetal->Fill(thetal,event_weight_BH/(4.0/30.0));    // event_weight_BH      
 
       
       Tsignal_EIC->Fill();
@@ -667,6 +699,58 @@ c3->SaveAs("tvalue_conf_tdsdt.pdf");
 //c3->SaveAs("tvalue.root");                
 //c3->SaveAs("tvalue.jpg");      
   
+
+
+// =======================================================================
+
+
+TCanvas* c4 = new TCanvas("c4","tvalue", 10, 10, 900, 700);
+
+//histthetal->SetTitle("Jet Algorithem = ee_genkt_cambridge"); t5a->Draw("same");
+histthetal->GetXaxis()->SetTitle("#theta_{l}");
+//histthetal->GetXaxis()->SetTitleOffset(1.25);
+histthetal->GetXaxis()->SetLabelFont(22);
+histthetal->GetXaxis()->SetTitleFont(22);
+histthetal->GetYaxis()->SetTitle("d#sigma/d#theta_{l}");
+histthetal->GetYaxis()->SetTitleOffset(1.40);
+histthetal->GetYaxis()->SetLabelFont(22);
+histthetal->GetYaxis()->SetTitleFont(22);
+
+//histthetal->GetYaxis()->SetRangeUser(1,100);
+
+
+ cout<<"Integral(thetal) ="<<histthetal->Integral()<<endl;
+
+   // histthetal->SetFillStyle(3001); 
+//    histthetal->SetFillColor(kGreen+1);
+    histthetal->SetLineWidth(3);
+    histthetal->SetLineColor(kGreen+1);
+    
+//    histthetal->Draw("hist");
+    histthetal->Draw("hist");
+
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+ t4a->Draw("same"); 
+ t5a->Draw("same");
+// t6a->Draw("same");  
+ t2b->Draw("same");   
+ t3b->Draw("same");    
+ t4b->Draw("same");    
+ t5b->Draw("same");   
+ 
+// c4->SetLogy(1);
+ 
+ 
+c4->SaveAs("thetal_conf.pdf");
+//c4->SaveAs("thetal.C");
+//c4->SaveAs("thetal.eps");
+//c4->SaveAs("thetal.root");                
+//c4->SaveAs("thetal.jpg");      
+  
+
 
 
 } // The end of main program epic_out_file_v3
