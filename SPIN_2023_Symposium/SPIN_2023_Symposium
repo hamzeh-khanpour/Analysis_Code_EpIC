@@ -1,0 +1,658 @@
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_p_BH.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+17-09-2023 10:00:36 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+17-09-2023 10:00:36 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+17-09-2023 10:00:36 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+17-09-2023 10:00:36 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+17-09-2023 10:00:36 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+17-09-2023 10:00:36 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+17-09-2023 10:00:36 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_p_BH.xml is valid
+17-09-2023 10:00:36 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+17-09-2023 10:00:36 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: BH
+
+17-09-2023 10:00:36 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: 1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+17-09-2023 10:00:37 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+17-09-2023 10:00:37 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+17-09-2023 10:00:37 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+17-09-2023 10:00:37 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+17-09-2023 10:00:37 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+17-09-2023 10:00:37 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+17-09-2023 10:00:37 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+17-09-2023 10:00:37 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+17-09-2023 10:00:37 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+17-09-2023 10:00:37 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+17-09-2023 10:00:37 [INFO] (WriterHepMC3::configure) Output file name set to: conf_100K_pol_p_18GeV_BH.txt
+17-09-2023 10:00:37 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+17-09-2023 10:00:37 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+17-09-2023 10:00:37 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+17-09-2023 10:00:37 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+17-09-2023 10:00:37 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+17-09-2023 10:00:37 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:38 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 10:00:39 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+18-09-2023 12:13:48 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 23.1942408806344
+Integrated cross-section (uncertainty) [nb]: 4.13907865198864
+Generation date: Mon Sep 18 12:13:48 2023
+
+Initialization time [s]: 8,720.509438
+Generation time (total) [s]: 35,542.167418
+Generation time (per event) [s]: 0.35542167418
+
+Additional information:
+lepton_polarisation: 1
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+18-09-2023 12:13:48 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+18-09-2023 12:13:48 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_m_BH.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+17-09-2023 09:59:17 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+17-09-2023 09:59:17 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+17-09-2023 09:59:17 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+17-09-2023 09:59:17 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+17-09-2023 09:59:17 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+17-09-2023 09:59:17 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+17-09-2023 09:59:17 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_m_BH.xml is valid
+17-09-2023 09:59:17 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+17-09-2023 09:59:17 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: BH
+
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: -1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+17-09-2023 09:59:19 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+17-09-2023 09:59:19 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+17-09-2023 09:59:19 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+17-09-2023 09:59:19 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+17-09-2023 09:59:19 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+17-09-2023 09:59:19 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+17-09-2023 09:59:19 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+17-09-2023 09:59:19 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+17-09-2023 09:59:19 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+17-09-2023 09:59:19 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+17-09-2023 09:59:19 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+17-09-2023 09:59:19 [INFO] (WriterHepMC3::configure) Output file name set to: conf_100K_pol_m_18GeV_BH.txt
+17-09-2023 09:59:19 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+17-09-2023 09:59:19 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+17-09-2023 09:59:19 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+17-09-2023 09:59:19 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+17-09-2023 09:59:19 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+17-09-2023 09:59:19 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+17-09-2023 09:59:19 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:19 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:19 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:20 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:21 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:21 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:21 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:21 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+17-09-2023 09:59:21 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+18-09-2023 12:36:44 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 23.1942408806344
+Integrated cross-section (uncertainty) [nb]: 4.13907865198864
+Generation date: Mon Sep 18 12:36:44 2023
+
+Initialization time [s]: 8,888.339228
+Generation time (total) [s]: 36,828.204295
+Generation time (per event) [s]: 0.36828204295
+
+Additional information:
+lepton_polarisation: -1
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+18-09-2023 12:36:44 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+18-09-2023 12:36:44 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_p_ALL.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+19-09-2023 10:49:35 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+19-09-2023 10:49:35 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+19-09-2023 10:49:35 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+19-09-2023 10:49:35 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+19-09-2023 10:49:35 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+19-09-2023 10:49:35 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+19-09-2023 10:49:35 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_p_ALL.xml is valid
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: ALL
+
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: 1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+19-09-2023 10:49:35 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+19-09-2023 10:49:35 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+19-09-2023 10:49:35 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+19-09-2023 10:49:35 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+19-09-2023 10:49:35 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+19-09-2023 10:49:35 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+19-09-2023 10:49:35 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+19-09-2023 10:49:35 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+19-09-2023 10:49:35 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+19-09-2023 10:49:35 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+19-09-2023 10:49:35 [INFO] (WriterHepMC3::configure) Output file name set to: conf_100K_pol_p_18GeV_ALL.txt
+19-09-2023 10:49:35 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+19-09-2023 10:49:35 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+19-09-2023 10:49:35 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+19-09-2023 10:49:35 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+19-09-2023 10:49:35 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+19-09-2023 10:49:35 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:36 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:37 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:37 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+20-09-2023 11:23:14 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 19.912316368631
+Integrated cross-section (uncertainty) [nb]: 1.12974329660492
+Generation date: Wed Sep 20 11:23:14 2023
+
+Initialization time [s]: 9,572.215345
+Generation time (total) [s]: 35,646.63459
+Generation time (per event) [s]: 0.3564663459
+
+Additional information:
+lepton_polarisation: 1
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+20-09-2023 11:23:14 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+20-09-2023 11:23:14 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_m_ALL.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+19-09-2023 10:49:32 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+19-09-2023 10:49:32 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+19-09-2023 10:49:32 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+19-09-2023 10:49:32 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+19-09-2023 10:49:32 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+19-09-2023 10:49:32 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+19-09-2023 10:49:32 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_m_ALL.xml is valid
+19-09-2023 10:49:32 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+19-09-2023 10:49:32 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: ALL
+
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: -1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+19-09-2023 10:49:33 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+19-09-2023 10:49:33 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+19-09-2023 10:49:33 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+19-09-2023 10:49:33 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+19-09-2023 10:49:33 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+19-09-2023 10:49:33 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+19-09-2023 10:49:33 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+19-09-2023 10:49:33 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+19-09-2023 10:49:33 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+19-09-2023 10:49:33 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+19-09-2023 10:49:33 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+19-09-2023 10:49:33 [INFO] (WriterHepMC3::configure) Output file name set to: conf_100K_pol_m_18GeV_ALL.txt
+19-09-2023 10:49:33 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+19-09-2023 10:49:33 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+19-09-2023 10:49:33 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+19-09-2023 10:49:33 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+19-09-2023 10:49:33 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+19-09-2023 10:49:33 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:34 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+19-09-2023 10:49:35 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+20-09-2023 11:58:52 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 19.4768890595594
+Integrated cross-section (uncertainty) [nb]: 0.672433694400878
+Generation date: Wed Sep 20 11:58:52 2023
+
+Initialization time [s]: 10,211.349683
+Generation time (total) [s]: 37,147.289529
+Generation time (per event) [s]: 0.37147289529
+
+Additional information:
+lepton_polarisation: -1
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+20-09-2023 11:58:52 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+20-09-2023 11:58:52 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_p_TCS.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+20-09-2023 12:19:50 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+20-09-2023 12:19:50 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+20-09-2023 12:19:50 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+20-09-2023 12:19:50 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+20-09-2023 12:19:50 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+20-09-2023 12:19:50 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+20-09-2023 12:19:50 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_p_TCS.xml is valid
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: TCS
+
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: 1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+20-09-2023 12:19:50 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+20-09-2023 12:19:50 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+20-09-2023 12:19:50 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+20-09-2023 12:19:50 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+20-09-2023 12:19:50 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+20-09-2023 12:19:50 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+20-09-2023 12:19:50 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+20-09-2023 12:19:50 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+20-09-2023 12:19:50 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+20-09-2023 12:19:50 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+20-09-2023 12:19:50 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+20-09-2023 12:19:50 [INFO] (WriterHepMC3::configure) Output file name set to: conf_1M_pol_p_18GeV_TCS.txt
+20-09-2023 12:19:50 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+20-09-2023 12:19:50 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+20-09-2023 12:19:50 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+20-09-2023 12:19:50 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+20-09-2023 12:19:50 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+20-09-2023 12:19:50 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+20-09-2023 12:19:50 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:50 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:51 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:52 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+20-09-2023 03:24:03 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 0.00829434050908472
+Integrated cross-section (uncertainty) [nb]: 1.01555055801084e-05
+Generation date: Wed Sep 20 15:24:03 2023
+
+Initialization time [s]: 10,297.34397
+Generation time (total) [s]: 755.97072
+Generation time (per event) [s]: 0.0075597072
+
+Additional information:
+lepton_polarisation: 1
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+20-09-2023 03:24:03 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+20-09-2023 03:24:03 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ ./bin/epic --seed=12345678 --scenario=/home/hamzeh-khanpour/epic/data/examples/conf_pol_m_TCS.xml
+QSqlDatabase: QMYSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE
+20-09-2023 12:19:43 [INFO] (Epic::printVersion) EPIC 1.1.0 (https://pawelsznajder.github.io/epic) distributed under GNU Public License
+20-09-2023 12:19:43 [INFO] (Partons::printVersion) PARTONS 4.0.0 (http://partons.cea.fr) distributed under GNU Public License
+20-09-2023 12:19:43 [INFO] (Partons::printVersion) Git branch and revision of this version is master/f1ba0b47060c6b84c3a75a7b586a2428883eb48b
+20-09-2023 12:19:43 [INFO] (Partons::printVersion) Built using Elementary-Utils 4.0.0 (master/d365b00fed9250e1169bcb48764e1bf179e46c8a) and NumA++ 4.0.0 (master/fae1ac9d574b9281c9d571db1cf8be24e2aa64e2)
+20-09-2023 12:19:43 [WARN] (DatabaseManager::init) MYSQL database is currently not available ; Check your connection properties in partons.properties ; Or check if MYSQL server is installed -> (DatabaseManager::init) Can't connect to database : Driver not loaded Driver not loaded
+20-09-2023 12:19:43 [INFO] (RandomSeedManager::setSeedCount) Initial random seed set to: 12,345,678
+20-09-2023 12:19:43 [INFO] (AutomationService::parseXMLFile) File /home/hamzeh-khanpour/epic/data/examples/conf_pol_m_TCS.xml is valid
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getGeneralConfigurationFromTask) General configuration:
+
+Number of events: 100,000
+Debugging histogram file: epic_hist_file.root
+
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getAdditionalGeneralConfigurationFromTask) Additional general configuration:
+
+Subprocess: TCS
+
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getExperimentalConditionsFromTask) Experimental conditions:
+
+Experimental condition lepton energy: 18 [GeV]
+Experimental condition lepton type: e-
+Experimental condition lepton helicity: -1
+Experimental condition hadron energy: 275 [GeV]
+Experimental condition hadron type: p
+Experimental condition hadron polarisation: Vector3D<0, 0, 0>
+Experimental condition fixed target lepton energy equivalent: 10,551.2804913258 [GeV]
+
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getKinematicRangesFromTask) Kinematic ranges:
+
+TCS kinematic range y: min: 0.01 max: 0.5
+TCS kinematic range Q2: min: 0 max: 1
+TCS kinematic range t: min: -4 max: 0
+TCS kinematic range Q'2: min: 1 max: 1,000
+TCS kinematic range phiS: min: 0 max: 6.283186
+TCS kinematic range phiL: min: 0.001 max: 6.282186
+TCS kinematic range thetaL: min: 0 max: 3.141593
+
+20-09-2023 12:19:43 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ScaleModule = TCSScalesQ2PrimMultiplier
+20-09-2023 12:19:43 [INFO] (TCSScalesQ2PrimMultiplier::configure) lambda configured with value = 1
+20-09-2023 12:19:43 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with XiConverterModule = TCSXiConverterTauToXi
+20-09-2023 12:19:43 [INFO] (TCSProcessBDP01::prepareSubModules) Configured with ConvolCoeffFunctionModule = TCSCFFFromDVCS
+20-09-2023 12:19:43 [INFO] (TCSCFFFromDVCS::configure) qcd_order_type configured with value = LO
+20-09-2023 12:19:43 [INFO] (TCSCFFFromDVCS::prepareSubModules) Configure with DVCSConvolCoeffFunctionModule = DVCSCFFCMILOU3DTables
+20-09-2023 12:19:43 [INFO] (DVCSCFFCMILOU3DTables::configure) qcd_order_type configured with value = LO
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getProcessModuleFromTask) Process module: TCSProcessBDP01
+20-09-2023 12:19:43 [INFO] (EventGeneratorFOAM::configure) Parameter nCells changed to 2,000
+20-09-2023 12:19:43 [INFO] (EventGeneratorFOAM::configure) Parameter nSamples changed to 2,000
+20-09-2023 12:19:43 [INFO] (EventGeneratorFOAM::configure) Parameter nBins changed to 200
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getEventGeneratorModuleFromTask) Event generator module: EventGeneratorFOAM
+20-09-2023 12:19:43 [INFO] (TCSKinematicDefault::configure) Decay type set to: muon-
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getKinematicModuleFromTask) Kinematic module: TCSKinematicDefault
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getRCModuleFromTask) Radiative correction module: TCSRCNull
+20-09-2023 12:19:43 [INFO] (WriterHepMC3::configure) Output file name set to: conf_1M_pol_m_18GeV_TCS.txt
+20-09-2023 12:19:43 [INFO] (WriterHepMC3::configure) HepMC3 writer type set to: ascii
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::getWriterModuleFromTask) Writer module: WriterHepMC3
+20-09-2023 12:19:43 [INFO] (TCSGeneratorService::openHistogramFile) Histogram file created successfully: epic_hist_file.root
+20-09-2023 12:19:43 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable t changed from min: -4 max: 0 to min: -4 max: -2.24569933793441e-10
+20-09-2023 12:19:43 [WARN] (TCSKinematicDefault::changeKinematicRange) Range for variable Q2 changed from min: 0 max: 1 to min: 2.63757460627463e-12 max: 1
+20-09-2023 12:19:43 [INFO] (EventGeneratorFOAM::initialise) Creating new TFoam object
+20-09-2023 12:19:43 [INFO] (EventGeneratorFOAM::initialise) TFoam object name: 45216c003ccfbd99e440a40ce36a7617d8fe2695
+20-09-2023 12:19:43 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:43 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF H^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF E^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:44 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Ht^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^g processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^u processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^d processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [INFO] (DVCSCFFCMILOU3DTables::loadGrid) CFF Et^s processed successfully: xB (min, max, nNodes): (9.99999974737875e-05, 0.699999988079071, 60), t (min, max, nNodes): (-1.60000002384186, 0, 60), Q2 (min, max, nNodes): (1, 5,000, 60)
+20-09-2023 12:19:45 [WARN] (DVCSCFFCMILOU3DTables::checkRange) Value outside grid, freeze or return zero (more of these warning will be suppressed)
+20-09-2023 03:26:43 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.0
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 100,000
+Integrated cross-section (value) [nb]: 0.00829434050908472
+Integrated cross-section (uncertainty) [nb]: 1.01555055801084e-05
+Generation date: Wed Sep 20 15:26:43 2023
+
+Initialization time [s]: 10,451.517081
+Generation time (total) [s]: 768.224015
+Generation time (per event) [s]: 0.00768224015
+
+Additional information:
+lepton_polarisation: -1
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+20-09-2023 03:26:43 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+20-09-2023 03:26:43 [INFO] (LoggerManager::close) ... Closed properly ...
+hamzeh-khanpour@hamzeh-khanpour:~/epic$ 
+
+
+
+
+
+
