@@ -24,7 +24,7 @@
          <param name="range_Q2Prim" value="1.0|1000.0" />       
          <param name="range_phiL" value="0.001|2*pi-0.001" />
 	 <param name="range_phiS" value="0.0|2*pi" />                
-	 <param name="range_thetaL" value="0.0|pi" />        
+	 <param name="range_thetaL" value="0.0|pi" />
 
          <param name="range_xB" value="0.0|1.0" />              
       </kinematic_range>

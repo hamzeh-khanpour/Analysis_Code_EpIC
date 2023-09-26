@@ -22,6 +22,9 @@
    Float_t Ptll = 0;
    Float_t tvalue = 0;
 
+   Float_t thetal = 0;
+   Float_t phil = 0;
+
 
    Float_t  nentries = 0;
    Float_t  integrated_luminosity = 0;
@@ -67,6 +70,17 @@ TH1F * histtvalue_BH = new TH1F ("tvalue", "",  30, 0.0, 4.0);
 TH1F * histtvalue_TCS = new TH1F ("tvalue", "", 30, 0.0, 4.0);  
 TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 4.0);  
 
+TH1F * histthetal_BH = new TH1F ("thetal", "",  30, 0.0, 4.0);
+TH1F * histthetal_TCS = new TH1F ("thetal", "", 30, 0.0, 4.0);
+TH1F * histthetal_All = new TH1F ("thetal", "", 30, 0.0, 4.0);
+
+
+TH1F * histphil_BH = new TH1F ("phil", "",  30, 0.0, 7.0);
+TH1F * histphil_TCS = new TH1F ("phil", "", 30, 0.0, 7.0);
+TH1F * histphil_All = new TH1F ("phil", "", 30, 0.0, 7.0);
+
+
+
 // ============================================
 
    TFile *file;
@@ -99,6 +113,17 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 4.0);
    tree_EIC_TCS->SetBranchAddress("tvalue",&tvalue);
    tree_EIC_All->SetBranchAddress("tvalue",&tvalue);  
 
+
+   tree_EIC_BH->SetBranchAddress("thetal",&thetal);
+   tree_EIC_TCS->SetBranchAddress("thetal",&thetal);
+   tree_EIC_All->SetBranchAddress("thetal",&thetal);
+
+
+   tree_EIC_BH->SetBranchAddress("phil",&phil);
+   tree_EIC_TCS->SetBranchAddress("phil",&phil);
+   tree_EIC_All->SetBranchAddress("phil",&phil);
+
+
    
   for (Long64_t ievt=0; ievt<tree_EIC_BH->GetEntries();ievt++) {
   tree_EIC_BH->GetEntry(ievt);
@@ -107,6 +132,9 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 4.0);
   histPtll_BH->Fill(Ptll,event_weight_BH/(1.0/30.0));    
   histtvalue_BH->Fill(tvalue,tvalue*event_weight_BH/(4.0/30.0));   // ,event_weight_BH ,integrated_cross_section_value_BH
 //cout << "event_weight_BH =" << event_weight_BH << endl;
+  histthetal_BH->Fill(thetal,event_weight_BH/(4.0/30.0));
+  histphil_BH->Fill(phil,event_weight_BH/(7.0/30.0));
+
     }
     
     
@@ -132,6 +160,9 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 4.0);
   histPtll_TCS->Fill(Ptll,event_weight_TCS/(1.0/30.0));    
   histtvalue_TCS->Fill(tvalue,tvalue*event_weight_TCS/(4.0/30.0));  //  ,integrated_cross_section_value_TCS
 //cout << "event_weight_TCS =" << event_weight_TCS << endl;
+  histthetal_TCS->Fill(thetal,event_weight_TCS/(4.0/30.0));
+  histphil_TCS->Fill(phil,event_weight_TCS/(7.0/30.0));
+
     }
 
 
@@ -142,6 +173,8 @@ TH1F * histtvalue_All = new TH1F ("tvalue", "", 30, 0.0, 4.0);
   histPtll_All->Fill(Ptll,event_weight_All/(1.0/30.0));    
   histtvalue_All->Fill(tvalue,tvalue*event_weight_All/(4.0/30.0));  //  ,integrated_cross_section_value_All
 //cout << "event_weight_All =" << event_weight_All << endl;
+  histthetal_All->Fill(thetal,event_weight_All/(4.0/30.0));
+  histphil_All->Fill(phil,event_weight_All/(7.0/30.0));
     }
   
     
@@ -170,14 +203,14 @@ TLatex *t2a = new TLatex(0.5,0.9,"#bf{Electron-Ion Collider (EIC)}");
                 t2a->SetTextSize(0.04);
                 t2a->SetTextAlign(20);
 
-                
-TLatex *t3a = new TLatex(0.27,0.85,"E_{e} = 18 GeV");
+
+TLatex *t3a = new TLatex(0.3,0.83,"E_{e} = 18 GeV; E_{p} = 275 GeV");
                 t3a->SetNDC();
                 t3a->SetTextFont(42);
                 t3a->SetTextSize(0.04);
                 t3a->SetTextAlign(20);
-                
-            
+
+
 TLatex *t4a = new TLatex(0.276,0.80,"E_{p} = 275 GeV");
                 t4a->SetNDC();
                 t4a->SetTextFont(42);
@@ -185,44 +218,45 @@ TLatex *t4a = new TLatex(0.276,0.80,"E_{p} = 275 GeV");
                 t4a->SetTextAlign(20);
 
 
-TLatex *t5a = new TLatex(0.666,0.66,"lepton_polarisation = +1 & -1");
+TLatex *t5a = new TLatex(0.58,0.66,"P_{e^{-}}= +1 & -1"); // lepton_polarisation
                 t5a->SetNDC();
                 t5a->SetTextFont(12);
                 t5a->SetTextSize(0.04);
                 t5a->SetTextAlign(20);
-                
+
 TLatex *t6a = new TLatex(0.692,0.61,"hadron_polarisation = 0|0|1");
                 t6a->SetNDC();
                 t6a->SetTextFont(12);
                 t6a->SetTextSize(0.04);
                 t6a->SetTextAlign(20);
-                
-TLatex *t2b = new TLatex(0.70,0.550,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}<10 mrad");
+
+TLatex *t2b = new TLatex(0.70,0.60,"0.5<E'_{e}/E_{e}<0.9 & #pi-#theta_{e}<10 mrad");
                 t2b->SetNDC();
                 t2b->SetTextFont(12);
                 t2b->SetTextSize(0.04);
                 t2b->SetTextAlign(20);
 
-                
-TLatex *t3b = new TLatex(0.64,0.50,"x_{L}<0.97 || p_{T}^{p}>100 Mev");
+
+TLatex *t3b = new TLatex(0.64,0.55,"x_{L}<0.97 || p_{T}^{p}>100 Mev");
                 t3b->SetNDC();
                 t3b->SetTextFont(12);
                 t3b->SetTextSize(0.04);
                 t3b->SetTextAlign(20);
-                
-                
-TLatex *t4b = new TLatex(0.58,0.45,"#theta_{p}<13 mrad");
+
+
+TLatex *t4b = new TLatex(0.58,0.5,"#theta_{p}<13 mrad");
                 t4b->SetNDC();
                 t4b->SetTextFont(12);
                 t4b->SetTextSize(0.04);
                 t4b->SetTextAlign(20);
-                
-                
-TLatex *t5b = new TLatex(0.65,0.39,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
+
+
+TLatex *t5b = new TLatex(0.65,0.45,"p_{T}^{#mu}>300 MeV & |#eta_{#mu}|<3.5");
                 t5b->SetNDC();
                 t5b->SetTextFont(12);
                 t5b->SetTextSize(0.04);
                 t5b->SetTextAlign(20);
+
 
 // --------------------
 
@@ -262,7 +296,7 @@ histMll_BH->GetYaxis()->SetTitleFont(22);
  leg->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
- t4a->Draw("same"); 
+// t4a->Draw("same");
  t5a->Draw("same");
 // t6a->Draw("same");  
  t2b->Draw("same");   
@@ -314,7 +348,7 @@ histPtll_BH->GetYaxis()->SetTitleFont(22);
  leg->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
- t4a->Draw("same"); 
+// t4a->Draw("same");
  t5a->Draw("same");
 // t6a->Draw("same");  
  t2b->Draw("same");   
@@ -366,7 +400,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  leg->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
- t4a->Draw("same"); 
+// t4a->Draw("same");
  t5a->Draw("same");
 // t6a->Draw("same");  
  t2b->Draw("same");   
@@ -419,7 +453,7 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  leg->Draw("same");
  t2a->Draw("same");
  t3a->Draw("same");
- t4a->Draw("same"); 
+// t4a->Draw("same");
  t5a->Draw("same");
 // t6a->Draw("same");  
  t2b->Draw("same");   
@@ -428,10 +462,115 @@ histtvalue_BH->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");  
  
 
-c4->SaveAs("t-value-nonorm_conf_09_Final.pdf");
+//c4->SaveAs("t-value-nonorm_conf_099_Final.pdf");
 //c4->SaveAs("t-value-nonorm.C");
 //c4->SaveAs("t-value-nonorm.eps");
 //c4->SaveAs("t-value-nonorm.root");
+
+
+
+
+// =======================================================================
+
+
+TCanvas* c5 = new TCanvas("c5","thetal", 10, 10, 900, 700);
+
+//histthetal_BH->SetTitle("Jet Algorithem = ee_genkt_cambridge"); t5a->Draw("same");
+histthetal_BH->GetXaxis()->SetTitle("#theta_{l}");
+//histthetal_BH->GetXaxis()->SetTitleOffset(1.25);
+histthetal_BH->GetXaxis()->SetLabelFont(22);
+histthetal_BH->GetXaxis()->SetTitleFont(22);
+histthetal_BH->GetYaxis()->SetTitle("d#sigma/d#theta_{l}");
+histthetal_BH->GetYaxis()->SetTitleOffset(1.40);
+histthetal_BH->GetYaxis()->SetLabelFont(22);
+histthetal_BH->GetYaxis()->SetTitleFont(22);
+
+//histthetal_BH->GetYaxis()->SetRangeUser(1,100);
+
+
+ cout<<"Integral(thetal) ="<<histthetal_BH->Integral()<<endl;
+
+   // histthetal_BH->SetFillStyle(3001);
+//    histthetal_BH->SetFillColor(kGreen+1);
+    histthetal_BH->SetLineWidth(3);
+    histthetal_BH->SetLineColor(2);
+
+//    histthetal_BH->Draw("hist");
+    histthetal_BH->Draw("hist");
+
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+// t4a->Draw("same");
+ t5a->Draw("same");
+// t6a->Draw("same");
+ t2b->Draw("same");
+ t3b->Draw("same");
+ t4b->Draw("same");
+ t5b->Draw("same");
+
+// c5->SetLogy(1);
+
+
+c5->SaveAs("theta_conf_09_Final.pdf");
+//c5->SaveAs("thetal.C");
+//c5->SaveAs("thetal.eps");
+//c5->SaveAs("thetal.root");
+//c5->SaveAs("thetal.jpg");
+
+
+
+
+// =======================================================================
+
+
+TCanvas* c6 = new TCanvas("c6","phil", 10, 10, 900, 700);
+
+//histphil_BH->SetTitle("Jet Algorithem = ee_genkt_cambridge"); t5a->Draw("same");
+histphil_BH->GetXaxis()->SetTitle("#phi_{l}");
+//histphil_BH->GetXaxis()->SetTitleOffset(1.25);
+histphil_BH->GetXaxis()->SetLabelFont(22);
+histphil_BH->GetXaxis()->SetTitleFont(22);
+histphil_BH->GetYaxis()->SetTitle("d#sigma/d#phi_{l}");
+histphil_BH->GetYaxis()->SetTitleOffset(1.40);
+histphil_BH->GetYaxis()->SetLabelFont(22);
+histphil_BH->GetYaxis()->SetTitleFont(22);
+
+histphil_BH->GetYaxis()->SetRangeUser(1,100);
+
+
+ cout<<"Integral(phil) ="<<histphil_BH->Integral()<<endl;
+
+   // histphil_BH->SetFillStyle(3001);
+//    histphil_BH->SetFillColor(kGreen+1);
+    histphil_BH->SetLineWidth(3);
+    histphil_BH->SetLineColor(2);
+
+//    histphil_BH->Draw("hist");
+    histphil_BH->Draw("hist");
+
+
+ leg->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+// t4a->Draw("same");
+ t5a->Draw("same");
+// t6a->Draw("same");
+ t2b->Draw("same");
+ t3b->Draw("same");
+ t4b->Draw("same");
+ t5b->Draw("same");
+
+// c6->SetLogy(1);
+
+
+c6->SaveAs("phil_conf_09_Final.pdf");
+//c6->SaveAs("thetal.C");
+//c6->SaveAs("thetal.eps");
+//c6->SaveAs("thetal.root");
+//c6->SaveAs("thetal.jpg");
+
 
 
 
