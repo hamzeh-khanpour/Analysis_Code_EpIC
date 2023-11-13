@@ -1,0 +1,495 @@
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime10_TCS.xml
+
+
+02-10-2023 10:09:34 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 0.00207616922322869
+Integrated cross-section (uncertainty) [nb]: 7.22151791744974e-07
+Generation date: Mon Oct  2 22:09:34 2023
+
+Initialization time [s]: 5,635.240056
+Generation time (total) [s]: 5,309.363996
+Generation time (per event) [s]: 0.005309363996
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+02-10-2023 10:09:34 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+02-10-2023 10:09:34 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime10_BH.xml
+
+
+04-10-2023 04:06:32 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 3.25411373744285
+Integrated cross-section (uncertainty) [nb]: 0.109251632352131
+Generation date: Wed Oct  4 16:06:32 2023
+
+Initialization time [s]: 6,578.888492
+Generation time (total) [s]: 155,394.28123
+Generation time (per event) [s]: 0.15539428123
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+04-10-2023 04:06:32 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 04:06:32 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime10_ALL.xml
+
+
+04-10-2023 04:27:27 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 2.9963471307055
+Integrated cross-section (uncertainty) [nb]: 0.0594533272372667
+Generation date: Wed Oct  4 16:27:27 2023
+
+Initialization time [s]: 6,236.14171
+Generation time (total) [s]: 156,999.043756
+Generation time (per event) [s]: 0.156999043756
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+04-10-2023 04:27:27 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 04:27:27 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime1000_TCS.xml
+
+
+02-10-2023 10:27:53 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 5.0480786184382e-05
+Integrated cross-section (uncertainty) [nb]: 1.68952428648273e-08
+Generation date: Mon Oct  2 22:27:53 2023
+
+Initialization time [s]: 6,108.214785
+Generation time (total) [s]: 5,756.377095
+Generation time (per event) [s]: 0.005756377095
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime1000_BH.xml
+
+
+04-10-2023 07:20:11 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 0.214955831103257
+Integrated cross-section (uncertainty) [nb]: 0.00580641734800193
+Generation date: Wed Oct  4 07:20:11 2023
+
+Initialization time [s]: 5,913.970765
+Generation time (total) [s]: 124,322.033424
+Generation time (per event) [s]: 0.124322033424
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+04-10-2023 07:20:11 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 07:20:11 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/examples/New_Samples_October_tagged_Qprime1000_ALL.xml
+
+04-10-2023 06:11:30 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 0.200407476242377
+Integrated cross-section (uncertainty) [nb]: 0.00344612205999186
+Generation date: Wed Oct  4 06:11:30 2023
+
+Initialization time [s]: 6,046.314824
+Generation time (total) [s]: 120,064.28213
+Generation time (per event) [s]: 0.12006428213
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+04-10-2023 06:11:30 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 06:11:30 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime10_TCS.xml
+
+
+03-10-2023 01:47:07 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 0.00859799469368671
+Integrated cross-section (uncertainty) [nb]: 3.38292717362659e-06
+Generation date: Tue Oct  3 01:47:07 2023
+
+Initialization time [s]: 4,997.262246
+Generation time (total) [s]: 4,161.962084
+Generation time (per event) [s]: 0.004161962084
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+03-10-2023 01:47:07 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+03-10-2023 01:47:07 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime10_BH.xml
+
+
+04-10-2023 08:40:43 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 16.7960530313883
+Integrated cross-section (uncertainty) [nb]: 2.14971379917506
+Generation date: Wed Oct  4 20:40:43 2023
+
+Initialization time [s]: 8,876.959595
+Generation time (total) [s]: 154,690.407079
+Generation time (per event) [s]: 0.154690407079
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+04-10-2023 08:40:43 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 08:40:43 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime10_ALL.xml
+
+05-10-2023 01:51:49 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 13.5434740835042
+Integrated cross-section (uncertainty) [nb]: 0.836298996630538
+Generation date: Thu Oct  5 01:51:49 2023
+
+Initialization time [s]: 5,417.319481
+Generation time (total) [s]: 176,805.102523
+Generation time (per event) [s]: 0.176805102523
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+05-10-2023 01:51:49 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+05-10-2023 01:51:49 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime1000_TCS.xml
+
+ 03-10-2023 03:42:03 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 0.000169525627048937
+Integrated cross-section (uncertainty) [nb]: 6.44323434748898e-08
+Generation date: Tue Oct  3 03:42:03 2023
+
+Initialization time [s]: 10,137.749396
+Generation time (total) [s]: 5,944.936706
+Generation time (per event) [s]: 0.005944936706
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: TCS
+
+03-10-2023 03:42:03 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+03-10-2023 03:42:03 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+
+
+
+ ./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime1000_BH.xml
+
+ 04-10-2023 04:47:16 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 1.70569320606324
+Integrated cross-section (uncertainty) [nb]: 0.548799990214178
+Generation date: Wed Oct  4 16:47:16 2023
+
+Initialization time [s]: 8,529.862236
+Generation time (total) [s]: 141,057.063612
+Generation time (per event) [s]: 0.141057063612
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: BH
+
+04-10-2023 04:47:16 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 04:47:16 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+./bin/epic --seed=100000 --scenario=/home/hamzeh-khanpour/epic/data/New_Samples_October_untagged_Qprime1000_ALL.xml
+
+04-10-2023 02:32:04 [INFO] (TCSGeneratorService::printAndSaveGenerationConfiguration) Generation information:
+
+Generator name: EPIC
+Generator version: 1.1.1
+Description: 2017-07-18 | Select specific GPD types
+Service name: TCSGeneratorService
+Number of generated events: 1,000,000
+Integrated cross-section (value) [nb]: 1.04663119022288
+Integrated cross-section (uncertainty) [nb]: 0.231136280692159
+Generation date: Wed Oct  4 14:32:04 2023
+
+Initialization time [s]: 4,543.690055
+Generation time (total) [s]: 136,922.446727
+Generation time (per event) [s]: 0.136922446727
+
+Additional information:
+lepton_polarisation: 0
+hadron_polarisation: 0|0|0
+suprocesses_type: ALL
+
+04-10-2023 02:32:04 [INFO] (TCSGeneratorService::closeHistogramFile) Histogram file closed after saving 7 histograms
+04-10-2023 02:32:04 [INFO] (LoggerManager::close) ... Closed properly ...
+
+
+
+
+
+
+
+
+
