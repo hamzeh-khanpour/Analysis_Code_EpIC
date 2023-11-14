@@ -36,7 +36,7 @@
    
 //*   -----------------------------------------------
 
-void Plots_EIC_HMLM(){
+void Plots_EIC_HMLM_BH(){
 
     
    
@@ -276,7 +276,7 @@ histMll_LM->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");
   
  
-c1->SaveAs("Mll_tagged_Qprime10_Compare.pdf");
+//c1->SaveAs("Mll_tagged_Qprime10_Compare.pdf");
 //c1->SaveAs("Mll_tagged_Qprime10_Compare.C");
 //c1->SaveAs("Mll_tagged_Qprime10_Compare.eps");
 //c1->SaveAs("Mll_tagged_Qprime10_Compare.root");
@@ -337,7 +337,7 @@ cout << "Integral resultHist_Mll = "  <<  resultHist_Mll->Integral()/4.0 << endl
 
 canvasMll->Update();
 //delete canvas;
-canvasMll->SaveAs("Mll_tagged_LM_HM.pdf");
+canvasMll->SaveAs("Mll_tagged_LM_HM_BH.pdf");
 
 
 
@@ -384,7 +384,7 @@ histPtll_LM->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");
  
  
-c2->SaveAs("Ptll_tagged_Qprime10_Compare.pdf");
+//c2->SaveAs("Ptll_tagged_Qprime10_Compare.pdf");
 //c2->SaveAs("ptll_tagged_Qprime10_Compare.C");
 //c2->SaveAs("ptll_tagged_Qprime10_Compare.eps");
 //c2->SaveAs("ptll_tagged_Qprime10_Compare.root");
@@ -444,7 +444,7 @@ cout << "Integral resultHist_Ptll = "  <<  resultHist_Ptll->Integral()/4.0 << en
 
 canvasPtll->Update();
 //delete canvas;
-canvasPtll->SaveAs("Ptll_tagged_LM_HM.pdf");
+canvasPtll->SaveAs("Ptll_tagged_LM_HM_BH.pdf");
 
 
 
@@ -544,7 +544,7 @@ histtvalue_LM->GetYaxis()->SetTitleFont(22);
  t5b->Draw("same");
  
 
-c4->SaveAs("t_value_tagged_Qprime10_Compare.pdf");
+//c4->SaveAs("t_value_tagged_Qprime10_Compare.pdf");
 //c4->SaveAs("t_value_tagged_Qprime10_Compare.C");
 //c4->SaveAs("t_value_tagged_Qprime10_Compare.eps");
 //c4->SaveAs("t_value_tagged_Qprime10_Compare.root");
@@ -607,7 +607,7 @@ cout << "Integral resultHist_tvalue = "  <<  resultHist_tvalue->Integral()/4.0 <
 
 canvastvalue->Update();
 //delete canvas;
-canvastvalue->SaveAs("t_value_tagged_LM_HM.pdf");
+canvastvalue->SaveAs("t_value_tagged_LM_HM_BH.pdf");
 
 
 
@@ -661,7 +661,7 @@ histthetal_LM->GetYaxis()->SetRangeUser(0.1,200);
  c5->SetLogy(1);
 
 
-c5->SaveAs("theta_tagged_Qprime10_Compare.pdf");
+//c5->SaveAs("theta_tagged_Qprime10_Compare.pdf");
 //c5->SaveAs("thetal_tagged_Qprime10_Compare.C");
 //c5->SaveAs("thetal_tagged_Qprime10_Compare.eps");
 //c5->SaveAs("thetal_tagged_Qprime10_Compare.root");
@@ -670,7 +670,73 @@ c5->SaveAs("theta_tagged_Qprime10_Compare.pdf");
 
 
 
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+TCanvas *canvasthetal = new TCanvas("canvasthetal", "Histogram Sum", 10, 10, 900, 700);
+TH1F *resultHist_thetal = (TH1F*)histthetal_LM->Clone(); // Clone histtvalue_LM to keep the original histogram
+resultHist_thetal->Add(histthetal_HM);
+
+
+Double_t xl9=0.70, yl9=0.70, xl10=xl9+0.150, yl10=yl9+0.150;
+
+TLegend *leg5 = new TLegend(xl9,yl9,xl10,yl10);
+leg5->SetBorderSize(0);
+
+leg5->AddEntry(resultHist_thetal,"BH (LM+HM)","L")->SetTextColor(2);
+
+leg5->SetTextSize(0.032);
+leg5->SetTextFont(12);
+leg5->SetFillStyle(0);
+
+
+resultHist_thetal->GetXaxis()->SetTitle("#theta_{l}");
+resultHist_thetal->GetXaxis()->SetTitleOffset(1.25);
+resultHist_thetal->GetXaxis()->SetLabelFont(22);
+resultHist_thetal->GetXaxis()->SetTitleFont(22);
+resultHist_thetal->GetYaxis()->SetTitle("d#sigma/d#theta_{l}");
+resultHist_thetal->GetYaxis()->SetTitleOffset(1.40);
+resultHist_thetal->GetYaxis()->SetLabelFont(22);
+resultHist_thetal->GetYaxis()->SetTitleFont(22);
+
+resultHist_thetal->Draw("hist");
+
+
+cout << "Integral resultHist_tvalue = "  <<  resultHist_thetal->Integral()/4.0 << endl;
+
+
+ canvastvalue->SetLogy(1);
+
+
+ leg4->Draw("same");
+ t2a->Draw("same");
+ t3a->Draw("same");
+// t4a->Draw("same");
+ t5a->Draw("same");
+// t6a->Draw("same");
+ t2b->Draw("same");
+ t3b->Draw("same");
+ t4b->Draw("same");
+ t5b->Draw("same");
+
+
+canvasthetal->Update();
+//delete canvas;
+canvasthetal->SaveAs("thetal_tagged_LM_HM_BH.pdf");
+
+
+
+
+
+
 // =======================================================================
+
+
+
 
 
 TCanvas* c6 = new TCanvas("c6","phil", 10, 10, 900, 700);
@@ -714,7 +780,7 @@ histphil_LM->GetYaxis()->SetRangeUser(0.1,100);
  c6->SetLogy(1);
 
 
-c6->SaveAs("phil_tagged_Qprime10_Compare.pdf");
+//c6->SaveAs("phil_tagged_Qprime10_Compare.pdf");
 //c6->SaveAs("thetal_tagged_Qprime10_Compare.C");
 //c6->SaveAs("thetal_tagged_Qprime10_Compare.eps");
 //c6->SaveAs("thetal_tagged_Qprime10_Compare.root");

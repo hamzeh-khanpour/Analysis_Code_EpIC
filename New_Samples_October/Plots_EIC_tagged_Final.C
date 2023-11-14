@@ -529,7 +529,7 @@ cout << "Integral resultHist_Mll_BH = "  <<  resultHist_Mll_BH->Integral()/4.0 <
 
 canvasMll_BH->Update();
 //delete canvas;
-canvasMll_BH->SaveAs("Mll_tagged_LM_HM_BH.pdf");
+//canvasMll_BH->SaveAs("Mll_tagged_LM_HM_BH.pdf");
 
 
 
@@ -751,7 +751,7 @@ cout << "Integral resultHist_Ptll_BH = "  <<  resultHist_Ptll_BH->Integral()/4.0
 
 canvasPtll_BH->Update();
 //delete canvas;
-canvasPtll_BH->SaveAs("Ptll_tagged_LM_HM_BH.pdf");
+//canvasPtll_BH->SaveAs("Ptll_tagged_LM_HM_BH.pdf");
 
 
 
@@ -1032,7 +1032,7 @@ cout << "Integral resultHist_tvalue_BH = "  <<  resultHist_tvalue_BH->Integral()
 
 canvastvalue_BH->Update();
 //delete canvas;
-canvastvalue_BH->SaveAs("t_value_tagged_LM_HM_BH.pdf");
+//canvastvalue_BH->SaveAs("t_value_tagged_LM_HM_BH.pdf");
 
 
 
@@ -1263,7 +1263,7 @@ cout << "Integral resultHist_thetal_BH = "  <<  resultHist_thetal_BH->Integral()
 
 canvasthetal_BH->Update();
 //delete canvas;
-canvasthetal_BH->SaveAs("thetal_tagged_LM_HM_BH.pdf");
+//canvasthetal_BH->SaveAs("thetal_tagged_LM_HM_BH.pdf");
 
 
 
@@ -1335,11 +1335,11 @@ resultHist_thetal_TCS->Add(histthetal_HM_TCS);
 
 leg5->AddEntry(resultHist_thetal_TCS,"TCS (LM+HM)","L")->SetTextColor(2);
 
-resultHist_thetal_TCS->GetXaxis()->SetTitle("M_{#mu^{+}#mu^{-}} [GeV]");
+resultHist_thetal_TCS->GetXaxis()->SetTitle("#theta_{l}");
 resultHist_thetal_TCS->GetXaxis()->SetTitleOffset(1.25);
 resultHist_thetal_TCS->GetXaxis()->SetLabelFont(22);
 resultHist_thetal_TCS->GetXaxis()->SetTitleFont(22);
-resultHist_thetal_TCS->GetYaxis()->SetTitle("d#sigma/dM_{#mu^{+}#mu^{-}} [pb/GeV]");
+resultHist_thetal_TCS->GetYaxis()->SetTitle("d#sigma/d#theta_{l}");
 resultHist_thetal_TCS->GetYaxis()->SetTitleOffset(1.40);
 resultHist_thetal_TCS->GetYaxis()->SetLabelFont(22);
 resultHist_thetal_TCS->GetYaxis()->SetTitleFont(22);
