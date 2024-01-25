@@ -1,0 +1,287 @@
+tagged - GM = 0
+
+
+New_Samples_October_tagged_Qprime10_ALL
+
+1 integrated_cross_section_uncertainty 0.148122977292214
+1 integrated_cross_section_value 3.08048141601328
+
+2 integrated_cross_section_uncertainty 0.0725143478892353
+2 integrated_cross_section_value 2.85394951754858
+
+3 integrated_cross_section_uncertainty 0.0644854673298277
+3 integrated_cross_section_value 2.94701860081479
+
+4 integrated_cross_section_uncertainty 0.0350536204560595
+4 integrated_cross_section_value 2.86418369623897
+
+5 integrated_cross_section_uncertainty 0.110640766899907
+5 integrated_cross_section_value 3.02321825796213
+
+
+integrated_cross_section_uncertainty 0.0861634
+integrated_cross_section_value       2.95377
+
+
+New_Samples_October_tagged_Qprime10_BH
+
+1 integrated_cross_section_uncertainty 0.105828163175947
+1 integrated_cross_section_value 2.98140274636376
+
+2 integrated_cross_section_uncertainty 0.0774533977003539
+2 integrated_cross_section_value 2.89313339499506
+
+3 integrated_cross_section_uncertainty 0.29244149514989
+3 integrated_cross_section_value 3.32286249665538
+
+4 integrated_cross_section_uncertainty 0.181140638056307
+4 integrated_cross_section_value 3.28506439386119
+
+5 integrated_cross_section_uncertainty 0.0749573779537322
+5 integrated_cross_section_value 2.91992877274969
+
+
+integrated_cross_section_uncertainty  0.146364
+integrated_cross_section_value        3.08048
+
+
+New_Samples_October_tagged_Qprime10_TCS
+
+1 integrated_cross_section_uncertainty 7.07115112387836e-07
+1 integrated_cross_section_value 0.00207712821465443
+
+2 integrated_cross_section_uncertainty 6.8168509784259e-07
+2 integrated_cross_section_value 0.00207511583421543
+
+3 integrated_cross_section_uncertainty 7.08852503604497e-07
+3 integrated_cross_section_value 0.0020762230307224
+
+4 integrated_cross_section_uncertainty 7.03330015959766e-07
+4 integrated_cross_section_value 0.00207603812986984
+
+5 integrated_cross_section_uncertainty 7.01669285668552e-07
+5 integrated_cross_section_value 0.00207596680867158
+
+
+
+integrated_cross_section_uncertainty  7.0053*10^-7
+integrated_cross_section_value        0.00207609
+
+
+
++++++++++++
+
+
+New_Samples_October_tagged_Qprime1000_ALL
+
+1 integrated_cross_section_uncertainty 0.453946680413419
+1 integrated_cross_section_value 0.645939925252914
+
+2 integrated_cross_section_uncertainty 0.0199103103482881
+2 integrated_cross_section_value 0.197223939602786
+
+3 integrated_cross_section_uncertainty 0.0136069480065114
+3 integrated_cross_section_value 0.193416853570854
+
+4 integrated_cross_section_uncertainty 0.00556872157769525
+4 integrated_cross_section_value 0.187881631490694
+
+5 integrated_cross_section_uncertainty 0.0126954450152483
+5 integrated_cross_section_value 0.19895195101262
+
+
+integrated_cross_section_uncertainty    0.101146
+integrated_cross_section_value          0.284683
+
+
+
+New_Samples_October_tagged_Qprime1000_BH
+
+1 integrated_cross_section_uncertainty 0.0100664196278944
+1 integrated_cross_section_value 0.190901437726864
+
+2 integrated_cross_section_uncertainty 0.0113473371328516
+2 integrated_cross_section_value 0.187987537497405
+
+3 integrated_cross_section_uncertainty 0.00475979712945272
+3 integrated_cross_section_value 0.182027804250408
+
+4 integrated_cross_section_uncertainty 0.00780376702718922
+4 integrated_cross_section_value 0.191203030986201
+
+5 integrated_cross_section_uncertainty 0.00372491735582856
+5 integrated_cross_section_value 0.180108781477685
+
+
+integrated_cross_section_uncertainty   0.00754045
+integrated_cross_section_value         0.186446
+
+
+New_Samples_October_tagged_Qprime1000_TCS
+
+1 integrated_cross_section_uncertainty 1.69072825674313e-08
+1 integrated_cross_section_value 5.04880321954706e-05
+
+2 integrated_cross_section_uncertainty 1.77841676975018e-08
+2 integrated_cross_section_value 5.05066192701257e-05
+
+3 integrated_cross_section_uncertainty 1.72288112465765e-08
+3 integrated_cross_section_value 5.0453123627364e-05
+
+4 integrated_cross_section_uncertainty 1.74496151585081e-08
+4 integrated_cross_section_value 5.05125962102488e-05
+
+5 integrated_cross_section_uncertainty 1.73285757052756e-08
+5 integrated_cross_section_value 5.04923649748571e-05
+
+
+
+integrated_cross_section_uncertainty    1.73397*10^-8
+integrated_cross_section_value          0.0000504905
+
+
+
+====================================================
+
+
+
+untagged - GM = 0
+
+
+
+New_Samples_October_untagged_Qprime10_ALL
+
+1 integrated_cross_section_uncertainty 3.81050237515883
+1 integrated_cross_section_value 16.4054862855735
+
+2 integrated_cross_section_uncertainty 0.353281253755679
+2 integrated_cross_section_value 12.4172665062887
+
+3 integrated_cross_section_uncertainty 2.11283305168729
+3 integrated_cross_section_value 14.8899409870122
+
+4 integrated_cross_section_uncertainty 0.295344540234354
+4 integrated_cross_section_value 12.4349704616375
+
+5 integrated_cross_section_uncertainty 1.30699338468241
+5 integrated_cross_section_value 14.5322132174236
+
+
+integrated_cross_section_uncertainty    1.57579
+integrated_cross_section_value          14.136
+
+
+New_Samples_October_untagged_Qprime10_BH
+
+1 integrated_cross_section_uncertainty 0.355147343078468
+1 integrated_cross_section_value 12.2468279895705
+
+2 integrated_cross_section_uncertainty 1.15216619852564
+2 integrated_cross_section_value 13.8500500237424
+
+3 integrated_cross_section_uncertainty 0.353098452008443
+3 integrated_cross_section_value 12.5249994525893
+
+4 integrated_cross_section_uncertainty 1.25232790773091
+4 integrated_cross_section_value 14.5833691883168
+
+5 integrated_cross_section_uncertainty 0.441947116862957
+5 integrated_cross_section_value 12.8616384868191
+
+
+integrated_cross_section_uncertainty    0.710937
+integrated_cross_section_value          13.2134
+
+
+New_Samples_October_untagged_Qprime10_TCS
+
+1 integrated_cross_section_uncertainty 3.47188069877188e-06
+1 integrated_cross_section_value 0.00859888230359274
+
+2 integrated_cross_section_uncertainty 3.39016301262616e-06
+2 integrated_cross_section_value 0.0086019347106497
+
+3 integrated_cross_section_uncertainty 3.43384306779141e-06
+3 integrated_cross_section_value 0.00859696916672876
+
+4 integrated_cross_section_uncertainty 3.3382902238994e-06
+4 integrated_cross_section_value 0.00860394671958071
+
+5 integrated_cross_section_uncertainty 3.27616889887816e-06
+5 integrated_cross_section_value 0.00859762998941766
+
+
+integrated_cross_section_uncertainty  3.38207*10^-6
+integrated_cross_section_value        0.00859987
+
+
+
++++++++++++
+
+
+
+New_Samples_October_untagged_Qprime1000_ALL
+
+1 integrated_cross_section_uncertainty 0.0137114219216909
+1 integrated_cross_section_value 0.657822499383299
+
+2 integrated_cross_section_uncertainty 0.0211423485678263
+2 integrated_cross_section_value 0.699655970905349
+
+3 integrated_cross_section_uncertainty 0.0117538723481265
+3 integrated_cross_section_value 0.633291715085032
+
+4 integrated_cross_section_uncertainty 0.0089389408277565
+4 integrated_cross_section_value 0.633368481382924
+
+5 integrated_cross_section_uncertainty 0.01778368028804
+5 integrated_cross_section_value 0.659344174105646
+
+
+integrated_cross_section_uncertainty   0.0146661
+integrated_cross_section_value         0.656697
+
+
+New_Samples_October_untagged_Qprime1000_BH
+
+1 integrated_cross_section_uncertainty 0.0877981627097848
+1 integrated_cross_section_value 0.799258798215989
+
+2 integrated_cross_section_uncertainty 0.0112567818973247
+2 integrated_cross_section_value 0.654813103145753
+
+3 integrated_cross_section_uncertainty 0.0155058461302121
+3 integrated_cross_section_value 0.65445586307606
+
+4 integrated_cross_section_uncertainty 0.0389661523375764
+4 integrated_cross_section_value 0.67742215065353
+
+5 integrated_cross_section_uncertainty 0.0697341399400774
+5 integrated_cross_section_value 0.734575773334859
+
+
+integrated_cross_section_uncertainty   0.0446522
+integrated_cross_section_value         0.704105
+
+
+New_Samples_October_untagged_Qprime1000_TCS
+
+1 integrated_cross_section_uncertainty 6.64481480600029e-08
+1 integrated_cross_section_value 0.000169561837112031
+
+2 integrated_cross_section_uncertainty 6.41562592051741e-08
+2 integrated_cross_section_value 0.000169669743092277
+
+3 integrated_cross_section_uncertainty 6.36468520967029e-08
+3 integrated_cross_section_value 0.000169677852503306
+
+4 integrated_cross_section_uncertainty 6.49709627819397e-08
+4 integrated_cross_section_value 0.000169629471198496
+
+5 integrated_cross_section_uncertainty 6.55040457148894e-08
+5 integrated_cross_section_value 0.000169613692053077
+
+
+integrated_cross_section_uncertainty 6.49453*10^-8
+integrated_cross_section_value       0.000169631
+

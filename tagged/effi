@@ -1,0 +1,71 @@
+
+
+low mass
+
+BH
+N_Cut_I    = 1
+N_Cut_II   = 0.283904
+N_Cut_III  = 0.041384
+N_Cut_IIII = 0.041384
+
+
+TCS
+N_Cut_I    = 0.999995
+N_Cut_II   = 0.92993
+N_Cut_III  = 0.657483
+N_Cut_IIII = 0.657483
+
+
+
+ALL
+N_Cut_I    = 1
+N_Cut_II   = 0.280971
+N_Cut_III  = 0.042096
+N_Cut_IIII = 0.042096
+
+
+
+
+
+high mass
+
+
+BH
+N_Cut_I    = 0.999997
+N_Cut_II   = 0.562961
+N_Cut_III  = 0.16378
+N_Cut_IIII = 0.16378
+
+
+
+TCS
+N_Cut_I    = 0.999998
+N_Cut_II   = 0.945059
+N_Cut_III  = 0.91628
+N_Cut_IIII = 0.91628
+
+
+
+ALL
+N_Cut_I    = 1
+N_Cut_II   = 0.56148
+N_Cut_III  = 0.16539
+N_Cut_IIII = 0.16539
+
+
+
+
+
+tree Entries tree_EIC_LM_BH  == 40639
+tree Entries tree_EIC_HM_BH  == 162308
+tree Entries tree_EIC_LM_TCS  == 657662
+tree Entries tree_EIC_HM_TCS  == 916103
+tree Entries tree_EIC_LM_ALL  == 41513
+tree Entries tree_EIC_HM_ALL  == 161017
+n_signal_BH_LM =16094
+n_signal_BH_HM =119605
+n_signal_TCS_LM =130020
+n_signal_TCS_HM =330405
+
+
+
